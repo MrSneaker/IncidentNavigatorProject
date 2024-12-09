@@ -11,10 +11,10 @@ let settingsTemp = 1;
 let promptData;
 let userRef;
 
-let copyBtnValue;
-let copyBtnLabel
-let includeBtnValue;
-let includeBtnLabel;
+let copyBtnValue = "Copy";
+let copyBtnLabel = "Copy";
+let includeBtnValue = "Include";
+let includeBtnLabel = "Include";
 let assistInfoName = "Assistant";
 let editButtonValue;
 let editButtonLabel;
@@ -28,10 +28,10 @@ let globalAbortController = new AbortController();
 let globalSignal = globalAbortController.signal;
 
 /**
-     *
-     * Scroll to the bottom of the chat box when called.
-     *
-     */
+ *
+ * Scroll to the bottom of the chat box when called.
+ *
+ */
 function scrollToBottom() {
     const chatContent = document.querySelector('#chatContent');
     chatContent.scrollTop = chatContent.scrollHeight;
@@ -47,10 +47,11 @@ function autoResizeInput(obj) {
     let scrollHeight = obj.scrollHeight;
     let nbChar = obj.value.length;
     if (scrollHeight < 100) { // min height of 100px
-        obj.style.height = '100px';
+        obj.style.height = '4em';
     } else if (scrollHeight > 200) { // max height 200px
-        obj.style.height = '200px';
+        obj.style.height = '190px';
         obj.style.overflowY = 'auto';
+        obj.scrollHeight = obj.scrollHeight - 5;
     } else {
         let nbPx = (nbChar / 66) * 18;
         if (nbPx > 100)
@@ -59,14 +60,18 @@ function autoResizeInput(obj) {
             nbPx = 200;
         obj.style.height = nbPx + 'px';
     }
+    if (nbChar == 0) {
+        console.log('00!')
+        obj.style.height = '4em';
+    }
 
 }
 
 /**
-    *
-    * Attach an event listener to the user text input area to enable auto resizing. 
-    *
-    */
+ * *
+ * Attach an event listener to the user text input area to enable auto resizing. 
+ *
+ */
 function handleAutoResizeInput() {
     let textarea = document.querySelector('#txt-input');
     textarea.addEventListener('input', (event) => {
@@ -135,7 +140,7 @@ function addUserChat(userChat) {
   * @return {HTMLDivElement} An HTML representation of the LLM AI answer.
   *
   */
-function addAssistantChat(assistantChat, model, elapsedTime) {
+function addAssistantChat(assistantChat, elapsedTime) {
     nbAssistMsg++;
     const div = document.createElement('div');
     div.id = `assist-msg-${nbAssistMsg}`;
@@ -145,10 +150,10 @@ function addAssistantChat(assistantChat, model, elapsedTime) {
     modelInfo.classList.add('msg-info');
     modelInfo.id = `mod-inf-${nbAssistMsg}`;
     if (paramView) {
-        modelInfo.textContent = `${assistInfoName} (${model}) - ${elapsedTime} sec - T: ${settingsTemp}`;
+        modelInfo.textContent = `${assistInfoName} (model-name) - ${elapsedTime} sec - T: ${settingsTemp}`;
     }
     else {
-        modelInfo.textContent = `${assistInfoName} (${model}) - ${elapsedTime} sec`;
+        modelInfo.textContent = `${assistInfoName} (model-name)) - ${elapsedTime} sec`;
     }
     div.appendChild(modelInfo);
 
@@ -157,6 +162,29 @@ function addAssistantChat(assistantChat, model, elapsedTime) {
     messageContent.id = `msg-content-${nbAssistMsg}`;
     messageContent.textContent = assistantChat;
     div.appendChild(messageContent);
+
+    const astMsgButton = document.createElement('div');
+    astMsgButton.classList.add('astMsgButtonWrapper');
+
+    const copyButton = document.createElement('button');
+    copyButton.type = 'button';
+    copyButton.classList.add('copy-button');
+    copyButton.id = `copy-button-${nbAssistMsg}`;
+    copyButton.style.display = 'none';
+    copyButton.title = copyBtnLabel;
+    copyButton.textContent = copyBtnValue;
+    astMsgButton.appendChild(copyButton);
+
+    const includeButton = document.createElement('button');
+    includeButton.type = 'button';
+    includeButton.classList.add('include-button');
+    includeButton.id = `include-button-${nbAssistMsg}`;
+    includeButton.style.display = 'none';
+    includeButton.title = includeBtnLabel;
+    includeButton.textContent = includeBtnValue;
+    astMsgButton.appendChild(includeButton);
+
+    div.appendChild(astMsgButton);
 
     return div;
 }
@@ -292,7 +320,7 @@ function submitChat(event, form) {
     // }
     chatContent.appendChild(addUserChat(userText));
     scrollToBottom();
-    chatContent.appendChild(addAssistantChat('test', 'nom-modele', 0.0));
+    // chatContent.appendChild(addAssistantChat('test', 'nom-modele', 0.0));
 
     const params = getRequestParams(userText, promptData.prompt, context, settingsTemp);
     const options = getRequestOptions(params);
@@ -368,9 +396,10 @@ function streamingRequest(chatContent, URI, options, startTime, userText) {
      * @param {number} startTime The Date in ms the assistant started writing.
      * @return {JSON} A JSON object containing the updated state of isErr, beginRep, and completedReply.
      */
-function handleValidChunk(jsonMessages, completedReply, beginRep, isErr, model, startTime) {
+function handleValidChunk(jsonMessages, completedReply, beginRep, isErr, startTime) {
     for (const jsonMessage of jsonMessages) {
         if (jsonMessage.trim() !== '') {
+            console.log(jsonMessage)
             const message = JSON.parse(jsonMessage);
             let reply = '';
             // Extract the generated reply from the response
@@ -382,16 +411,36 @@ function handleValidChunk(jsonMessages, completedReply, beginRep, isErr, model, 
             if (reply) {
                 completedReply += reply;
                 if (beginRep) {
-                    initChatOnStream(chatContent, model);
+                    initChatOnStream(chatContent);
                     beginRep = false;
                 }
                 const elapsedTime = (Date.now() - startTime) / 1000;
-                updateAssistantChat(nbAssistMsg, elapsedTime, reply, model);
+                updateAssistantChat(nbAssistMsg, elapsedTime, reply);
             }
 
         }
     }
     return { isErr, beginRep, completedReply };
+}
+
+/**
+ * Init the new chat that begin to be received.
+ * @param {HTMLElement} chatContent The chat box element.
+ * @param {string} model The LLM model name.
+ */
+function initChatOnStream(chatContent) {
+    removeLoading(chatContent);
+    chatContent.appendChild(addAssistantChat('', 0));
+    scrollToBottom();
+}
+
+/**
+ * Update the chat information in the back (number of token and context) at the end of the stream communication.
+ * @param {string} completedReply The full reply at the end of the communication.
+ */
+function updateChatOnStream(completedReply) {
+    context[contextSize].assistant = completedReply;
+    scrollToBottom();
 }
 
 /**
@@ -434,7 +483,7 @@ function processStream({ done, value }, chatContent, completedReply, accumulated
         }
         else {
             accumulatedChunks += value;
-
+            console.log('alo')
             // Extract complete JSON messages
             let jsonMessages;
             let isValidChunk = true;
@@ -447,7 +496,7 @@ function processStream({ done, value }, chatContent, completedReply, accumulated
             // Process complete JSON messages
             if (isValidChunk) {
                 accumulatedChunks = jsonMessages.pop(); // Keep the incomplete message for the next iteration
-                ({ isErr, beginRep, completedReply } = handleValidChunk(jsonMessages, completedReply, beginRep, isErr, model, startTime));
+                ({ isErr, beginRep, completedReply } = handleValidChunk(jsonMessages, completedReply, beginRep, isErr, startTime));
                 return reader.read().then(value =>
                     processStream(value, chatContent, completedReply, accumulatedChunks, isErr, beginRep, reader, startTime, userText));
             }
@@ -516,7 +565,7 @@ function getRequestParams(userText, prompt, context, temp) {
  * @param {JSON} params The body of the request, can be set to null.
  * @returns {JSON} A JSON representation of the request options. 
  */
-function getRequestOptions(params) {    
+function getRequestOptions(params) {
     const options = {
         method: 'POST',
         body: JSON.stringify(params),
