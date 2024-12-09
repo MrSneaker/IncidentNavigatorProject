@@ -135,7 +135,6 @@ function addUserChat(userChat) {
 
 /**
   * @param {string} assistantChat The LLM AI answer.
-  * @param {string} model The LLM model responding.
   * @param {number} elapsedTime The time elapsed between the user chat and this answer in seconde.
   * @return {HTMLDivElement} An HTML representation of the LLM AI answer.
   *
@@ -157,10 +156,10 @@ function addAssistantChat(assistantChat, elapsedTime) {
     }
     div.appendChild(modelInfo);
 
-    const messageContent = document.createElement('pre');
+    const messageContent = document.createElement('div');
     messageContent.classList.add('message-content');
     messageContent.id = `msg-content-${nbAssistMsg}`;
-    messageContent.textContent = assistantChat;
+    messageContent.innerHTML = marked.parse(assistantChat);;
     div.appendChild(messageContent);
 
     const astMsgButton = document.createElement('div');
@@ -325,6 +324,9 @@ function submitChat(event, form) {
     const params = getRequestParams(userText, promptData.prompt, context, settingsTemp);
     const options = getRequestOptions(params);
 
+    console.log(params)
+    console.log(options)
+
     // // Make the POST request with query parameters
     postRequest(options, chatContent, userText);
     document.querySelector('#txt-input').style.height = '100px';
@@ -342,9 +344,44 @@ function postRequest(options, chatContent, userText) {
     document.querySelector('#txt-input').value = '';
     const URI = "/rest/v1/chat/completions";
     const start = Date.now();
+    console.log('context before stream req : ', context[contextSize])
     streamingRequest(chatContent, URI, options, start, userText);
 
 }
+
+/**
+ * /!\ This method is extremely approximative and need to be change with appropriate tokenizer.
+ * Manage the context size based on the number of token and the maximum token usable.
+ */
+function tokenManager() {
+    nbToken += countTokens(context[contextSize]);
+    contextSize++;
+    // Manage the number of token so the request is not too long.
+    let ind = 0;
+    while (nbToken > maxToken) {
+        nbToken -= countTokens(context[ind]);
+        context.shift();
+        ind++;
+    }
+}
+
+/**
+ * /!\ This method is extremely approximative and need to be change with appropriate tokenizer.
+ * @param {JSON} query A json representation of the last context.
+ * @return {number} The number of token from the specified query.
+ */
+function countTokens(query) {
+    let strContext;
+    strContext += query.user;
+    strContext += query.assistant;
+    strContext.trim();
+    const words = strContext.split(' ');
+    const filteredWords = words.filter(word => word !== '');
+    // One token equal to approximatively 1.3 token (based on OpenAI tokenization)
+    const tokenCount = filteredWords.length * 1.3;
+    return Math.floor(tokenCount);
+}
+
 
 /**
  * Initialize the stream request.
@@ -440,6 +477,8 @@ function initChatOnStream(chatContent) {
  */
 function updateChatOnStream(completedReply) {
     context[contextSize].assistant = completedReply;
+    document.querySelector('#msg-content-' + nbAssistMsg).innerHTML = marked.parse(completedReply);
+    tokenManager();
     scrollToBottom();
 }
 
@@ -483,7 +522,6 @@ function processStream({ done, value }, chatContent, completedReply, accumulated
         }
         else {
             accumulatedChunks += value;
-            console.log('alo')
             // Extract complete JSON messages
             let jsonMessages;
             let isValidChunk = true;
@@ -550,6 +588,9 @@ function errorCatcher(chatContent, error) {
  * @return {JSON} A JSON representation of the parameters.
  */
 function getRequestParams(userText, prompt, context, temp) {
+
+    console.log('context used to make param : ', context)
+
     const params = {
         text: userText,
         context: context,

@@ -44,10 +44,30 @@ def serve_script():
 
 @app.route('/rest/v1/chat/completions', methods=["POST"])
 def runLLM():
+
+    request_body = request.get_json()
+    msg = request_body['text']
+    context = request_body['context']
+    prompt = request_body['prompt']
+
+    print(msg)
+    print(context)
+    print(prompt)
+
+    final_msg = []
+
+    for ctx in context:
+        print()
+        print(f'ctx : {ctx} \n')
+        final_msg.append({'role': 'user', 'parts': ctx['user']})
+        final_msg.append({'role': 'assistant', 'parts': ctx['assistant']})
+
+    final_msg.append({'role': 'user', 'parts': msg})
+
     print(get_api_key('api_key.txt'))
     genai.configure(api_key=get_api_key('api_key.txt'))
-    model = genai.GenerativeModel("gemini-1.5-flash")
-    response = model.generate_content("Explain how AI works", stream=True)
+    model = genai.GenerativeModel("gemini-1.5-flash", system_instruction=[prompt])
+    response = model.generate_content(final_msg, stream=True)
 
     def generate_response():
         response_chunks = [
@@ -63,9 +83,9 @@ def runLLM():
         for chunk in response:
             msg = {"choices": [
                 {"delta": {"content": f"{chunk.text}"}, "finish_reason": None}]}
-            
+
             yield f"data: {json.dumps(msg)}\n\n"
-        
+
         final_chunk = {
             "choices": [
                 {"delta": {"content": ""}, "finish_reason": "stop"}

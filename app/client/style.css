@@ -92,18 +92,42 @@
 
 #chatUI .copy-button {
   position: relative;
-  border-radius: 5px;
-  background-color: rgb(91, 155, 91);
-  border-color: black;
-  width: 63px;
+  border-radius: 12px;
+  background-color: #4CAF50;
+  color: white;
+  width: 5em;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#chatUI .copy-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
 }
 
 #chatUI .include-button {
   position: relative;
-  border-radius: 5px;
-  background-color: rgb(91, 155, 91);
-  border-color: black;
-  width: 63px;
+  border-radius: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  width: 5em;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#chatUI .include-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
 }
 
 #chatUI .userMsgButton {
