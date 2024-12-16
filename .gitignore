@@ -161,7 +161,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-app/api_key.txtembedding_model/
+app/api_key.txt
+embedding_model/
 mongo_data/
 reranker/
 weaviate_data/
