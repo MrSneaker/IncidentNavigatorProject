@@ -1,6 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
+import ChatPage from './pages/ChatPage';
+import ChatOverviewPage from './pages/ChatOverviewPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ProfilePage from './pages/ProfilePage';
+import HomePage from './pages/HomePage';
 
 
 function App() {
@@ -9,32 +15,26 @@ function App() {
       <Routes>
 
         {/* Home */}
-        <Route path="/" element={
-          <h1>Accueil</h1>
-        } />
+        <Route path="/" element={<HomePage/>} />
 
         {/* User */}
-        <Route path="/register" element={
-          <h1>Inscription</h1>
-        } />
-        <Route path="/login" element={
-          <h1>Connexion</h1>
-        } />
+        <Route path="/register" element={<RegisterPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
         <Route path="/profile" element={
           <ProtectedRoute>
-            <h1>Profil</h1>
+            <ProfilePage/>
           </ProtectedRoute>
         } />
 
         {/* Chat */}
         <Route path="/chat" element={
           <ProtectedRoute>
-            <h1>Historique des chats</h1>
+            <ChatOverviewPage/>
           </ProtectedRoute>
         } />
         <Route path="/chat/:chatId" element={
           <ProtectedRoute>
-            <h1>Chat</h1>
+            <ChatPage/>
           </ProtectedRoute>
         } />
 
