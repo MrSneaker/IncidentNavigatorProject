@@ -2,41 +2,9 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 
-const NavBar = ({ navLinks }) => {
+const NavBar = ({ navLinks, isAuthenticated, username }) => {
     const location = useLocation();
     const [showDropdown, setShowDropdown] = useState(false);
-
-    const username = localStorage.getItem('username');
-    const isLoggedIn = username !== '' && username !== null;
-    if (!isLoggedIn) {
-        // add login and register to navLinks
-        navLinks = [
-            ...navLinks,
-            {
-                label: 'Login',
-                path: '/login',
-                visibleWhenLoggedIn: 0,
-                enabledWhenLoggedIn: 0,
-            },
-            {
-                label: 'Register',
-                path: '/register',
-                visibleWhenLoggedIn: 0,
-                enabledWhenLoggedIn: 0,
-            },
-        ];
-    }
-
-    navLinks = navLinks.map((link) => {
-        if (link.visibleWhenLoggedIn === 0) {
-            return { ...link, show: true };
-        }
-        if (link.visibleWhenLoggedIn === 1) {
-            return { ...link, show: isLoggedIn };
-        }
-        return { ...link, show: !isLoggedIn };
-    });
-
 
     // Close dropdown when clicking outside
     React.useEffect(() => {
@@ -55,7 +23,7 @@ const NavBar = ({ navLinks }) => {
         <nav className="flex justify-between items-center gap-4">
             <ul className="flex space-x-4">
                 {navLinks.map((link) => (
-                    link.show ? (
+                    (link.auth === isAuthenticated || link.auth === null) && link.path !== '/profile' ? (
                         <li key={link.path}>
                             <Link
                                 to={link.path}
@@ -67,7 +35,7 @@ const NavBar = ({ navLinks }) => {
                     ) : null
                 ))}
             </ul>
-            {isLoggedIn && (
+            {isAuthenticated && (
                 <div className="relative flex items-center dropdown" onClick={() => setShowDropdown(!showDropdown)}>
                     <button className="bg-light-surface dark:bg-dark-surface hover:dark:bg-dark-accent hover:bg-light-accent dark:text-dark-text text-light-text text-2xl ml-4 flex items-center gap-4 p-0 pl-4 rounded-full h-12 justify-center" onClick={() => setShowDropdown(!showDropdown)}>
                         <span className="hidden sm:inline text-md">

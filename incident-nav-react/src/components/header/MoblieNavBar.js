@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaPowerOff } from 'react-icons/fa';
+import { GoSignOut } from 'react-icons/go';
 
-const MobileNavBar = ({ navLinks }) => {
+const MobileNavBar = ({ navLinks, isAuthenticated, username }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const location = useLocation();
@@ -10,48 +10,6 @@ const MobileNavBar = ({ navLinks }) => {
     const toggleNavBar = () => {
         setIsOpen(!isOpen);
     };
-
-    const username = localStorage.getItem('username');
-    const isLoggedIn = username !== '' && username !== null;
-    if (!isLoggedIn) {
-        // add login and register to navLinks
-        navLinks = [
-            ...navLinks,
-            {
-                label: 'Login',
-                path: '/login',
-                visibleWhenLoggedIn: 0,
-                enabledWhenLoggedIn: 0,
-            },
-            {
-                label: 'Register',
-                path: '/register',
-                visibleWhenLoggedIn: 0,
-                enabledWhenLoggedIn: 0,
-            },
-        ];
-    } else {
-        // add profile to navLinks
-        navLinks = [
-            ...navLinks,
-            {
-                label: 'Profile',
-                path: '/profile',
-                visibleWhenLoggedIn: 1,
-                visibleWhenLoggedOut: 0,
-            },
-        ];
-    }
-
-    navLinks = navLinks.map((link) => {
-        if (link.visibleWhenLoggedIn === 0) {
-            return { ...link, show: true };
-        }
-        if (link.visibleWhenLoggedIn === 1) {
-            return { ...link, show: isLoggedIn };
-        }
-        return { ...link, show: !isLoggedIn };
-    });
 
     function handleLogout() {
         // logout logic
@@ -86,7 +44,7 @@ const MobileNavBar = ({ navLinks }) => {
                 <nav className="flex justify-center w-full h-full items-center">
                     <ul className="flex flex-col space-y-4 p-4 gap-4 color-white text-2xl text-center">
                         {navLinks.map((link) => (
-                            link.show ? (
+                            link.auth === null || link.auth === isAuthenticated ? (
                                 <li key={link.path}>
                                     <Link
                                         to={link.path}
@@ -101,9 +59,9 @@ const MobileNavBar = ({ navLinks }) => {
                         
                     </ul>
                 </nav>
-                {isLoggedIn && (
+                {isAuthenticated && (
                 <div className="absolute bottom-4 right-4 flex items-center space-x-2">
-                    <FaPowerOff className="text-white text-xl" />
+                    <GoSignOut className="text-white text-xl" />
                     <Link to="/logout" className="text-white" onClick={handleLogout}>
                         Logout
                     </Link>
