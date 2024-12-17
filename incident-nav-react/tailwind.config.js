@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         // Thème clair
         light: {
-          background: '#F9F9F9', // Arrière-plan principal (blanc pur)
+          background: '#E5E5E5', // Arrière-plan principal (gris clair)
           surface: '#FFFFFF', // Arrière-plan des cartes et des panneaux
           text: '#1C1C1E', // Couleur du texte principal (noir)
           accent: '#7FBF7F', // Vert Calme pour les boutons/accents

@@ -9,8 +9,28 @@ import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
 
 import Layout from './Layout';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
+  localStorage.setItem('authToken', 'fake-auth-token');
+  localStorage.setItem('username', 'fake-username');
+
+  function LogoutPage() {
+    const navigate = useNavigate();
+    
+
+    useEffect(() => {
+      localStorage.removeItem('authToken');
+      localStorage.removeItem('username');
+      
+
+      navigate('/login');
+    }, [navigate]);
+
+    return null;
+  }
+
   return (
     <Router>
       <Layout>
@@ -22,6 +42,9 @@ function App() {
           {/* User */}
           <Route path="/register" element={<RegisterPage/>} />
           <Route path="/login" element={<LoginPage/>} />
+          <Route path="/logout" element={<LogoutPage />} />
+
+          {/* Profile */}
           <Route path="/profile" element={
             <ProtectedRoute>
               <ProfilePage/>

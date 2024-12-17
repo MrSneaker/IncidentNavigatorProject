@@ -4,9 +4,8 @@ import Footer from './components/footer/Footer';
 
 const Layout = ({ children }) => {
     const navLinks = [
-        { path: '/', label: 'Home' },
-        { path: '/chat', label: 'Chat' },
-        { path: '/profile', label: 'Profile' }
+        { path: '/', label: 'Home', visibleWhenLoggedIn: 0, enabledWhenLoggedIn: 0 },
+        { path: '/chat', label: 'Chat', visibleWhenLoggedIn: 1, enabledWhenLoggedIn: 1 },
     ];
 
     return (

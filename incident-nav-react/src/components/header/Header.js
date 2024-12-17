@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
 import MobileNavBar from './MoblieNavBar';
 
@@ -24,11 +25,11 @@ const Header = ({ navLinks }) => {
 
     return (
         <header className="p-4 flex justify-between items-center dark:bg-dark-background bg-light-background">
-            <h1>Incident Navigation</h1>
+            <Link to="/" className="text-2xl font-bold dark:text-dark-text text-light-text">Incident Navigator</Link>
             {isMobile ? (
-                <MobileNavBar navLinks={navLinks}/>
+                <MobileNavBar navLinks={navLinks} />
             ) : (
-                <NavBar navLinks={navLinks}/>
+                <NavBar navLinks={navLinks} />
             )}
         </header>
     );
