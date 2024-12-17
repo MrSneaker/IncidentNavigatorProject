@@ -15,9 +15,6 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
 
-  localStorage.setItem('authToken', 'fake-auth-token');
-  localStorage.setItem('username', 'fake-username');
-
   function LogoutPage() {
     const navigate = useNavigate();
     
