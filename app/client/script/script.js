@@ -611,7 +611,8 @@ function getRequestOptions(params) {
         method: 'POST',
         body: JSON.stringify(params),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt')
         },
         signal: globalSignal
     };

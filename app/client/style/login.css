@@ -1,0 +1,70 @@
+#mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    margin: 0;
+}
+
+#loginPanel {
+    width: 22em;
+    padding: 1.25em;
+    border: 0.0625em solid #ddd;
+    border-radius: 0.5em;
+    background-color: #f9f9f9;
+    box-shadow: 0 0.125em 0.3125em rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#loginPanel h2 {
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 1.25em;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5em;
+    border: 0.0625em solid #ccc;
+    border-radius: 0.25em;
+    font-size: 1em;
+}
+
+.form-submit {
+    text-align: center;
+}
+
+.button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.625em 1em;
+    border-radius: 0.25em;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+#errorMessage {
+    color: red;
+    text-align: center;
+    margin-top: 1em;
+    display: none;
+    font-size: 0.9em;
+}

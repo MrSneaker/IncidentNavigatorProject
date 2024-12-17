@@ -166,3 +166,4 @@ embedding_model/
 mongo_data/
 reranker/
 weaviate_data/
+mysql_data/
