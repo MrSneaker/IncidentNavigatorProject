@@ -8,39 +8,43 @@ import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
 
+import Layout from './Layout';
 
 function App() {
   return (
     <Router>
-      <Routes>
+      <Layout>
+        <Routes>
 
-        {/* Home */}
-        <Route path="/" element={<HomePage/>} />
+          {/* Home */}
+          <Route path="/" element={<HomePage/>} />
 
-        {/* User */}
-        <Route path="/register" element={<RegisterPage/>} />
-        <Route path="/login" element={<LoginPage/>} />
-        <Route path="/profile" element={
-          <ProtectedRoute>
-            <ProfilePage/>
-          </ProtectedRoute>
-        } />
+          {/* User */}
+          <Route path="/register" element={<RegisterPage/>} />
+          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <ProfilePage/>
+            </ProtectedRoute>
+          } />
 
-        {/* Chat */}
-        <Route path="/chat" element={
-          <ProtectedRoute>
-            <ChatOverviewPage/>
-          </ProtectedRoute>
-        } />
-        <Route path="/chat/:chatId" element={
-          <ProtectedRoute>
-            <ChatPage/>
-          </ProtectedRoute>
-        } />
+          {/* Chat */}
+          <Route path="/chat" element={
+            <ProtectedRoute>
+              <ChatOverviewPage/>
+            </ProtectedRoute>
+          } />
+          <Route path="/chat/:chatId" element={
+            <ProtectedRoute>
+              <ChatPage/>
+            </ProtectedRoute>
+          } />
 
-      </Routes>
+        </Routes>
+      </Layout>
     </Router>
   );
 }
 
 export default App;
+
