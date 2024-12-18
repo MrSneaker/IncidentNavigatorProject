@@ -21,7 +21,7 @@ async function login(email, password) {
     }
 }
 
-async function register(email, password) {
+async function register(email, username, password) {
     try {
         const response = await fetch('/auth/register', {
             method: 'POST',
@@ -29,7 +29,7 @@ async function register(email, password) {
             'Content-Type': 'application/json',
             },
             credentials: 'include',
-            body: JSON.stringify({ username: email, password: password })
+            body: JSON.stringify({ email: email, username: username, password: password })
         });
         const data = await response.json();
         if (data.error) {

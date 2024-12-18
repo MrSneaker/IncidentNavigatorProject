@@ -34,8 +34,8 @@ function App() {
 
   return (
     <Router>
-      <AuthProvider isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} username={username} setUsername={setUsername}>
-        <Layout isAuthenticated={isAuthenticated} username={username}>
+      <Layout isAuthenticated={isAuthenticated} username={username}>
+        <AuthProvider isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} username={username} setUsername={setUsername}>
           <Routes>
             <Route path="/" element={<HomePage isAuthenticated={isAuthenticated} />} />
             <Route path="/login" element={<NotLogRoute><LoginPage /></NotLogRoute>} />
@@ -45,8 +45,8 @@ function App() {
             <Route path="/chat" element={<PrivateRoute><ChatOverviewPage /></PrivateRoute>} />
             <Route path="/logout" element={<LogoutPage />} />
           </Routes>
-        </Layout>
-      </AuthProvider>
+        </AuthProvider>
+      </Layout>
     </Router>
   );
 }

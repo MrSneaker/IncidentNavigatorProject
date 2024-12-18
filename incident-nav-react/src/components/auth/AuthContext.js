@@ -6,7 +6,9 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children , isAuthenticated, setIsAuthenticated, username, setUsername }) => {
     const navigate = useNavigate();
+    const [requested, setRequested] = useState(false);
     const [user, setUser] = useState(null);
+
     async function fetchUser() {
         const response = await getCurrent();
         if (response.error) {
@@ -19,6 +21,7 @@ export const AuthProvider = ({ children , isAuthenticated, setIsAuthenticated, u
             setIsAuthenticated(true);
             setUsername(user.username);
         }
+        setRequested(true);
     }
     
     useEffect(() => {
@@ -26,8 +29,8 @@ export const AuthProvider = ({ children , isAuthenticated, setIsAuthenticated, u
     }, [navigate]);
 
     return (
-        <AuthContext.Provider value={{ user, setUser, logout }}>
-            {children}
+        <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated, username, setUsername }}>
+            {requested ? children : null}
         </AuthContext.Provider>
     );
 };
