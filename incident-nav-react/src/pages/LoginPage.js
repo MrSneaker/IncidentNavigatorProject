@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { login } from "../scripts/auth";
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submissionStatus, setSubmissionStatus] = useState(null);
 
@@ -36,27 +35,6 @@ export default function LoginPage() {
     function onFieldChange(e) {
         const { id, value } = e.target;
         setFormValues({ ...formValues, [id]: value });
-
-        switch (id) {
-            case "email":
-                setEmailError("");
-                if (!value.includes("@")) {
-                    setEmailError("Invalid email");
-                }
-                break;
-            case "password":
-                setPasswordError("");
-                if (value.length < 8) {
-                    setPasswordError("Password must be at least 8 characters long");
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
-    function onAuthResponse(response) {
-
     }
 
     function onSubmit(e) {
@@ -64,28 +42,14 @@ export default function LoginPage() {
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
-        setTimeout(() => {
-            fetch('http://localhost:4000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formValues),
-            })
-                .then(onAuthResponse)
-                .then(() => {
-                    localStorage.setItem('authToken', 'fake-auth-token');
-                    localStorage.setItem('username', formValues.email);
-
-                    setIsSubmitting(false);
-                    navigate('/');
-                })
-                .catch(() => {
-                    setIsSubmitting(false);
-                    setSubmissionStatus('error');
-                });
-
-        }, 2000);
+        login(formValues.email, formValues.password).then((response) => {
+            setIsSubmitting(false);
+            if (response.error) {
+                setSubmissionStatus('error');
+            } else {
+                navigate('/');
+            }
+        });
     }
 
     return (

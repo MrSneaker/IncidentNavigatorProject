@@ -48,7 +48,9 @@ const MobileNavBar = ({ navLinks, isAuthenticated, username }) => {
                                 <li key={link.path}>
                                     <Link
                                         to={link.path}
-                                        className={`${location.pathname === link.path ? 'underline dark:text-dark-accent text-light-accent' : 'text-dark-text'}`}
+                                        className={`${(location.pathname.startsWith(link.path)  && link.path !== '/') || location.pathname === link.path ?
+                                            'underline dark:text-dark-accent text-light-accent' : 'text-dark-text'}`
+                                        }
                                         onClick={toggleNavBar}
                                     >
                                         {link.label}

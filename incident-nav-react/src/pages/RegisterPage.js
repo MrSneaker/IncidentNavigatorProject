@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { register } from "../scripts/auth";
 
 export default function RegisterPage() {
     const [emailError, setEmailError] = useState("");
@@ -97,7 +98,7 @@ export default function RegisterPage() {
         }
     }
 
-    function clear() {
+    function clearForm() {
         setSubmissionStatus(null);
         setFormValues({
             email: "",
@@ -115,17 +116,20 @@ export default function RegisterPage() {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmissionStatus(null);
-
-        setTimeout(() => {
-            const success = false;
+        
+        const { email, username, password } = formValues;   
+        register(email, username, password).then((response) => {
+            if (response.error) {
+                setSubmissionStatus('error');
+            } else {
+                setSubmissionStatus('success');
+            }
             setIsSubmitting(false);
-            setSubmissionStatus(success ? 'success' : 'error');
-        }, 2000);
+        });
     }
 
     useEffect(() => {
         return () => {
-            clear();
             setIsSubmitting(false);
             setSubmissionStatus('');
         };
@@ -157,7 +161,7 @@ export default function RegisterPage() {
                     <div className="text-center">
                         <p className="text-red-500">An error occurred. Please try again.</p>
                         <p className="hover:text-light-accent hover:dark:text-dark-accent mt-2 hover:underline hover:cursor-pointer"
-                            onClick={clear}>
+                            onClick={clearForm}>
                             Try again
                         </p>
                     </div>

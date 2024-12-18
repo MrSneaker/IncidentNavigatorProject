@@ -1,15 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute';
+import { useNavigate } from 'react-router-dom';
+import { AuthProvider } from './components/auth/AuthContext';
+import { logout, getCurrent } from './scripts/auth';
+
+// Pages
+import PrivateRoute from './components/auth/PrivateRoute';
+import NotLogRoute from './components/auth/NotLogRoute';
 import ChatPage from './pages/ChatPage';
 import ChatOverviewPage from './pages/ChatOverviewPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import HomePage from './pages/HomePage';
-
-import Layout from './Layout';
-import { useNavigate } from 'react-router-dom';
+import Layout from './components/layout';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,64 +21,34 @@ function App() {
 
   function LogoutPage() {
     const navigate = useNavigate();
-    
-    useEffect(() => {
-      localStorage.removeItem('authToken');
-      localStorage.removeItem('username');
-      setIsAuthenticated(false);
 
-      navigate('/');
+    useEffect(() => {
+      const response = logout();
+      console.log(response);
+
+      navigate('/login');
     }, [navigate]);
 
     return null;
   }
 
-
-  useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    setIsAuthenticated(!!authToken);
-
-    const name = localStorage.getItem('username');
-    setUsername(name);
-  });
-
   return (
     <Router>
-      <Layout isAuthenticated={isAuthenticated} username={username}>
-        <Routes>
-
-          {/* Home */}
-          <Route path="/" element={<HomePage isAuthenticated={isAuthenticated} />} />
-
-          {/* User */}
-          <Route path="/register" element={<RegisterPage/>} />
-          <Route path="/login" element={<LoginPage/>} />
-          <Route path="/logout" element={<LogoutPage />} />
-
-          {/* Profile */}
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <ProfilePage/>
-            </ProtectedRoute>
-          } />
-
-          {/* Chat */}
-          <Route path="/chat" element={
-            <ProtectedRoute>
-              <ChatOverviewPage/>
-            </ProtectedRoute>
-          } />
-          <Route path="/chat/:chatId" element={
-            <ProtectedRoute>
-              <ChatPage/>
-            </ProtectedRoute>
-          } />
-
-        </Routes>
-      </Layout>
+      <AuthProvider isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} username={username} setUsername={setUsername}>
+        <Layout isAuthenticated={isAuthenticated} username={username}>
+          <Routes>
+            <Route path="/" element={<HomePage isAuthenticated={isAuthenticated} />} />
+            <Route path="/login" element={<NotLogRoute><LoginPage /></NotLogRoute>} />
+            <Route path="/register" element={<NotLogRoute><RegisterPage /></NotLogRoute>} />
+            <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+            <Route path="/chat:id" element={<PrivateRoute><ChatPage /></PrivateRoute>} />
+            <Route path="/chat" element={<PrivateRoute><ChatOverviewPage /></PrivateRoute>} />
+            <Route path="/logout" element={<LogoutPage />} />
+          </Routes>
+        </Layout>
+      </AuthProvider>
     </Router>
   );
 }
 
 export default App;
-

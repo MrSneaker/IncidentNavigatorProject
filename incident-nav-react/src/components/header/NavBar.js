@@ -27,7 +27,7 @@ const NavBar = ({ navLinks, isAuthenticated, username }) => {
                         <li key={link.path}>
                             <Link
                                 to={link.path}
-                                className={`${location.pathname === link.path ? 'underline dark:text-dark-accent text-light-accent' : 'dark:text-dark-text text-light-text'} text-xl`}
+                                className={`${(location.pathname.startsWith(link.path) && link.path !== '/') || location.pathname === link.path ? 'underline dark:text-dark-accent text-light-accent' : 'dark:text-dark-text text-light-text'} text-xl`}
                             >
                                 {link.label}
                             </Link>
