@@ -9,15 +9,13 @@ async function login(email, password) {
             body: JSON.stringify({ email: email, password: password })
         });
         const data = await response.json();
-        if (data.error) {
-            return { error: data.error, token: null };
-        }
-        localStorage.setItem('user_id', data.data.user_id);
-        localStorage.setItem('username', data.data.username);
-        localStorage.setItem('email', data.data.email);
-        return { error: null, data: data.data };
+        sessionStorage.setItem('user_id', data.data.id);
+        sessionStorage.setItem('username', data.data.username);
+        sessionStorage.setItem('email', data.data.email);
+        sessionStorage.setItem('token', data.data.token);
+        return data;
     } catch (error) {
-        return { error: error, token: null };
+        return { error: -1, data: null };
     }
 }
 
@@ -52,7 +50,16 @@ async function logout() {
             },
             credentials: 'include',
         });
-        return await response.json();
+        response.json().then(data => {
+            if (data.error) {
+                return { error: data.error };
+            }
+            sessionStorage.removeItem('token');
+            sessionStorage.removeItem('user_id');
+            sessionStorage.removeItem('username');
+            sessionStorage.removeItem('email');
+            return { error: null };
+        });
     } catch (error) {
         return { error: error };
     }
@@ -75,4 +82,26 @@ async function getCurrent() {
     }
 }
 
-export { login, register, logout, getCurrent };
+async function refreshToken() {
+    try {
+        const response = await fetch('/auth/refresh', {
+            method: 'POST',
+            headers: { 
+            'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+        });
+        response.json().then(data => {
+            if (data.error) {
+                return { error: data.error };
+            } else {
+                sessionStorage.setItem('token', data.data.token);
+                return { error: null };
+            }
+        });
+    } catch (error) {
+        return { error: error };
+    }
+}
+
+export { login, register, logout, getCurrent, refreshToken }

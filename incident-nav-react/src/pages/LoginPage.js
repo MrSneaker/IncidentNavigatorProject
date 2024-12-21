@@ -44,7 +44,7 @@ export default function LoginPage() {
 
         login(formValues.email, formValues.password).then((response) => {
             setIsSubmitting(false);
-            if (response.error) {
+            if (response.error !== 0) {
                 setSubmissionStatus('error');
             } else {
                 navigate('/');

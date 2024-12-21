@@ -26,12 +26,20 @@ function App() {
       const response = logout();
       console.log(response);
 
-      navigate('/login');
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
     }, [navigate]);
 
     return null;
   }
 
+  document.title = 'Incident Navigator';
+  // remove tab icon
+  useEffect(() => {
+    const favicon = document.querySelector("link[rel='icon']");
+    favicon.href = 'data:,';
+  }, []);
   return (
     <Router>
       <Layout isAuthenticated={isAuthenticated} username={username}>
@@ -41,7 +49,7 @@ function App() {
             <Route path="/login" element={<NotLogRoute><LoginPage /></NotLogRoute>} />
             <Route path="/register" element={<NotLogRoute><RegisterPage /></NotLogRoute>} />
             <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-            <Route path="/chat:id" element={<PrivateRoute><ChatPage /></PrivateRoute>} />
+            <Route path="/chat/:id" element={<PrivateRoute><ChatPage /></PrivateRoute>} />
             <Route path="/chat" element={<PrivateRoute><ChatOverviewPage /></PrivateRoute>} />
             <Route path="/logout" element={<LogoutPage />} />
           </Routes>

@@ -43,7 +43,7 @@ const NavBar = ({ navLinks, isAuthenticated, username }) => {
                         </span>
                         <FaUserCircle className="mr-2 text-3xl" />
                     </button>
-                    <div className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-dark-surface rounded-md shadow-xl p-1" style={{ display: showDropdown ? 'block' : 'none' }}>
+                    <div className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-dark-surface rounded-md shadow-xl p-1 z-100" style={{ display: showDropdown ? 'block' : 'none' }}>
                         <Link
                             to="/profile"
                             className="block px-4 py-2 rounded-md text-xl text-light-text dark:text-dark-text hover:bg-light-background dark:hover:bg-dark-background">

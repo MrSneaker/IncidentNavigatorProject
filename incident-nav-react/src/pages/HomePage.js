@@ -2,6 +2,7 @@ import { GoArrowUpRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 
 export default function HomePage({ isAuthenticated }) { 
+
     return (
       <div className="flex flex-col items-center justify-center h-full w-full"> 
         <h1 className="text-center font-bold dark:text-dark-accent text-light-text"
@@ -14,10 +15,10 @@ export default function HomePage({ isAuthenticated }) {
 
         {!isAuthenticated ? (
             <div className="flex flex-row mt-6">
-                <Link to='/login' className="btn btn-primary m-2 rounded-full p-2 min-w-[100px] max-w-[200px] text-center font-bold border-2 border-dark-accent text-dark-accent hover:text-dark-background hover:bg-dark-accent hover:scale-110 transition-transform">
+                <Link to='/login' className="btn btn-primary m-2 rounded-full p-2 min-w-[100px] max-w-[200px] text-center font-bold border-2 border-dark-accent text-dark-accent hover:text-light-background hover:dark:text-dark-background hover:bg-dark-accent hover:scale-110 transition-transform">
                     Login
                 </Link>
-                <Link to='/register' className="btn btn-primary m-2 rounded-full p-2 min-w-[100px] max-w-[200px] text-center font-bold border-2 border-dark-accent text-dark-accent hover:text-dark-background hover:bg-dark-accent hover:scale-110 transition-transform">
+                <Link to='/register' className="btn btn-primary m-2 rounded-full p-2 min-w-[100px] max-w-[200px] text-center font-bold border-2 border-dark-accent text-dark-accent hover:text-light-background hover:dark:text-dark-background hover:bg-dark-accent hover:scale-110 transition-transform">
                     Register
                 </Link>
             </div>
