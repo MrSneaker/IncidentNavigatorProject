@@ -1,0 +1,8 @@
+python-dotenv
+flask
+flask-sqlalchemy
+flask-bcrypt
+flask-cors
+flask-session
+redis
+PyJWT

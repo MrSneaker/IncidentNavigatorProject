@@ -1,0 +1,433 @@
+#chatUI {
+  height: 100%;
+}
+
+#chatUI .user-message {
+  position: relative;
+  float: right;
+  clear: both;
+  background-color: lightblue;
+  padding: 5px;
+  margin-bottom: 10px;
+  max-width: 70%;
+  width: fit-content;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-line;
+  word-break: break-word;
+  font-family: system-ui;
+}
+
+#chatUI .assistant-message {
+  position: relative;
+  float: bottom;
+  clear: both;
+  background-color: lightgreen;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: fit-content;
+  max-width: 70%;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+#chatUI .system-message {
+  position: relative;
+  float: bottom;
+  clear: both;
+  background-color: lightyellow;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+#chatUI .msg-info {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#chatUI .message-content {
+  margin-top: 5px;
+  font-family: system-ui;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+#chatContent {
+  position: relative;
+  height: 65%;
+  max-width: 100%;
+  margin: 10px auto;
+  /* Center the chat container horizontally */
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  /* Enable vertical scroll when content exceeds container height */
+}
+
+#chatUI .errorHandler {
+  position: relative;
+  float: bottom;
+  clear: both;
+  background-color: rgb(253, 97, 97);
+  padding: 5px;
+  margin-bottom: 10px;
+  width: fit-content;
+  max-width: 70%;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+#chatUI .copy-button {
+  position: relative;
+  border-radius: 12px;
+  background-color: #4CAF50;
+  color: white;
+  width: 5em;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#chatUI .copy-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+#chatUI .include-button {
+  position: relative;
+  border-radius: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  width: 5em;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#chatUI .include-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+#chatUI .userMsgButton {
+  position: relative;
+  border-radius: 5px;
+  background-color: rgb(128, 159, 255);
+  border-color: black;
+  width: 63px;
+}
+
+#chatUI .msgButtonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#chatUI .stacked-items {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+#chatUI nav {
+  position: relative;
+}
+
+#userChat {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#txt-input,
+#subButton,
+#clearCtxt,
+#stopRqst,
+#clearWin {
+  margin-right: 10px;
+}
+
+#chatUI form {
+  align-items: left;
+}
+
+#chatUI select {
+  align-self: flex-start;
+}
+
+#chatUI nav {
+  align-self: flex-start;
+}
+
+#chatUI .button {
+  flex: 1;
+  margin-right: 5px;
+}
+
+#chatUI .form-button-container {
+  display: flex;
+  margin-top: 0;
+  justify-content: space-between;
+}
+
+#chatUI .form-button {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  align-items: flex-start;
+  margin: 0.1em;
+}
+
+#chatUI .astMsgButtonWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#chatUI .astMsgButtonWrapper button {
+  margin: 0 5px;
+}
+
+#formContainer {
+  display: flex;
+  align-items: flex-start;
+  height: 25%;
+}
+
+#model-menu {
+  width: 30%;
+  position: relative;
+  left: 70%;
+}
+
+#features-menu {
+  width: 100%;
+}
+
+#txt-input {
+  resize: none;
+  width: 100%;
+  height: 7em;
+  border-radius: 0.5em;
+  border-color: lightgray;
+}
+
+#stopRqst {
+  padding: 10px 15px;
+  background-color: lightcoral;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+
+#chatUI .waiting-line {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+#chatUI .dot {
+  width: 2%;
+  height: 90%;
+  background-color: #C9C9C9;
+  border-radius: 50%;
+  animation: pulse 1s infinite;
+  margin-right: 0.5%;
+}
+
+#chatUI .dot1 {
+  animation-delay: 0.2s;
+}
+
+#chatUI .dot2 {
+  animation-delay: 0.4s;
+}
+
+#chatUI .dot3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+#chatUI .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#chatUI .dropdown-content {
+  display: none;
+  position: absolute;
+  overflow: visible;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  /*padding: 12px 16px;*/
+  z-index: 1000;
+  flex-direction: column;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+#chatUI .dropdown-content a {
+  color: black;
+  text-decoration: none;
+  padding: 12px 16px;
+}
+
+#chatUI .dropdown-content a:hover {
+  cursor: pointer;
+  background-color: #e1e1e1
+}
+
+#chatUI hr {
+  position: relative;
+  margin: 0 0 0 0;
+  border: none;
+  border-top: 1px double #BBB;
+  overflow: visible;
+  height: 3px;
+}
+
+#configRedir #promptDBRedir {
+  pointer-events: none;
+  color: grey;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+#leftPanel,
+#rightPanel {
+  padding: 20px;
+  overflow-y: auto;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#leftPanel {
+  width: 30%;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px;
+  overflow: hidden;
+}
+
+#leftPanel>* {
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#rightPanel {
+  width: 70%;
+  margin: 10px;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.reference-item {
+  position: relative;
+  margin: 5px;
+  padding: 10px;
+  background-color: rgb(248, 232, 158);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.reference-item:hover {
+  transform: scale(1.02);
+  background-color: rgb(255, 244, 195);
+}
+
+.reference-title {
+  font-weight: bold;
+}
+
+.reference-tags {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: gray;
+}
+
+.reference-id,
+.reference-date {
+  font-size: 0.8em;
+  color: #555;
+}
+
+#rightPanelContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#rightPanelContent h1 {
+  color: #333;
+}
+
+#subButton {
+  padding: 10px 15px;
+  background-color: lightblue;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+#subButton:hover {
+  background-color: #b3cde0;
+}
