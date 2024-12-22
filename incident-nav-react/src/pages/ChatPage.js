@@ -17,6 +17,7 @@ export default function ChatPage() {
     const [message, setMessage] = useState('');
     const [chatId, setChatId] = useState('');
     const [postValue, setPostValue] = useState('');
+    let abortController = new AbortController();
 
     function onChatNameChange(id, name) {
         // Update the chat name
@@ -61,7 +62,7 @@ export default function ChatPage() {
     useEffect(() => {
         if (postValue.length > 0) {
             // Send the message to the server
-            const response = sendMessage(chatId, postValue);
+            const response = sendMessage(chatId, postValue, abortController.signal);
 
             // Handle the response
             response.then((response) => {
@@ -110,6 +111,7 @@ export default function ChatPage() {
             function process({ done, value }) {
                 try {
                     if (!done) {
+                        setBusy(true);
                         // Extract json
                         accumulatedChunks += value
                         let jsonMessages;
@@ -126,6 +128,7 @@ export default function ChatPage() {
                         }
                         return reader.read().then(value => { process(value) })
                     }
+                    setBusy(false);
 
                 } catch (error) {
                     setBusy(false);
@@ -175,6 +178,13 @@ export default function ChatPage() {
         });
         updateListMessages(id);
     }, []);
+
+    function abortResponse() {
+        abortController.abort();
+        setBusy(false);
+        setPostValue('');
+        abortController = new AbortController();
+    }
 
 
     return (
@@ -248,12 +258,23 @@ export default function ChatPage() {
                         <button
                             type="submit"
                             className="rounded-full flex items-center justify-center bg-light-accent dark:bg-dark-accent disabled:opacity-30"
-                            disabled={message.length === 0 || busy}>
+                            disabled={message.length === 0 && !busy}
+                            onClick={
+                                () => {
+                                    if (busy) {
+                                        abortResponse();
+                                    } else {
+                                        send();
+                                    }
+                                }
+                            }
+                            >
                             {busy ? (
                                 <StopIcon className="text-light-surface dark:text-dark-surface w-[40px] h-[40px] p-[10px]" />
                             ) : (
                                 <SendIcon className="text-light-surface dark:text-dark-surface w-[40px] h-[40px] p-[10px]" />
                             )}
+                           
                         </button>
                     </form>
 

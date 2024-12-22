@@ -65,6 +65,28 @@ async function logout() {
     }
 }
 
+async function rename(newUsername) {
+    try {
+        const response = await fetch('/auth/rename', {
+            method: 'POST',
+            headers: { 
+            'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({ username: newUsername })
+        });
+        const data = await response.json();
+        if (data.error) {
+            return { error: data.error };
+        } else {
+            sessionStorage.setItem('username', newUsername);
+            return { error: null };
+        }
+    } catch (error) {
+        return { error: error };
+    }
+}
+
 // get infos about the current user
 async function getCurrent() {
     try {
@@ -78,7 +100,7 @@ async function getCurrent() {
         return data;
         
     } catch (error) {
-        return { error: error };
+        return { error: -1, message: error, data: null };
     }
 }
 
@@ -104,4 +126,4 @@ async function refreshToken() {
     }
 }
 
-export { login, register, logout, getCurrent, refreshToken }
+export { login, register, logout, rename, getCurrent, refreshToken }
