@@ -30,7 +30,7 @@ grpc_secure = False
 
 weaviate_client = weaviate.connect_to_custom(http_host, http_port, http_secure, grpc_host, grpc_port, grpc_secure)
 
-embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-large", cache_folder="./embedding_model")
+embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-large-v2", cache_folder="./embedding_model")
 
 MYSQL_CONFIG = {
     "host": "localhost",
@@ -58,15 +58,7 @@ def setup_mysql_users():
             role VARCHAR(50) NOT NULL,
             industries JSON
         )
-        """)
-        
-        print(hash_password("password"))
-        
-        # users_data = [
-        #     ("massamba", hash_password("password"), "admin", None),
-        #     ("mateo", hash_password("password"), "manager", '["processing of metal", "Wood treatment and furniture"]'),
-        #     ("axel", hash_password("password"), "manager", '["Fuel storage"]')
-        # ]
+        """)  
         
         users_data = [
             ("massamba", "password", "admin", None),
@@ -157,7 +149,7 @@ def update_with_urls(dataframe):
 
 if __name__ == "__main__":
     # Set up MySQL users table and data
-    setup_mysql_users()
+    # setup_mysql_users()
 
     # Load and clean the data
     # raw_data = pd.read_excel("data/eMARS.xlsx")
@@ -165,26 +157,26 @@ if __name__ == "__main__":
     # keep_data = raw_data.copy()[keep]
     # cleaned_data = keep_data.dropna().reset_index(drop=True)
     # cleaned_data = update_with_urls(cleaned_data)
-    # cleaned_data = pd.read_csv("data/cleaned.csv")
+    cleaned_data = pd.read_csv("data/cleaned.csv")
 
-    # # Populate the Weaviate Vector Database
-    # weaviate_docs = []
+    # Populate the Weaviate Vector Database
+    weaviate_docs = []
 
-    # for row in cleaned_data.iterrows():
-    #     data = row[1]
-    #     weaviate_docs.append(
-    #         Document(
-    #             page_content=data['Accident Title'] + "\n" + data['Accident Description'],
-    #             metadata={
-    #                 "incident_id": data["Accident ID"],
-    #                 "industry": data["Industry Type"],
-    #                 "event": data["Event Type"],
-    #                 'source': data['url']
-    #             }
-    #         )
-    #     )
-    # db = WeaviateVectorStore.from_documents(weaviate_docs, embeddings, client=weaviate_client, index_name="incident")
+    for row in cleaned_data.iterrows():
+        data = row[1]
+        weaviate_docs.append(
+            Document(
+                page_content=data['Accident Title'] + "\n" + data['Accident Description'],
+                metadata={
+                    "incident_id": data["Accident ID"],
+                    "industry": data["Industry Type"],
+                    "event": data["Event Type"],
+                    'source': data['url']
+                }
+            )
+        )
+    db = WeaviateVectorStore.from_documents(weaviate_docs, embeddings, client=weaviate_client, index_name="incident")
 
-    # # Create and populate Mongo Database
-    # mongo_docs = [preprocess_row(row) for row in cleaned_data.to_dict(orient="records")]
-    # connect_and_insert(mongo_docs)
+    # Create and populate Mongo Database
+    mongo_docs = [preprocess_row(row) for row in cleaned_data.to_dict(orient="records")]
+    connect_and_insert(mongo_docs)

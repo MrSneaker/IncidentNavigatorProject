@@ -34,20 +34,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
 
-  mysql:
-    image: mysql:8.0
-    container_name: mysql
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./mysql_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: incident_nav_auth
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pwd
-
 volumes:
   weaviate_data:
   mongo_data:
-  mysql_data:
