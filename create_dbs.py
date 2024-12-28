@@ -30,7 +30,7 @@ grpc_secure = False
 
 weaviate_client = weaviate.connect_to_custom(http_host, http_port, http_secure, grpc_host, grpc_port, grpc_secure)
 
-embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-large-v2", cache_folder="./embedding_model")
+embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-large-v2", cache_folder="./embedding_model", model_kwargs={"device": "cpu"})
 
 MYSQL_CONFIG = {
     "host": "localhost",
@@ -152,11 +152,11 @@ if __name__ == "__main__":
     # setup_mysql_users()
 
     # Load and clean the data
-    # raw_data = pd.read_excel("data/eMARS.xlsx")
-    # keep = ["Accident ID", "Event Type", "Industry Type", "Accident Title", "Start Date", "Finish Date", "Accident Description", "Causes of the accident", "Consequences", "Emergency response", "Lesson Learned"]
-    # keep_data = raw_data.copy()[keep]
-    # cleaned_data = keep_data.dropna().reset_index(drop=True)
-    # cleaned_data = update_with_urls(cleaned_data)
+    raw_data = pd.read_excel("data/eMARS.xlsx")
+    keep = ["Accident ID", "Event Type", "Industry Type", "Accident Title", "Start Date", "Finish Date", "Accident Description", "Causes of the accident", "Consequences", "Emergency response", "Lesson Learned"]
+    keep_data = raw_data.copy()[keep]
+    cleaned_data = keep_data.dropna().reset_index(drop=True)
+    cleaned_data = update_with_urls(cleaned_data)
     cleaned_data = pd.read_csv("data/cleaned.csv")
 
     # Populate the Weaviate Vector Database

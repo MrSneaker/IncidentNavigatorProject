@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -26,6 +28,9 @@ app.add_middleware(
     allow_headers=["*"],
     expose_headers=["*"],
 )
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 @app.get("/")
 async def redirect_root_to_docs():
@@ -63,7 +68,7 @@ llm = ChatOpenAI(
     openai_api_base="https://api.groq.com/openai/v1/",
     model="llama-3.3-70b-versatile",
     temperature=1,
-    api_key="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"
+    api_key=API_KEY
 )
 
 @app.post("/invoke")
