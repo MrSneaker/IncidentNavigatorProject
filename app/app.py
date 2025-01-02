@@ -27,7 +27,8 @@ with app.app_context():
     
     # Init databases
     db.init_app(app)
-    db.create_all()
+    with app.app_context():
+        db.create_all()
 
 
 routes = [
