@@ -1,182 +1,1577 @@
 [
     {
         "industry": "Processing of metals",
-        "question": "[\n  \"What procedures should be followed in the event of a metal spill or leak during the processing stage?\",\n  \"How can workplace accidents involving heavy machinery be minimized in a metal processing plant?\",\n  \"What are the best practices for resolving equipment malfunctions, such as furnace or conveyor belt failures, in a metal processing facility?\",\n  \"What safety protocols should be implemented to prevent injuries from sharp metal edges or points during handling and processing?\",\n  \"How can the risk of explosion or fire be mitigated in areas where metals are being cut, ground, or polished?\",\n  \"What measures can be taken to prevent the contamination of metal products during the processing stage?\",\n  \"What procedures should be in place for responding to and containing chemical spills or leaks in a metal processing environment?\",\n  \"How can the risk of hearing loss or other auditory damage be reduced for workers in noisy metal processing areas?\",\n  \"What are the recommended steps for resolving quality control issues, such as metal defects or irregularities, in the processing stage?\",\n  \"How can the risk of musculoskeletal injuries be minimized for workers performing repetitive tasks, such as metal lifting or bending, in a processing plant?\"\n]"
+        "questions": [
+            {
+                "question": "During a metal smelting process, the temperature of the furnace exceeds the optimal range, causing a potential risk of equipment damage. How can this incident be managed to prevent equipment failure?"
+            },
+            {
+                "question": "A batch of metal alloy is found to have excessive impurities, affecting its quality and usability. What steps should be taken to rectify the situation and prevent future occurrences?"
+            },
+            {
+                "question": "A mechanical failure occurs in the metal rolling mill, resulting in a production halt. What procedures should be followed to quickly resolve the issue and minimize downtime?"
+            },
+            {
+                "question": "An employee is exposed to toxic fumes during a metal plating process. What emergency response measures should be implemented to ensure the employee's safety and prevent similar incidents?"
+            },
+            {
+                "question": "A shipment of raw materials is delayed, disrupting the metal production schedule. How can the production planning be adjusted to mitigate the impact of the delay?"
+            },
+            {
+                "question": "A quality control check reveals that a batch of finished metal products does not meet the required specifications. What corrective actions should be taken to address the issue and prevent future defects?"
+            },
+            {
+                "question": "A fire breaks out in the metal scrap storage area, posing a risk to the surrounding facilities and personnel. What fire suppression and emergency response measures should be taken to contain the situation?"
+            },
+            {
+                "question": "The metal cutting machinery experiences frequent breakdowns, leading to reduced production efficiency. What maintenance and troubleshooting strategies can be employed to minimize equipment downtime?"
+            },
+            {
+                "question": "The water treatment system used in the metal processing plant fails, resulting in environmental concerns and potential regulatory issues. How can the situation be addressed to prevent environmental harm and ensure compliance?"
+            },
+            {
+                "question": "An unexpected power outage occurs, affecting the metal production process and potentially causing equipment damage. What procedures should be followed to safely shut down the equipment and restore production once power is restored?"
+            }
+        ]
     },
     {
         "industry": "Plastic and rubber manufacture",
-        "question": "[\n    \"What procedures should be followed in the event of a chemical spill during plastic production?\",\n    \"How can manufacturers prevent and respond to equipment malfunctions in rubber processing?\",\n    \"What safety protocols are essential for handling and storing hazardous materials in the plastic and rubber industry?\",\n    \"What steps can be taken to minimize downtime and optimize repair times for faulty machinery in plastic and rubber manufacturing?\",\n    \"How can companies prevent and mitigate the effects of product contamination during the manufacturing process?\",\n    \"What are the best practices for conducting regular maintenance and inspections to prevent equipment failures in plastic and rubber production?\",\n    \"What emergency response plans should be in place in case of a fire or explosion in a plastic or rubber manufacturing facility?\",\n    \"How can manufacturers ensure compliance with regulatory requirements and industry standards for environmental and worker safety?\",\n    \"What procedures should be in place for handling and disposing of waste materials generated during plastic and rubber production?\",\n    \"How can companies investigate and address the root causes of recurring quality control issues in plastic and rubber manufacturing?\"\n]"
+        "questions": [
+            {
+                "question": "During a production run, a batch of plastic pellets is found to be contaminated with metal shavings. How can this incident be managed to prevent defects in the final product?"
+            },
+            {
+                "question": "A rubber molding machine suddenly breaks down due to a mechanical failure, causing a halt in production. What steps should be taken to resolve the issue and minimize downtime?"
+            },
+            {
+                "question": "A worker is exposed to a chemical spill in the production area. What procedures should be followed to ensure the worker's safety and contain the spill?"
+            },
+            {
+                "question": "A customer complains about a defective plastic product that was manufactured with a critical dimension out of tolerance. How can this incident be investigated and resolved to prevent future occurrences?"
+            },
+            {
+                "question": "A fire breaks out in the warehouse where raw materials are stored. What measures should be taken to extinguish the fire and prevent damage to surrounding areas?"
+            },
+            {
+                "question": "A batch of finished rubber products is found to have an unusual odor. How can the source of the odor be identified and the incident be managed to prevent further defects?"
+            },
+            {
+                "question": "A production line is shut down due to a power outage. What procedures should be followed to safely restart the equipment and resume production?"
+            },
+            {
+                "question": "A supplier delivers a shipment of raw materials that do not meet specifications. How can this incident be managed to prevent production delays and ensure compliance with quality standards?"
+            },
+            {
+                "question": "A worker is injured while operating a machine in the production area. What steps should be taken to provide medical attention, investigate the incident, and prevent future accidents?"
+            },
+            {
+                "question": "A product recall is initiated due to a defective plastic component. How can the recall be managed to minimize impact on customers, reputation, and revenue?"
+            }
+        ]
     },
     {
         "industry": "Petrochemical / Oil Refineries",
-        "question": "[\n  \"What procedures should be followed in the event of a hydrogen sulfide gas leak in a petrochemical plant?\",\n  \"How can a refinery unit be safely restarted after an emergency shutdown due to a loss of power?\",\n  \"What are the steps to mitigate the effects of a crude oil spill in a refinery tank farm?\",\n  \"What safety protocols should be in place for personnel responding to a fire in a petroleum refining facility?\",\n  \"How can a refinery minimize the impact of a natural disaster, such as a hurricane, on its operations?\",\n  \"What methods can be used to contain and cleanup a hazardous material spill in a petrochemical facility?\",\n  \"What procedures should be followed in the event of a failure of a critical piece of equipment, such as a compressor or pump, in a refinery?\",\n  \"How can a refinery prevent and respond to a boilover event in a crude oil storage tank?\",\n  \"What are the best practices for conducting an incident investigation after a near-miss or accident in a petrochemical facility?\",\n  \"What measures can be taken to prevent and respond to a vapor cloud explosion in a refinery or petrochemical plant?\"\n]"
+        "questions": [
+            {
+                "question": "During a routine maintenance operation, a leak is discovered in a crude oil pipeline. How should the incident be managed to minimize environmental impact and ensure personnel safety?"
+            },
+            {
+                "question": "A sudden power outage occurs at a petrochemical plant, causing equipment shutdowns and potential safety risks. What steps should be taken to respond to the incident and restore operations?"
+            },
+            {
+                "question": "A fire breaks out in a refinery's tank farm area. What procedures should be followed to extinguish the fire and prevent it from spreading to nearby tanks?"
+            },
+            {
+                "question": "A toxic gas release is detected in a refinery's processing unit. How should the incident be managed to protect personnel and the surrounding community?"
+            },
+            {
+                "question": "A major equipment failure occurs during a startups procedure, causing a significant release of hydrocarbons. What measures should be taken to mitigate the incident and prevent further damage?"
+            },
+            {
+                "question": "A spill of hazardous chemicals occurs during a transportation operation at a petrochemical plant. How should the incident be responded to and cleaned up to minimize environmental harm?"
+            },
+            {
+                "question": "An unexpected release of flammable vapors occurs in a refinery's atmosphere. What procedures should be followed to evacuate the area and prevent ignition sources?"
+            },
+            {
+                "question": "A severe weather event causes damage to a refinery's infrastructure, resulting in a loss of containment. How should the incident be managed to ensure safe and efficient recovery?"
+            },
+            {
+                "question": "A major pipeline rupture occurs, releasing large quantities of product into the environment. What steps should be taken to respond to the incident, contain the spill, and restore the pipeline?"
+            },
+            {
+                "question": "An electrical explosion occurs in a refinery's electrical substation, causing injuries and equipment damage. How should the incident be investigated and what corrective actions should be taken to prevent recurrence?"
+            }
+        ]
     },
     {
         "industry": "Waste storage, treatment and disposal",
-        "question": "[\n  \"What procedures should be followed in the event of a chemical spill at a waste storage facility?\",\n  \"How can waste disposal facilities mitigate the risk of landfill fires and what actions should be taken in the event of a fire?\",\n  \"What measures can be taken to prevent the spread of disease from improper handling of medical waste in treatment facilities?\",\n  \"In the event of a leak or rupture of a storage tank containing hazardous waste, what steps should be taken to contain and remediate the spill?\",\n  \"What protocols are in place for responding to and containing odors emanating from waste disposal facilities that are impacting nearby communities?\",\n  \"How can waste storage facilities prevent and respond to pest and rodent infestations that can spread disease and contaminate waste?\",\n  \"What emergency response plans should be in place in the event of a natural disaster impacting a waste disposal facility, such as a hurricane or earthquake?\",\n  \"How can waste treatment facilities minimize the risk of explosions or other accidents involving flammable or combustible materials?\",\n  \"What procedures should be followed for the safe handling and disposal of electronic waste, including proper disassembly and recycling of components?\",\n  \"In the event of a incident involving the release of asbestos or other hazardous materials during waste disposal operations, what steps should be taken to protect workers and the environment?\"\n]"
+        "questions": [
+            {
+                "question": "A fire breaks out in the waste storage facility due to spontaneous combustion of organic materials, how can it be safely extinguished and what measures can be taken to prevent future occurrences?"
+            },
+            {
+                "question": "A leak is discovered in a landfill liner, allowing leachate to contaminate the surrounding soil and groundwater, what steps should be taken to mitigate the damage and prevent further environmental harm?"
+            },
+            {
+                "question": "A truck transporting hazardous waste to a disposal facility is involved in an accident, spilling its contents onto the highway, how should the incident be managed to minimize risks to the public and the environment?"
+            },
+            {
+                "question": "A waste treatment plant experiences a malfunction, resulting in the release of toxic gases into the atmosphere, what emergency procedures should be followed to protect nearby communities and employees?"
+            },
+            {
+                "question": "Heavy rainfall causes a landfill to overflow, resulting in waste being washed into nearby waterways, how can the incident be responded to and what measures can be taken to prevent similar incidents in the future?"
+            },
+            {
+                "question": "A worker at a waste disposal facility is exposed to a hazardous substance, what first aid and medical procedures should be followed to ensure their safety and what measures can be taken to prevent similar incidents?"
+            },
+            {
+                "question": "A waste storage facility is found to be infested with pests, posing a risk to public health and the environment, how can the infestation be effectively managed and what measures can be taken to prevent re-infestation?"
+            },
+            {
+                "question": "A batch of waste is found to be misclassified, resulting in the potential for unsafe handling and disposal, how should the incident be managed and what procedures can be put in place to prevent misclassification in the future?"
+            },
+            {
+                "question": "A waste disposal facility receives a shipment of waste that exceeds the permitted quantities or characteristics, how should the incident be handled and what measures can be taken to prevent similar incidents in the future?"
+            },
+            {
+                "question": "A nearby community complains about odors and noise emanating from a waste treatment plant, how can the incident be investigated and what measures can be taken to mitigate the impacts and improve community relations?"
+            }
+        ]
     },
     {
         "industry": "Handling and transportation centres (ports, airports, lorry parks, marshalling yards, etc.)",
-        "question": "[\n    \"What procedures should be followed in the event of a cargo spill or leak at a port or terminal to minimize environmental impact and ensure safe handling?\",\n    \"How can logistics operators at airports prevent and respond to incidents of cargo theft or tampering during transportation?\",\n    \"What safety protocols should be implemented at lorry parks to prevent accidents and injuries to drivers and other personnel?\",\n    \"In the event of a fire at a marshalling yard, what steps should be taken to evacuate personnel and prevent the spread of the fire?\",\n    \"How can handling and transportation centre operators ensure compliance with customs regulations and prevent incidents of smuggling or non-compliance?\",\n    \"What measures can be taken to prevent and respond to incidents of piracy or armed robbery at ports or during transportation?\",\n    \"How can logistics operators at handling and transportation centres manage and respond to severe weather events that may impact operations?\",\n    \"What procedures should be in place for handling and transporting hazardous materials at ports, airports, and other transportation centres to minimize the risk of accidents?\",\n    \"In the event of a cyber attack or data breach at a handling and transportation centre, what steps should be taken to protect sensitive information and minimize disruption to operations?\",\n    \"How can handling and transportation centre operators ensure the safe and efficient handling of oversized or special cargo, such as heavy machinery or fragile items?\"\n]"
+        "questions": [
+            {
+                "question": "In the event of a cargo ship arriving at a port with damaged containers, what procedures should be followed to inspect and manage the damaged goods?"
+            },
+            {
+                "question": "How should airport staff handle a situation where a passenger's luggage has been misplaced or damaged during transportation?"
+            },
+            {
+                "question": "What measures can be taken to prevent and respond to a fuel spill at a lorry park or marshalling yard?"
+            },
+            {
+                "question": "In case of a labour dispute at a port, what steps can be taken to minimize disruptions to cargo handling and transportation operations?"
+            },
+            {
+                "question": "If a customs inspection at an airport reveals prohibited or restricted items in a passenger's luggage, what actions should be taken to resolve the issue?"
+            },
+            {
+                "question": "How can handling and transportation centres prevent and manage the spread of pests or diseases that may be introduced through international cargo?"
+            },
+            {
+                "question": "What emergency response plans should be in place in case of a fire or explosion at a handling and transportation centre?"
+            },
+            {
+                "question": "If a severe weather event impacts operations at a port or airport, what measures can be taken to ensure the safety of staff and cargo, and to minimize downtime?"
+            },
+            {
+                "question": "In the event of a cybersecurity breach at a handling and transportation centre, what steps should be taken to contain and respond to the incident?"
+            },
+            {
+                "question": "How can handling and transportation centres manage and respond to a situation where a trailer or container has been stolen or hijacked during transportation?"
+            }
+        ]
     },
     {
         "industry": "Textiles manufacturing and treatment",
-        "question": "[\n  \"What procedures should be followed to address a dyeing defect in a textile manufacturing process?\",\n  \"How can fabric shrinkage during the treatment process be minimized and resolved?\",\n  \"What are the steps to troubleshoot and resolve issues with textile printing machinery?\",\n  \"What methods can be used to remove stubborn stains from textiles during the manufacturing process?\",\n  \"How can the occurrence of yarn breakage during weaving be reduced and resolved?\",\n  \"What safety protocols should be in place to handle chemical spills in a textile treatment facility?\",\n  \"What quality control measures can be implemented to prevent the occurrence of fabric defects during manufacturing?\",\n  \"How can the impact of color variation in textile production be mitigated and resolved?\",\n  \"What are the best practices for cleaning and maintaining textile manufacturing equipment to prevent malfunctions?\",\n  \"What procedures should be followed to investigate and address the cause of a textile manufacturing equipment failure?\"\n]"
+        "questions": [
+            {
+                "question": "In a textiles manufacturing facility, a weaving machine suddenly breaks down due to worn-out parts, causing a halt in production. How can the incident be managed to minimize downtime?"
+            },
+            {
+                "question": "A batch of fabrics is found to have a color inconsistency, which may be due to a dyeing process error. What steps can be taken to resolve the issue and prevent future occurrences?"
+            },
+            {
+                "question": "The water treatment system in a textiles plant is malfunctioning, resulting in excessive water consumption and potential environmental hazards. How can the incident be addressed to ensure sustainable water usage?"
+            },
+            {
+                "question": "A worker in the textiles factory reports skin irritation possibly caused by exposure to chemicals used in the manufacturing process. What measures should be implemented to handle the incident and prevent similar incidents in the future?"
+            },
+            {
+                "question": "A fire breaks out in the storage area of a textiles plant, potentially damaging raw materials and disrupting production. How can the incident be managed to minimize losses and ensure business continuity?"
+            },
+            {
+                "question": "The quality control team discovers that a shipment of textiles products does not meet the required standards, possibly due to a mistake in the quality control process. What actions can be taken to rectify the situation and improve quality control procedures?"
+            },
+            {
+                "question": "The humidity level in the textiles manufacturing facility is higher than recommended, potentially affecting the quality of the products. How can the incident be resolved to maintain the optimal humidity level?"
+            },
+            {
+                "question": "A supplier of raw materials to the textiles plant fails to deliver the required quantity, leading to production delays. What strategies can be employed to manage the incident and mitigate the impact on production?"
+            },
+            {
+                "question": "The waste management system in the textiles factory is not functioning properly, resulting in environmental concerns and potential regulatory issues. How can the incident be addressed to ensure compliance with environmental regulations?"
+            },
+            {
+                "question": "A dispute arises between the management and workers in the textiles plant regarding working conditions and employee safety. What approaches can be used to resolve the incident and improve labor relations?"
+            }
+        ]
     },
     {
         "industry": "General chemicals manufacture (not otherwise specified int the list)",
-        "question": "[\n    \"What are the best practices for containing and neutralizing chemical spills in a general chemicals manufacturing facility?\",\n    \"How can manufacturers minimize the risk of explosions and fires when handling volatile chemicals?\",\n    \"What protocols should be in place for responding to a chemical leak or release in the general chemicals manufacturing industry?\",\n    \"What are the most effective methods for preventing and responding to workplace injuries caused by chemical exposure?\",\n    \"How can general chemicals manufacturers ensure compliance with environmental regulations and prevent pollution incidents?\",\n    \"What are the key steps in conducting a root cause analysis of an incident in a general chemicals manufacturing facility?\",\n    \"How can manufacturers prevent and respond to equipment failures that could lead to chemical incidents?\",\n    \"What are the best methods for training employees on incident response and emergency procedures in the general chemicals manufacturing industry?\",\n    \"How can general chemicals manufacturers develop and implement an effective incident reporting and tracking system?\",\n    \"What are the most important considerations for conducting regular safety audits and risk assessments in a general chemicals manufacturing facility?\"\n]"
+        "questions": [
+            {
+                "question": "In a general chemicals manufacturing facility, a leak of a highly corrosive chemical is detected in one of the storage areas. How should the incident be managed to minimize damage and ensure worker safety?"
+            },
+            {
+                "question": "A batch of chemicals in production is found to be contaminated with an unknown substance. What steps should be taken to identify the contaminant and rectify the situation?"
+            },
+            {
+                "question": "During a routine maintenance operation, a critical piece of equipment fails, causing a halt in production. How can the incident be managed to minimize downtime and get production back online as quickly as possible?"
+            },
+            {
+                "question": "An operator reports a strange odor emanating from one of the chemical reactors. What procedures should be followed to investigate and mitigate any potential risks?"
+            },
+            {
+                "question": "A fire breaks out in the warehouse where raw materials are stored. How should the emergency response team manage the incident to prevent the fire from spreading and minimize damage?"
+            },
+            {
+                "question": "A chemical spill occurs during transportation within the facility, posing a risk to workers and the environment. What measures should be taken to contain and clean up the spill?"
+            },
+            {
+                "question": "An unexpected power outage affects the entire facility, including critical safety systems. How can the incident be managed to ensure a safe shutdown and rapid restoration of power?"
+            },
+            {
+                "question": "A worker is exposed to a hazardous chemical during a production process. What first aid and medical procedures should be followed to treat the exposure?"
+            },
+            {
+                "question": "A regulatory inspection reveals non-compliance with environmental regulations due to improper waste disposal practices. How should the facility manage the incident to address the regulatory issues and prevent future occurrences?"
+            },
+            {
+                "question": "A critical safety alarm system fails to function during a routine test, indicating a potential flaw in the safety protocol. What steps should be taken to investigate and rectify the issue to ensure worker safety?"
+            }
+        ]
     },
     {
         "industry": "Wood treatment and furniture",
-        "question": "[\n  \"What are the best practices for addressing warping or twisting in wood furniture during the manufacturing process?\",\n  \"How can wood treatment facilities prevent and respond to chemical spills or leaks?\",\n  \"What methods can be used to remove stubborn stains or discolorations from wood surfaces?\",\n  \"What are the steps to take when dealing with a pest infestation, such as termites or carpenter ants, in wood products?\",\n  \"How can furniture manufacturers ensure compliance with regulatory requirements for flame retardancy and combustibility?\",\n  \"What are the most effective techniques for repairing or replacing damaged or defective wood components in finished furniture products?\",\n  \"How can wood treatment plants minimize the risk of fire or explosion when working with flammable materials?\",\n  \"What are the best approaches for resolving issues with uneven drying or moisture content in wood products?\",\n  \"What procedures should be followed when handling and disposing of hazardous waste generated during wood treatment and furniture production?\",\n  \"How can manufacturers troubleshoot and correct problems with wood finishing, such as uneven color or texture?\"\n]"
+        "questions": [
+            {
+                "question": "A batch of wood panels has been found to have excess moisture content, potentially leading to warping or rotting. How can this incident be managed to prevent further damage?"
+            },
+            {
+                "question": "A furniture finishing line has been contaminated with excess dust, affecting the quality of the final product. What steps can be taken to resolve this issue and prevent future occurrences?"
+            },
+            {
+                "question": "A wood treatment tank has been found to be leaking, posing a risk to the environment and worker safety. How can this incident be responded to and resolved quickly?"
+            },
+            {
+                "question": "A shipment of wood has been damaged during transportation, resulting in significant losses. What actions can be taken to manage the incident and minimize financial losses?"
+            },
+            {
+                "question": "A piece of furniture has been reported to have a defect, resulting in customer dissatisfaction. How can this incident be managed to ensure customer satisfaction and prevent future occurrences?"
+            },
+            {
+                "question": "A wood drying kiln has malfunctioned, affecting the quality of the dried wood. What steps can be taken to resolve this issue and prevent future malfunctions?"
+            },
+            {
+                "question": "A worker has been injured while operating a wood cutting machine. How can this incident be managed to ensure the worker's safety and prevent future accidents?"
+            },
+            {
+                "question": "A batch of wood glue has been found to be defective, affecting the quality of the final product. What actions can be taken to resolve this issue and prevent future occurrences?"
+            },
+            {
+                "question": "A furniture production line has been shut down due to a mechanical failure. How can this incident be managed to minimize downtime and get production back online quickly?"
+            },
+            {
+                "question": "A customer has reported that a piece of furniture has been damaged during installation. How can this incident be managed to ensure customer satisfaction and prevent future occurrences?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations - other fine chemicals",
-        "question": "[\n    \"What are the standard operating procedures for responding to a chemical spill in a fine chemicals production facility?\",\n    \"How do you troubleshoot and resolve issues with clogged pipelines in a chemical installation?\",\n    \"What safety protocols should be followed when dealing with a leak of a hazardous chemical in a fine chemicals plant?\",\n    \"What are the steps to take when a batch reaction goes out of control in a chemical reactor?\",\n    \"How do you handle a power outage in a fine chemicals facility to minimize equipment damage and prevent accidents?\",\n    \"What procedures should be in place for managing and containing fires in a chemical installation?\",\n    \"How do you investigate and address the root cause of a recurring equipment failure in a fine chemicals production line?\",\n    \"What emergency response plan should be implemented in case of a toxic gas release in a fine chemicals facility?\",\n    \"How do you manage the cleanup and disposal of hazardous waste after a chemical incident in a fine chemicals plant?\",\n    \"What training and preparation are necessary for personnel to respond effectively to a chemical emergency in a fine chemicals facility?\"\n]"
+        "questions": [
+            {
+                "question": "In a chemical installation producing fine chemicals, a leak is detected in a reactor vessel, releasing a hazardous gas into the atmosphere. How should the incident be managed to minimize environmental and health risks?"
+            },
+            {
+                "question": "A batch of raw materials is found to be contaminated with an impurity, potentially affecting the quality of the final product in a fine chemicals manufacturing process. What steps should be taken to resolve the incident and prevent future occurrences?"
+            },
+            {
+                "question": "During a maintenance shutdown, a critical piece of equipment in a fine chemicals plant is damaged, impacting production schedules and customer deliveries. How can the incident be managed to minimize downtime and mitigate the impact on customers?"
+            },
+            {
+                "question": "An unexpected power outage occurs at a chemical installation producing fine chemicals, causing equipment to shut down and potentially leading to safety and environmental risks. What procedures should be followed to safely restart operations and prevent incidents?"
+            },
+            {
+                "question": "A fire is detected in a storage area of a fine chemicals facility, posing a risk to personnel, equipment, and the surrounding environment. How should the incident be managed to ensure a safe and effective response?"
+            },
+            {
+                "question": "A deviation in the production process of a fine chemical is observed, resulting in an off-specification product that does not meet customer requirements. What actions should be taken to investigate the cause, correct the process, and prevent future deviations?"
+            },
+            {
+                "question": "A supplier of raw materials to a fine chemicals manufacturer notifies of a potential shortage, threatening to disrupt production and impact customer deliveries. How can the incident be managed to identify alternative suppliers, negotiate with existing ones, and maintain production levels?"
+            },
+            {
+                "question": "An injury occurs to a worker during a routine operation in a fine chemicals plant, highlighting a potential safety hazard that needs to be addressed. What steps should be taken to investigate the incident, implement corrective actions, and prevent future accidents?"
+            },
+            {
+                "question": "A regulatory inspection of a fine chemicals facility identifies non-compliances with environmental and safety regulations, requiring immediate attention to avoid penalties and reputational damage. How should the incident be managed to address the non-compliances, implement corrective actions, and prevent future occurrences?"
+            },
+            {
+                "question": "A cybersecurity breach is detected in the control systems of a fine chemicals plant, potentially compromising process safety, product quality, and business operations. What measures should be taken to respond to the incident, contain the breach, and prevent future attacks?"
+            }
+        ]
     },
     {
         "industry": "Power generation, supply and distribution ",
-        "question": "[\n  \"What procedures should be followed to troubleshoot and repair a faulty transformer in a power distribution substation?\",\n  \"How can utility companies mitigate the impact of severe weather events on power transmission and distribution infrastructure?\",\n  \"What strategies can be employed to minimize power outages during peak demand periods in densely populated urban areas?\",\n  \"What are the best practices for responding to and containing oil spills from power generation equipment, such as transformers and circuit breakers?\",\n  \"How can power generation and distribution companies ensure compliance with regulatory requirements for electromagnetic field exposure limits?\",\n  \"What methods can be used to detect and prevent cyber threats to power generation, transmission, and distribution systems?\",\n  \"How can utility companies optimize their maintenance schedules to reduce downtime and extend the lifespan of power generation and distribution equipment?\",\n  \"What are the most effective ways to investigate and analyze the root causes of power outages and equipment failures in the power generation, supply, and distribution industry?\",\n  \"How can power generation and distribution companies balance the need for reliable power supply with the need to reduce greenhouse gas emissions and mitigate climate change?\",\n  \"What are the key considerations for designing and implementing a robust and resilient power distribution system for a new industrial or commercial development?\"\n]"
+        "questions": [
+            {
+                "question": "A sudden power outage occurs in a residential area due to a downed transmission line. How can the utility company quickly restore power while ensuring the safety of the repair crew?"
+            },
+            {
+                "question": "A fault is detected in a generator at a power plant, causing a significant reduction in electricity output. What steps should be taken to troubleshoot and repair the issue without causing a complete plant shutdown?"
+            },
+            {
+                "question": "A severe storm causes widespread damage to the power distribution infrastructure, resulting in multiple outages across the service area. How can the utility company prioritize and manage the repair efforts to minimize the duration of the outages?"
+            },
+            {
+                "question": "A transformer explodes at a substation, causing a fire and disrupting power supply to a large commercial area. What is the best course of action to take in order to contain the damage and restore power as quickly as possible?"
+            },
+            {
+                "question": "A cyberattack is detected on the utility company's SCADA system, potentially compromising the control and monitoring of the power grid. How can the company respond to the incident to prevent further disruption to the power supply?"
+            },
+            {
+                "question": "A planned maintenance outage at a power plant is delayed due to unexpected issues, putting the evening peak demand at risk. What strategies can be employed to manage the potential shortfall in electricity supply and prevent a blackout?"
+            },
+            {
+                "question": "A short circuit occurs in a high-voltage transmission line, causing a fault that trips the line's protection system. How can the utility company investigate and repair the fault to minimize the duration of the outage?"
+            },
+            {
+                "question": "A flood warning is issued for a region, threatening to inundate a power plant and disrupt electricity supply. What measures can be taken to protect the plant and ensure a reliable power supply during the flood event?"
+            },
+            {
+                "question": "A voltage instability issue is detected in the power grid, causing fluctuations in the voltage supply to customers. How can the utility company identify and address the root cause of the issue to prevent a wider disruption to the power supply?"
+            },
+            {
+                "question": "A major equipment failure occurs at a power plant during peak demand, resulting in a significant shortfall in electricity supply. What actions can be taken to mitigate the impact of the failure and maintain a stable power supply to customers?"
+            }
+        ]
     },
     {
         "industry": "Manufacture of food products and beverages",
-        "question": "[\n    \"What procedures should be followed in the event of a product recall due to contamination in the manufacture of food products and beverages?\",\n    \"How can foreign object contamination be prevented and resolved in food processing lines?\",\n    \"What steps should be taken to address and prevent the growth of mold and bacteria in food and beverage production facilities?\",\n    \"What is the best practice for cleaning and sanitizing equipment after a chemical spill in a food manufacturing plant?\",\n    \"How can incidents of overheating or overcooking of products be minimized and resolved in high-volume food production environments?\",\n    \"What safety protocols should be in place to prevent accidents involving high-pressure equipment, such as pasteurizers or sterilization equipment, in food and beverage manufacturing?\",\n    \"What actions should be taken in response to a pest infestation in a food processing facility, and how can future infestations be prevented?\",\n    \"How can Allergen cross-contamination be prevented and addressed in facilities that produce multiple food products with different allergen profiles?\",\n    \"What quality control measures should be implemented to detect and resolve issues related to incorrect product labeling or packaging in the food and beverage industry?\",\n    \"What emergency procedures should be established to handle fires or explosions in facilities that use fryers, ovens, or other high-heat equipment for food production?\"\n]"
+        "questions": [
+            {
+                "question": "A batch of packaged food products has been found to have incorrect labeling, how can this incident be effectively managed to prevent customer complaints and potential recalls?"
+            },
+            {
+                "question": "A food manufacturing line has been contaminated with a foreign object, what steps should be taken to ensure the line is properly cleaned and sanitized to prevent product contamination?"
+            },
+            {
+                "question": "A critical piece of equipment in the manufacturing process has broken down, how can production be minimized and what temporary measures can be implemented to reduce downtime?"
+            },
+            {
+                "question": "An employee has reported a pest control issue in the facility, what procedures should be followed to eradicate the pests and prevent future infestations?"
+            },
+            {
+                "question": "A supplier has notified the manufacturing facility of a potential ingredient contamination, how can the facility quickly respond to mitigate the risk of contaminated products being produced?"
+            },
+            {
+                "question": "A packaging material shortage has been identified, how can alternative materials or suppliers be sourced to minimize production delays?"
+            },
+            {
+                "question": "A product has failed to meet the required texture and consistency standards, what quality control measures can be implemented to identify and correct the issue?"
+            },
+            {
+                "question": "An unexpected power outage has occurred during production, what protocols should be followed to safely restart equipment and resume production?"
+            },
+            {
+                "question": "A recall has been issued for a specific product due to a potential health risk, how can the incident be managed to minimize brand damage and ensure customer safety?"
+            },
+            {
+                "question": "A non-conforming product has been produced, what procedures should be followed to segregate and dispose of the affected products to prevent them from entering the market?"
+            }
+        ]
     },
     {
         "industry": "Fuel storage (including heating, retail sale, etc.)",
-        "question": "[\n    \"What procedures should be followed in the event of a fuel leak from an underground storage tank?\",\n    \"How can a fuel storage facility prevent overfilling of tanks and minimize the risk of spills?\",\n    \"What safety measures should be taken when performing routine maintenance on fuel storage equipment?\",\n    \"What is the best approach to responding to a report of a fuel odor in the vicinity of a storage facility?\",\n    \"How can a retail fuel sales operation ensure compliance with regulations regarding fuel storage and dispensing?\",\n    \"What steps should be taken in the event of a fire at a fuel storage facility?\",\n    \"What methods can be used to detect and prevent water contamination in fuel storage tanks?\",\n    \"How often should fuel storage tanks be inspected and tested to ensure their integrity?\",\n    \"What procedures should be followed in the event of a power outage at a fuel storage facility?\",\n    \"How can a fuel storage facility prepare for and respond to a natural disaster such as a hurricane or flood?\"\n]"
+        "questions": [
+            {
+                "question": "A fuel storage tank is found to be leaking, resulting in a significant loss of product and potential environmental damage, how should the incident be managed to minimize harm to the environment and prevent future leaks?"
+            },
+            {
+                "question": "During a routine inspection, a heating fuel storage facility discovers that its secondary containment system is compromised, what steps should be taken to address the issue and ensure regulatory compliance?"
+            },
+            {
+                "question": "A retail fuel sale establishment experiences a power outage, causing its fuel pumps to shut down, how can the situation be resolved to restore service to customers as quickly as possible?"
+            },
+            {
+                "question": "A fuel storage facility receives a shipment of contaminated fuel, what procedures should be followed to isolate and manage the contaminated product, and prevent it from being distributed to customers?"
+            },
+            {
+                "question": "A heating oil storage tank overflows due to a faulty gauge, resulting in a spill and potential damage to the surrounding area, what actions should be taken to respond to the incident and prevent future overflows?"
+            },
+            {
+                "question": "A fire breaks out at a fuel storage facility, how should emergency responders and facility personnel work together to extinguish the fire and prevent it from spreading?"
+            },
+            {
+                "question": "A customer complains of receiving contaminated fuel from a retail fuel sale establishment, what steps should be taken to investigate the complaint, and prevent similar incidents in the future?"
+            },
+            {
+                "question": "A fuel storage facility's inventory management system fails, resulting in discrepancies in fuel inventory, how can the issue be resolved to ensure accurate inventory tracking and prevent future discrepancies?"
+            },
+            {
+                "question": "A storm causes damage to a fuel storage facility's infrastructure, including tanks and piping, what procedures should be followed to assess and repair the damage, and restore the facility to operational status?"
+            },
+            {
+                "question": "A employee is injured while performing maintenance on a fuel storage tank, what actions should be taken to respond to the incident, and prevent similar accidents from occurring in the future?"
+            }
+        ]
     },
     {
         "industry": "Production, destruction and storage of explosives",
-        "question": "[\n    \"What procedures should be followed in the event of an unplanned detonation during the production of explosives?\",\n    \"How can the risk of explosion be mitigated during the storage of unstable explosives?\",\n    \"What are the best practices for responding to a fire in a production facility that handles explosive materials?\",\n    \"What safety protocols should be in place for the transportation of explosives from the production site to storage facilities?\",\n    \"How can the likelihood of human error leading to incidents be reduced in the handling and production of explosives?\",\n    \"What are the regulatory requirements for reporting and investigating incidents involving the release of explosive materials into the environment?\",\n    \"What role does regular maintenance of equipment play in preventing incidents in explosives production and storage?\",\n    \"How should personnel be trained to respond to emergencies such as spills or leaks of explosive substances during production?\",\n    \"What measures can be taken to prevent unauthorized access to explosives storage facilities and prevent potential theft or misuse?\",\n    \"What technologies or systems are available to monitor and control the conditions of explosive materials storage to prevent degradation or accidental ignition?\"\n]"
+        "questions": [
+            {
+                "question": "During the production of explosives, a batch of detonators is found to be defective, how should the production team manage the incident to prevent any accidents?"
+            },
+            {
+                "question": "A fire breaks out in the storage facility of explosive materials, what procedures should be followed to extinguish the fire and minimize damage?"
+            },
+            {
+                "question": "An employee is injured while handling explosive materials, what first aid and emergency response procedures should be implemented?"
+            },
+            {
+                "question": "A leak of explosive gas is detected in the production area, how should the situation be managed to prevent any explosions or injuries?"
+            },
+            {
+                "question": "A discrepancy is found in the inventory of explosive materials, what steps should be taken to investigate and rectify the situation?"
+            },
+            {
+                "question": "A piece of equipment used in the production of explosives malfunctions, how should the incident be handled to prevent any further accidents?"
+            },
+            {
+                "question": "An unauthorized person is found to have accessed the explosive storage facility, what security protocols should be reviewed and updated to prevent similar incidents?"
+            },
+            {
+                "question": "A transportation vehicle carrying explosive materials is involved in an accident, what procedures should be followed to secure the scene and prevent any further incidents?"
+            },
+            {
+                "question": "A spill of explosive materials occurs during loading or unloading operations, how should the spill be contained and cleaned up?"
+            },
+            {
+                "question": "A natural disaster such as an earthquake or flood affects the production or storage facility of explosive materials, what emergency response plans should be activated to minimize damage and prevent accidents?"
+            }
+        ]
     },
     {
         "industry": "Other activity (not otherwise specified int the list)",
-        "question": "[\n    \"What procedures should be followed to address equipment malfunctions in the 'Other activity' industry?\",\n    \"How can incidents of supply chain disruptions be mitigated and resolved?\",\n    \"What steps can be taken to minimize the impact of unexpected changes in regulatory requirements?\",\n    \"What strategies can be employed to resolve conflicts with contractors or external partners?\",\n    \"How can the risk of data breaches be managed and incidents responded to in the 'Other activity' industry?\",\n    \"What methods can be used to investigate and address incidents of non-compliance with internal policies?\",\n    \"How can incidents of workplace accidents or injuries be investigated and prevented in the future?\",\n    \"What protocols should be in place to manage and resolve crises or major incidents in the 'Other activity' industry?\",\n    \"How can the impact of natural disasters or extreme weather events be mitigated and incidents responded to?\",\n    \"What processes can be implemented to address and resolve incidents related to product quality or customer complaints?\"\n]"
+        "questions": [
+            {
+                "question": "In the event of a participant sustaining a minor injury during a team-building exercise, what first aid procedures should be administered to ensure their safety and well-being?"
+            },
+            {
+                "question": "How should an unexpected power outage be managed during a corporate event to minimize disruption and ensure the continuation of activities?"
+            },
+            {
+                "question": "What steps should be taken to address a last-minute cancellation by a keynote speaker, and how can an alternative arrangement be made to maintain the integrity of the event?"
+            },
+            {
+                "question": "In the case of severe weather conditions, what contingency plans should be put in place to ensure the safety of participants and staff during an outdoor activity?"
+            },
+            {
+                "question": "If a piece of critical equipment fails during a presentation, what backup plans or alternatives can be implemented to prevent delays and minimize the impact on the audience?"
+            },
+            {
+                "question": "How should a situation be handled where a participant is disrupting the activity or causing a disturbance, and what measures can be taken to resolve the issue without escalating the situation?"
+            },
+            {
+                "question": "What procedures should be followed in the event of a medical emergency requiring immediate attention during an activity, and how can emergency services be quickly contacted?"
+            },
+            {
+                "question": "If an unexpected technical issue arises during a live streaming event, what troubleshooting steps can be taken to resolve the issue promptly and minimize downtime?"
+            },
+            {
+                "question": "In the event of a fire alarm being triggered during an activity, what evacuation procedures should be followed to ensure the safe and orderly exit of all participants and staff?"
+            },
+            {
+                "question": "How should a situation be managed where a participant is experiencing emotional distress or discomfort during an activity, and what support systems can be put in place to assist them?"
+            }
+        ]
     },
     {
         "industry": "Processing of metals using electrolytic or chemical processes",
-        "question": "[\n    \"What are the primary steps to take when responding to a chemical spill in an electrolytic metal processing facility?\",\n    \"How can operators prevent and mitigate the risks associated with hydrogen gas evolution during chemical metal processing?\",\n    \"What safety protocols should be in place for handling and storing strong acids and bases used in metal etching and electroplating processes?\",\n    \"What procedures should be followed in the event of a power outage or equipment failure during an electrolytic metal processing operation?\",\n    \"How can plant managers minimize the environmental impact of wastewater generated from metal processing using electrolytic or chemical methods?\",\n    \"What measures can be taken to reduce the risk of fire or explosion when working with flammable solvents and chemicals in metal processing?\",\n    \"How can manufacturers ensure the quality and consistency of their metal products when using electrolytic or chemical processing methods?\",\n    \"What are the key factors to consider when troubleshooting issues with electrochemical cells or reaction vessels in a metal processing facility?\",\n    \"How can employees be trained to safely handle and respond to emergencies involving hazardous chemicals and materials in the metal processing industry?\",\n    \"What methods can be employed to prevent and control corrosion in equipment and infrastructure used for metal processing using electrolytic or chemical processes?\"\n]"
+        "questions": [
+            {
+                "question": "In the processing of metals using electrolytic or chemical processes, a sudden power outage causes the electrolytic cell to shut down. How can the production be safely and quickly resumed?"
+            },
+            {
+                "question": "During the chemical etching process, an operator discovers a leak in one of the chemical tanks. What steps should be taken to contain the spill and prevent environmental contamination?"
+            },
+            {
+                "question": "A batch of metal products shows signs of uneven plating after undergoing an electrolytic process. What quality control measures can be implemented to identify and resolve the issue?"
+            },
+            {
+                "question": "The pH level of the chemical bath in an electroplating process deviates from the recommended range. How can the pH level be adjusted to prevent damage to the metal products and ensure a consistent finish?"
+            },
+            {
+                "question": "An unexpected arrival of a shipment of low-quality raw materials affects the production schedule. What strategies can be employed to mitigate the impact of the low-quality materials on the overall production process?"
+            },
+            {
+                "question": "An operator reports a malfunction in one of the chemical dosing pumps, leading to an imbalance in the chemical composition of the process bath. How can the issue be diagnosed and resolved to prevent disruptions to production?"
+            },
+            {
+                "question": "The temperature of the electrolytic cell exceeds the recommended range, causing a decrease in product quality. What measures can be taken to regulate the temperature and maintain a stable production environment?"
+            },
+            {
+                "question": "A quality control inspection reveals that a batch of metal products has been contaminated with impurities during the chemical processing stage. What procedures should be followed to decontaminate the products and prevent future occurrences?"
+            },
+            {
+                "question": "A chemical reaction occurs during the processing of metals, releasing toxic fumes into the workspace. What emergency response plan should be activated to ensure the safety of the operators and prevent environmental pollution?"
+            },
+            {
+                "question": "The electrolytic cell experiences a sudden increase in voltage, causing damage to the cell components and disrupting production. How can the cell be repaired or replaced, and what measures can be taken to prevent similar incidents in the future?"
+            }
+        ]
     },
     {
         "industry": "General engineering, manufacturing and assembly",
-        "question": "[\n  \"What procedures should be followed to address a machine breakdown on the production line in a manufacturing facility?\",\n  \"How can quality control issues related to defective parts be resolved in a general engineering setting?\",\n  \"What protocols are in place for safely handling and disposing of hazardous materials in an assembly environment?\",\n  \"What strategies can be employed to minimize downtime and optimize repair times for equipment failures in a manufacturing plant?\",\n  \"How can workplace accidents involving heavy machinery or tools be investigated and prevented in the future?\",\n  \"What are the best practices for troubleshooting and resolving issues with automated assembly lines?\",\n  \"What methods can be used to identify and mitigate the root causes of product defects in a general engineering production process?\",\n  \"How can effective communication be maintained between production staff, quality control, and maintenance teams during incident resolution?\",\n  \"What are the key considerations for developing and implementing a preventive maintenance schedule in a manufacturing facility?\",\n  \"What role can training and employee development play in reducing the occurrence of incidents and improving response times in a general engineering and assembly environment?\"\n]"
+        "questions": [
+            {
+                "question": "In a manufacturing plant, a critical piece of equipment suddenly breaks down during peak production hours, causing a significant delay in the production process. How can the maintenance team quickly resolve the issue and minimize downtime?"
+            },
+            {
+                "question": "A quality control inspection reveals a batch of defective products on the assembly line, which could compromise customer safety and satisfaction. What steps can be taken to investigate the cause of the defect and prevent future occurrences?"
+            },
+            {
+                "question": "During a routine maintenance procedure, a technician discovers a potential safety hazard in the factory's electrical system. What protocol should be followed to address the hazard and ensure a safe working environment?"
+            },
+            {
+                "question": "A supplier fails to deliver a critical component on time, disrupting the production schedule and potentially impacting customer delivery deadlines. How can the procurement team manage the situation and find an alternative solution?"
+            },
+            {
+                "question": "An assembly line worker reports a musculoskeletal injury due to repetitive strain from performing a specific task. What measures can be taken to prevent similar injuries and improve workplace ergonomics?"
+            },
+            {
+                "question": "A production run is compromised due to a material shortage caused by an inventory management error. What procedures can be implemented to prevent similar stockouts and ensure accurate inventory tracking?"
+            },
+            {
+                "question": "A customer complains about a product malfunction, which may be related to a design or manufacturing flaw. How can the engineering team investigate the issue and implement a corrective action plan?"
+            },
+            {
+                "question": "A forklift accident occurs in the warehouse, resulting in damage to equipment and potential injury to personnel. What steps should be taken to investigate the incident and prevent future accidents?"
+            },
+            {
+                "question": "A change in regulatory requirements affects the production process, requiring immediate adjustments to ensure compliance. How can the quality assurance team implement the necessary changes and verify compliance?"
+            },
+            {
+                "question": "A natural disaster affects the factory's operations, causing damage to infrastructure and disrupting the supply chain. What strategies can be employed to respond to the disaster, recover operations, and maintain business continuity?"
+            }
+        ]
     },
     {
         "industry": "Wholesale and retail storage and distribution (excluding LPG)",
-        "question": "[\n  \"What procedures should be followed in the event of a warehouse fire to minimize damage and ensure employee safety?\",\n  \"How can inventory discrepancies be investigated and resolved in a wholesale and retail storage and distribution setting?\",\n  \"What steps can be taken to prevent and respond to pest infestations in storage facilities?\",\n  \"What is the best approach to handling customer complaints regarding damaged or missing goods during transportation?\",\n  \"How can a warehouse management system be utilized to mitigate the risk of inventory theft and misplacement?\",\n  \"What safety protocols should be implemented to prevent accidents involving forklifts and other heavy machinery in a storage and distribution environment?\",\n  \"In the event of a natural disaster, what measures can be taken to safeguard inventory and equipment in a wholesale and retail storage facility?\",\n  \"How can supply chain disruptions, such as supplier insolvency or transportation issues, be effectively managed and resolved?\",\n  \"What methods can be employed to investigate and address instances of employee theft or misconduct in a storage and distribution setting?\",\n  \"What strategies can be implemented to minimize the impact of equipment failures or maintenance downtime on wholesale and retail storage and distribution operations?\"\n]"
+        "questions": [
+            {
+                "question": "A fire breaks out in the storage warehouse, what steps should be taken to ensure employee safety and minimize damage to inventory?"
+            },
+            {
+                "question": "A forklift accident occurs in the distribution center, resulting in product damage and potential injury, how should the incident be investigated and reported?"
+            },
+            {
+                "question": "The warehouse management system experiences a technical failure, causing delays in order fulfillment, what measures can be taken to resolve the issue quickly and minimize the impact on customers?"
+            },
+            {
+                "question": "A container of hazardous materials is discovered to be leaking in the storage yard, what procedures should be followed to contain the spill and prevent environmental contamination?"
+            },
+            {
+                "question": "Severe weather causes the roof of the warehouse to collapse, destroying a large section of inventory, how should the damage be assessed and what steps taken to recover and rebuild?"
+            },
+            {
+                "question": "A security breach occurs at the distribution center, resulting in theft of high-value inventory, what measures can be taken to review and strengthen security protocols to prevent future incidents?"
+            },
+            {
+                "question": "A vendor fails to deliver a critical shipment on time, causing delays in the supply chain, how should the incident be managed to minimize the impact on customers and what measures can be taken to prevent similar incidents in the future?"
+            },
+            {
+                "question": "The warehouse experiences a pest infestation, resulting in damage to inventory and potential contamination, what steps should be taken to eradicate the pests and prevent future infestations?"
+            },
+            {
+                "question": "A trailer loaded with inventory is involved in a road accident, resulting in damage to the cargo, how should the incident be handled to minimize loss and ensure compliance with transportation regulations?"
+            },
+            {
+                "question": "The warehouse is evacuated due to a gas leak, how should the incident be managed to ensure employee safety and what procedures should be followed to investigate and resolve the issue?"
+            }
+        ]
     },
     {
         "industry": "Production and storage of pesticides, biocides, fungicides",
-        "question": "[\n    \"What procedures should be followed in the event of an accidental pesticide release into the environment?\",\n    \"How can production facilities mitigate the risk of contamination during the manufacturing process of biocides?\",\n    \"What safety protocols are essential for handling and storing fungicides to minimize exposure to workers and the environment?\",\n    \"What are the best practices for managing pesticide waste and disposing of unused or expired products?\",\n    \"In the event of a fire at a pesticide storage facility, what emergency response measures should be taken to protect people and the environment?\",\n    \"How can pesticide manufacturers prevent cross-contamination between different products during production?\",\n    \"What quality control measures should be implemented to ensure the potency and safety of biocides during the production process?\",\n    \"What are the regulatory requirements for labeling and packaging of pesticides, biocides, and fungicides to ensure compliance with industry standards?\",\n    \"How can facilities prevent and respond to spills of pesticide concentrates during transportation and handling?\",\n    \"What training programs are recommended for personnel involved in the production, handling, and storage of pesticides, biocides, and fungicides to ensure a safe working environment?\"\n]"
+        "questions": [
+            {
+                "question": "In the production of pesticides, a leak in the chemical storage tank has been detected, how should the incident be managed to minimize environmental contamination?"
+            },
+            {
+                "question": "A batch of fungicides has been found to be contaminated with an undocumented substance, what steps should be taken to isolate and recall the affected products?"
+            },
+            {
+                "question": "During the manufacture of biocides, an unexpected chemical reaction has occurred, releasing toxic fumes, how should the production line be safely shut down and the area evacuated?"
+            },
+            {
+                "question": "A fire has broken out in the warehouse storing pesticide packaging materials, what is the most effective way to extinguish the fire and prevent the spread of toxic substances?"
+            },
+            {
+                "question": "An employee has been exposed to a toxic pesticide during the production process, what immediate medical treatment and follow-up procedures should be administered?"
+            },
+            {
+                "question": "A spill of concentrated biocide has occurred on the production floor, how should the area be contained and cleaned to prevent further accidents?"
+            },
+            {
+                "question": "The quality control lab has detected high levels of residue on a batch of produced pesticides, what corrective actions should be taken to identify and rectify the source of the contamination?"
+            },
+            {
+                "question": "A forklift has damaged a pallet of packaged fungicides in the storage area, how should the damaged products be handled and disposed of to prevent further incidents?"
+            },
+            {
+                "question": "A severe storm has caused damage to the pesticide production facility, resulting in potential environmental contamination, what procedures should be followed to assess and mitigate the damage?"
+            },
+            {
+                "question": "An audit has revealed non-compliance with regulatory requirements for the storage of pesticides, what steps should be taken to rectify the situation and prevent future non-compliance?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations ",
-        "question": "[\n  \"What procedures should be followed in the event of a chemical spill in a processing plant?\",\n  \"How can operators respond to a pipeline rupture in a chemical installation to minimize environmental damage?\",\n  \"What safety protocols are essential for resolving incidents involving highly reactive chemicals?\",\n  \"What are the best practices for containing and mitigating the effects of a gas leak in a chemical manufacturing facility?\",\n  \"What role does personal protective equipment play in responding to incidents in chemical installations, and how should it be properly used?\",\n  \"What emergency response plans should be in place for incidents involving the release of toxic chemicals into the air or water?\",\n  \"How can chemical installation operators prevent and respond to fires resulting from chemical reactions or equipment malfunctions?\",\n  \"What methods are most effective for neutralizing and disposing of hazardous chemicals in the event of an incident?\",\n  \"What communication strategies are crucial for coordinating with emergency responders and regulatory agencies during a chemical incident?\",\n  \"How can regular maintenance and inspection of chemical installation equipment help prevent incidents and ensure a timely response to emergencies?\"\n]"
+        "questions": [
+            {
+                "question": "A chemical leak has been detected in one of the storage tanks, what procedures should be followed to contain and mitigate the spill?"
+            },
+            {
+                "question": "In the event of a fire in a chemical processing unit, what are the steps to take to ensure a safe and effective evacuation of personnel?"
+            },
+            {
+                "question": "A pump failure has caused a loss of pressure in a chemical reaction vessel, how can the situation be managed to prevent a runaway reaction?"
+            },
+            {
+                "question": "During maintenance, a technician has been exposed to a hazardous chemical, what first aid and medical procedures should be administered?"
+            },
+            {
+                "question": "A power outage has occurred, causing a disruption to the chemical processing operations, what measures can be taken to safely restart the process?"
+            },
+            {
+                "question": "A chemical spill has occurred in a drain, what actions should be taken to prevent environmental contamination and ensure regulatory compliance?"
+            },
+            {
+                "question": "A malfunctioning valve has caused a release of toxic gas, what steps can be taken to isolate the area and prevent further exposure?"
+            },
+            {
+                "question": "An explosion has occurred in a chemical reactor, what procedures should be followed to respond to the incident and prevent further damage?"
+            },
+            {
+                "question": "A chemical tank has overheated, causing a potential for a boiling liquid expanding vapor explosion (BLEVE), what actions can be taken to mitigate the risk?"
+            },
+            {
+                "question": "A worker has been injured by a chemical splash, what procedures should be followed to provide medical attention and investigate the incident?"
+            }
+        ]
     },
     {
         "industry": "Leisure and sport activities (e.g. ice rink)",
-        "question": "[\n    \"What procedures should be in place for emergency evacuations in case of a fire at an ice rink?\",\n    \"How can staff be trained to respond to and manage slips, trips, and falls on the ice or surrounding areas?\",\n    \"What first aid protocols should be established for common ice skating injuries such as broken bones or head trauma?\",\n    \"What measures can be taken to prevent and respond to altercations or fights among spectators or participants in leisure and sport activities?\",\n    \"How can ice rink staff ensure the safety and inclusion of participants with disabilities in their facilities and activities?\",\n    \"What plan should be in place for severe weather conditions, such as a thunderstorm, that may impact outdoor leisure and sport activities?\",\n    \"How can ice rink management respond to and resolve customer complaints or disputes in a fair and timely manner?\",\n    \"What strategies can be implemented to prevent and manage the spread of infectious diseases among staff and participants in leisure and sport activities?\",\n    \"What is the best practice for conducting regular risk assessments and safety inspections in leisure and sport facilities, such as an ice rink?\",\n    \"How can staff be prepared to respond to and manage a medical emergency, such as a heart attack or stroke, in a leisure and sport setting?\"\n]"
+        "questions": [
+            {
+                "question": "A customer slips on the ice rink and suffers a minor injury, what steps should be taken to provide adequate first aid and ensure the customer's safety?"
+            },
+            {
+                "question": "A fire alarm goes off during a public skating session at the ice rink, how should staff respond to ensure a safe evacuation of the premises?"
+            },
+            {
+                "question": "A guest reports that their personal belongings have been stolen from the ice rink's locker room, what procedures should be followed to handle the incident and prevent future occurrences?"
+            },
+            {
+                "question": "A severe weather warning is issued for the area, forcing the ice rink to close temporarily, how should staff communicate the closure to customers and manage refunds or rescheduling?"
+            },
+            {
+                "question": "A staff member is injured while operating ice resurfacing equipment, what measures should be taken to provide medical attention and conduct an incident investigation?"
+            },
+            {
+                "question": "A customer complains about the quality of the food being served at the ice rink's cafe, how should the complaint be handled to ensure customer satisfaction and improve food quality?"
+            },
+            {
+                "question": "The ice rink's refrigeration system fails, causing the ice to melt, what emergency procedures should be implemented to minimize damage and get the rink back in operation?"
+            },
+            {
+                "question": "A large group of rowdy teenagers are disrupting other customers at the ice rink, how should staff manage the situation to maintain a safe and respectful environment for all patrons?"
+            },
+            {
+                "question": "A customer suffers a serious injury, such as a concussion or broken bone, while participating in a sport or activity at the ice rink, what procedures should be followed to respond to the emergency and provide medical assistance?"
+            },
+            {
+                "question": "The ice rink's point-of-sale system crashes during a busy public skating session, how should staff manage the situation to minimize disruptions and process transactions efficiently?"
+            }
+        ]
     },
     {
         "industry": "LNG storage and distribution",
-        "question": "[\n  \"What procedures should be followed to respond to a leak detected in an LNG storage tank?\",\n  \"How can operators minimize the risk of a boil-off gas (BOG) management system failure?\",\n  \"What safety protocols are in place for LNG tanker truck loading and unloading operations?\",\n  \"What measures can be taken to prevent ice formation in LNG pipelines and valves?\",\n  \"How often should LNG storage tanks be inspected for signs of damage or corrosion?\",\n  \"What are the best practices for managing LNG inventory levels to prevent overfilling or underfilling of storage tanks?\",\n  \"What emergency response plan should be implemented in the event of an LNG release or spill?\",\n  \"How can the risk of over-pressurization in LNG pipelines be mitigated?\",\n  \"What training is required for personnel involved in LNG distribution and storage operations?\",\n  \"What maintenance schedules should be established for cryogenic equipment used in LNG storage and distribution facilities?\"\n]"
+        "questions": [
+            {
+                "question": "During a routine inspection, a leak is detected in an LNG storage tank. How can this incident be managed to minimize downtime and prevent further damage?"
+            },
+            {
+                "question": "An unexpected power outage occurs at an LNG distribution facility, causing the primary pumping system to fail. What measures should be taken to restore operations and prevent product degradation?"
+            },
+            {
+                "question": "A shipborne LNG cargo tank experiences a sudden drop in temperature, potentially causing the cargo to become over-pressurized. What steps can be taken to alleviate the pressure and prevent a tank rupture?"
+            },
+            {
+                "question": "A pipeline transporting LNG ruptures due to a third-party excavation accident. How can the incident be responded to in order to minimize environmental impact and restore pipeline integrity?"
+            },
+            {
+                "question": "A facility's fire suppression system is inadvertently activated, releasing foam into the LNG storage area. What procedures should be followed to safely clean up the foam and prevent contamination of the LNG?"
+            },
+            {
+                "question": "An LNG tanker is involved in a collision at sea, resulting in damage to its cargo tanks. What actions should be taken to assess the damage, prevent further leakage, and ensure the safe towage of the vessel to a repair facility?"
+            },
+            {
+                "question": "A faulty valve causes a blockage in an LNG distribution pipeline, resulting in a complete shutdown of the line. What methods can be employed to safely locate and clear the blockage, and restore pipeline operations?"
+            },
+            {
+                "question": "An LNG storage facility's instrumentation and control systems fail, causing the facility to operate outside of normal parameters. How can the incident be managed to prevent overheating, over-pressurization, or other safety issues?"
+            },
+            {
+                "question": "LNG product is found to be contaminated with an impurity during a routine quality control check. What steps should be taken to identify the source of the contamination, and prevent it from affecting the quality of the distributed product?"
+            },
+            {
+                "question": "A severe weather event causes an LNG distribution facility to flood, potentially compromising the integrity of the facility's electrical and mechanical systems. What measures can be taken to safely assess and repair the damage, and restore operations?"
+            }
+        ]
     },
     {
         "industry": "Electronics & electrical engineering",
-        "question": "[\n    \"What are the primary steps to troubleshoot a malfunctioning electronic circuit board?\",\n    \"How can one identify and resolve electromagnetic interference issues in electrical systems?\",\n    \"What procedures should be followed to repair a faulty power supply unit in an electronic device?\",\n    \"What are the best practices for resolving short-circuit issues in electrical wiring?\",\n    \"How can one diagnose and fix issues related to overheating in electronic components?\",\n    \"What are the standard protocols for repairing and replacing damaged or faulty electrical connectors?\",\n    \"How can one prevent and resolve issues related to electrical surges and spikes in industrial settings?\",\n    \"What are the necessary precautions and procedures for handling and repairing high-voltage electrical equipment?\",\n    \"How can one troubleshoot and resolve issues with faulty or malfunctioning sensors and transducers in electrical systems?\",\n    \"What are the recommended methods for testing and validating the performance of electronic and electrical systems after repair or maintenance?\"\n]"
+        "questions": [
+            {
+                "question": "A short circuit has occurred in a newly installed electrical panel, what steps should be taken to safely identify and repair the issue?"
+            },
+            {
+                "question": "A critical electronics component has failed due to overheating, how can the root cause of the overheating be determined and prevented in the future?"
+            },
+            {
+                "question": "A power outage has caused a disruption to a manufacturing process, what procedures should be followed to safely restart the equipment and minimize downtime?"
+            },
+            {
+                "question": "Electromagnetic interference (EMI) is causing malfunctions in sensitive electronics equipment, what methods can be used to identify and mitigate the source of the EMI?"
+            },
+            {
+                "question": "A fire has occurred in an electrical room due to an arcing fault, what procedures should be followed to ensure a safe and thorough investigation of the incident?"
+            },
+            {
+                "question": "A lightning strike has damaged a critical electrical substation, what steps should be taken to assess the damage and develop a plan for repair or replacement?"
+            },
+            {
+                "question": "A new electronic product has been found to have a high failure rate due to a design or manufacturing defect, how can the issue be quickly identified and rectified?"
+            },
+            {
+                "question": "A team of engineers are experiencing difficulty troubleshooting a complex electronics system, what tools or techniques can be used to aid in the diagnosis and repair of the issue?"
+            },
+            {
+                "question": "An electrical distribution system is experiencing frequent tripping of circuit breakers, what methods can be used to identify and address the underlying cause of the issue?"
+            },
+            {
+                "question": "A Utility company is experiencing a high rate of electrical equipment failures due to environmental factors, how can the equipment be protected or modified to withstand the environmental conditions?"
+            }
+        ]
     },
     {
         "industry": "Ceramics (bricks, pottery, glass, cement, etc.)",
-        "question": "[\n    \"What are the primary steps to troubleshoot and repair cracks in freshly laid brickwork?\",\n    \"How can warping or deformities in ceramics be prevented during the firing process?\",\n    \"What methods can be employed to reduce dust emissions during cement production?\",\n    \"What are the most effective ways to address and prevent glaze defects in pottery products?\",\n    \"How can the strength and durability of glass products be enhanced during manufacturing?\",\n    \"What safety protocols should be implemented when handling hazardous materials in a ceramics factory?\",\n    \"What procedures should be followed to clean and maintain equipment used in the ceramics industry?\",\n    \"How can color consistency be achieved in large-scale ceramic tile production?\",\n    \"What are the best practices for storing and transporting fragile glass and ceramic products?\",\n    \"What quality control measures can be implemented to detect and prevent defects in cement products?\"\n]"
+        "questions": [
+            {
+                "question": "During the production of bricks, a batch was found to have excessive warping, how can this issue be effectively addressed to prevent future occurrences?"
+            },
+            {
+                "question": "A glass manufacturing line experienced a sudden and unexpected increase in breakage rates, what steps should be taken to identify and resolve the root cause of this problem?"
+            },
+            {
+                "question": "In a pottery factory, the glaze application process began producing inconsistent results, with some pieces having an uneven finish, what quality control measures can be implemented to resolve this issue?"
+            },
+            {
+                "question": "Cement bags in storage were found to have deteriorated, leading to a loss of product, how can the storage conditions be improved to prevent this from happening in the future?"
+            },
+            {
+                "question": "A kiln used for firing ceramics malfunctioned, resulting in a significant number of damaged pieces, what procedures should be followed to repair or replace the kiln and minimize downtime?"
+            },
+            {
+                "question": "The raw materials used in the production of ceramics were found to be contaminated, leading to defects in the final product, how can the supply chain be managed to prevent contamination and ensure quality of raw materials?"
+            },
+            {
+                "question": "A worker in a brick manufacturing plant was injured while operating a machine, what safety protocols can be put in place to prevent similar accidents from occurring in the future?"
+            },
+            {
+                "question": "The coloring process for glass products began producing inconsistent shades, how can the coloring process be adjusted or improved to achieve consistent results?"
+            },
+            {
+                "question": "A large order of cement was found to have been mixed incorrectly, resulting in a faulty product, what corrective actions can be taken to rectify the situation and prevent future mistakes?"
+            },
+            {
+                "question": "The firing process for pottery resulted in an unacceptable number of pieces being overfired, what adjustments can be made to the firing process to achieve the desired results?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations - chlorine",
-        "question": "[\n    \"What are the primary steps to take when responding to a chlorine gas leak in a chemical installation?\",\n    \"How can operators prevent and respond to chlorine container ruptures in a chemical plant?\",\n    \"What safety protocols should be in place for handling and storing chlorine in a chemical installation?\",\n    \"What procedures should be followed in the event of a chlorine spill or release in a chemical plant?\",\n    \"How can chemical installation operators mitigate the risks associated with chlorine exposure to workers and the environment?\",\n    \"What are the best practices for inspecting and maintaining chlorine processing equipment to prevent incidents?\",\n    \"How can chemical installation operators develop and implement effective emergency response plans for chlorine-related incidents?\",\n    \"What role do personal protective equipment and training play in preventing chlorine-related accidents in chemical installations?\",\n    \"What are the regulatory requirements for reporting and documenting chlorine incidents in chemical installations?\",\n    \"How can chemical installation operators investigate and analyze the root causes of chlorine incidents to prevent future occurrences?\"\n]"
+        "questions": [
+            {
+                "question": "A chlorine gas leak is detected in the storage area, what immediate steps should be taken to minimize exposure and prevent further release?"
+            },
+            {
+                "question": "During a routine inspection, a crack is found in a chlorine pipeline, how should the pipeline be safely isolated and repaired to prevent a potential leak?"
+            },
+            {
+                "question": "A worker is exposed to chlorine gas while performing maintenance tasks, what emergency procedures should be followed to provide medical attention and prevent long-term health effects?"
+            },
+            {
+                "question": "The chlorine gas detector alarm sounds, indicating high concentrations of chlorine gas in the air, what actions should be taken to evacuate the area and identify the source of the leak?"
+            },
+            {
+                "question": "A fire breaks out in the chlorine storage area, what fire-fighting measures and safety protocols should be implemented to prevent the spread of the fire and minimize the risk of chlorine gas release?"
+            },
+            {
+                "question": "A chlorine gas cylinder is found to be leaking during transportation, how should the cylinder be safely handled and transported to a secure location to prevent further release?"
+            },
+            {
+                "question": "The chlorine gas scrubber system fails, resulting in a release of chlorine gas into the atmosphere, what emergency procedures should be followed to minimize environmental impact and restore the scrubber system?"
+            },
+            {
+                "question": "A chlorine gas release occurs during a transfer operation, what steps should be taken to contain the spill, neutralize the chlorine gas, and prevent further release?"
+            },
+            {
+                "question": "The chlorine gas monitoring system fails, resulting in a loss of real-time data on chlorine gas concentrations, what alternative monitoring methods should be used to ensure worker safety and prevent potential leaks?"
+            },
+            {
+                "question": "A chlorine gas release is suspected to have occurred due to a malfunctioning valve, how should the valve be investigated, and what corrective actions should be taken to prevent future malfunctions?"
+            }
+        ]
     },
     {
         "industry": "Production and manufacturing of pulp and paper",
-        "question": "[\n    \"What procedures should be followed in the event of a chemical spill in the pulp and paper production process?\",\n    \"How can production downtime be minimized during equipment maintenance in a paper mill?\",\n    \"What safety protocols are in place for workers handling hazardous materials in the pulp and paper industry?\",\n    \"What measures can be taken to prevent and respond to fires in a pulp and paper production facility?\",\n    \"How can the quality of the final paper product be ensured during the manufacturing process?\",\n    \"What are the best practices for managing and reducing wastewater in the pulp and paper industry?\",\n    \"What steps can be taken to troubleshoot and resolve issues with paper machine performance?\",\n    \"How can the risk of accidents involving forklifts and other heavy equipment be mitigated in a pulp and paper production environment?\",\n    \"What methods are used to detect and prevent contamination in the pulp and paper production process?\",\n    \"What procedures are in place for responding to and containing environmental incidents, such as odors or emissions, in a pulp and paper mill?\"\n]"
+        "questions": [
+            {
+                "question": "During a routine maintenance check, a paper machine's press section is found to be experiencing excessive vibration, how can this issue be diagnosed and resolved to prevent downtime?"
+            },
+            {
+                "question": "A batch of pulp is found to be contaminated with foreign materials, what steps should be taken to identify the source of the contamination and prevent it from happening again in the future?"
+            },
+            {
+                "question": "The drying section of a paper machine is not achieving the desired moisture levels, what adjustments can be made to the machine's settings to resolve this issue?"
+            },
+            {
+                "question": "A bearing failure occurs in a critical piece of equipment, such as a refiner or a pump, how can the failed bearing be replaced quickly and safely to minimize production losses?"
+            },
+            {
+                "question": "The formation of a paper sheet is found to be uneven, resulting in poor quality and reduced strength, what changes can be made to the forming section to improve formation and sheet quality?"
+            },
+            {
+                "question": "A pulp mill's bleaching process is not achieving the desired brightness levels, what factors should be investigated and adjusted to resolve this issue?"
+            },
+            {
+                "question": "The control system of a paper machine's coating section is malfunctioning, causing uneven application of coatings, how can this issue be troubleshot and resolved?"
+            },
+            {
+                "question": "A sudden increase in energy consumption is observed in a paper mill, what steps can be taken to identify the cause of the increase and implement energy-saving measures?"
+            },
+            {
+                "question": "The quality control laboratory's testing equipment is found to be out of calibration, how can the equipment be recalibrated and what steps can be taken to prevent this issue from happening in the future?"
+            },
+            {
+                "question": "A problem with the machine's cutting and wrapping section is causing excessive downtime due to frequent web breaks, what adjustments can be made to the machine's settings to reduce web breaks and improve productivity?"
+            }
+        ]
     },
     {
         "industry": "Manufacture of glass",
-        "question": "[\n  \"What procedures should be followed in the event of a chemical spill during the glass manufacturing process?\",\n  \"How can furnace overheating be prevented and addressed in a glass production facility?\",\n  \"What safety protocols should be implemented to minimize the risk of injury from broken glass during handling and transportation?\",\n  \"What measures can be taken to reduce the occurrence of glass defects such as bubbles, stones, or inclusions?\",\n  \"How can a glass manufacturing plant respond to and mitigate the effects of a power outage on production?\",\n  \"What steps should be taken to investigate and resolve issues with glass coloring or tinting consistency?\",\n  \"In the event of a furnace refractory failure, what emergency procedures should be followed to ensure plant and personnel safety?\",\n  \"How can the risk of thermal stress and resulting breakage be minimized in the annealing process?\",\n  \"What quality control measures can be implemented to detect and address issues with glass thickness or dimension variability?\",\n  \"What procedures should be in place for safely handling and disposing of hazardous materials used in the glass manufacturing process, such as silica or heavy metals?\"\n]"
+        "questions": [
+            {
+                "question": "In a glass manufacturing plant, a worker reported a leak in the furnace causing a significant loss of molten glass, how should the incident be managed to minimize production loss and ensure worker safety?"
+            },
+            {
+                "question": "A batch of glass products was found to have defects due to improper temperature control during the manufacturing process, what steps should be taken to identify the root cause and prevent future occurrences?"
+            },
+            {
+                "question": "The glass manufacturing line suddenly stopped due to a mechanical failure, what procedures should be followed to quickly diagnose and repair the issue while maintaining a safe working environment?"
+            },
+            {
+                "question": "A forklift accident occurred in the glass warehouse resulting in broken glass and minor injuries, how should the incident be investigated and what measures can be implemented to prevent similar accidents?"
+            },
+            {
+                "question": "The quality control team detected a higher than usual level of impurities in the glass products, what actions should be taken to determine the source of the impurities and improve the quality of the products?"
+            },
+            {
+                "question": "A fire broke out in the glass manufacturing facility due to an electrical malfunction, what emergency procedures should be followed to ensure the safety of the workers and minimize damage to the facility?"
+            },
+            {
+                "question": "The supplier of a critical raw material notified the glass manufacturing plant of a potential delay in shipment, how can the plant mitigate the impact of the delay on production and customer orders?"
+            },
+            {
+                "question": "A worker reported exposure to hazardous chemicals while handling glass coatings, what first aid and medical procedures should be followed and what measures can be taken to prevent future exposure?"
+            },
+            {
+                "question": "The glass manufacturing plant received a customer complaint regarding damaged products during shipping, what steps should be taken to investigate the cause of the damage and improve the packaging and shipping process?"
+            },
+            {
+                "question": "A power outage occurred in the glass manufacturing facility resulting in the shutdown of critical equipment, what procedures should be followed to safely restart the equipment and resume production?"
+            }
+        ]
     },
     {
         "industry": "Agriculture",
-        "question": "[\n  \"What procedures should be followed in the event of a pesticide spill on a farm to minimize environmental impact?\",\n  \"How can farmers effectively manage and mitigate the effects of crop disease outbreaks on their farms?\",\n  \"What safety protocols should agricultural workers follow when handling heavy machinery to prevent accidents?\",\n  \"What are the best practices for resolving disputes between farmers and suppliers over crop quality or payment issues?\",\n  \"How can farms develop and implement effective emergency response plans in the event of a natural disaster?\",\n  \"What strategies can be used to prevent and control pest infestations in agricultural settings?\",\n  \"What are the key steps to take when investigating and addressing animal welfare concerns on a farm?\",\n  \"How can farmers balance the need for irrigation with concerns about water conservation and efficiency?\",\n  \"What procedures should be in place for reporting and addressing incidents of food contamination or adulteration in agricultural products?\",\n  \"What training and support systems can be implemented to help agricultural workers manage stress and prevent burnout?\"\n]"
+        "questions": [
+            {
+                "question": "A pesticide spill occurred during application, how can the affected area be safely contained and cleaned up to prevent environmental damage?"
+            },
+            {
+                "question": "A tractor overturned in a field, what procedures should be followed to ensure the operator's safety and prevent further accidents?"
+            },
+            {
+                "question": "A batch of livestock feed was found to be contaminated, what steps can be taken to quarantine and dispose of the feed to prevent animal illness?"
+            },
+            {
+                "question": "Irrigation equipment malfunctioned, causing water to flood a nearby crop, how can the damage be mitigated and the equipment repaired?"
+            },
+            {
+                "question": "A farm worker was injured while operating a piece of equipment, what first aid and reporting procedures should be followed?"
+            },
+            {
+                "question": "A crop disease outbreak was detected, what methods can be used to prevent the disease from spreading to other fields and what treatment options are available?"
+            },
+            {
+                "question": "A storage silo collapsed, causing damage to surrounding structures, how can the site be secured and the debris safely removed?"
+            },
+            {
+                "question": "A chemical storage facility was compromised due to a storm, what procedures should be followed to neutralize and clean up the spilled chemicals?"
+            },
+            {
+                "question": "A wildfire is approaching a farm, what evacuation and asset protection procedures should be implemented to minimize losses?"
+            },
+            {
+                "question": "A food safety audit revealed contamination in a produce packing facility, what corrective actions can be taken to address the issue and prevent future occurrences?"
+            }
+        ]
     },
     {
         "industry": "Production of basic organic chemicals",
-        "question": "[\n  \"What procedures should be followed in the event of a chemical spill during the production of basic organic chemicals?\",\n  \"How can operators prevent and respond to equipment failures in a continuous process chemical plant?\",\n  \"What safety measures should be taken when handling highly flammable organic chemicals in a production environment?\",\n  \"What are the steps to troubleshoot and resolve issues with a reactor system in the production of basic organic chemicals?\",\n  \"How can production teams identify and mitigate the risks associated with exothermic reactions in chemical processing?\",\n  \"What protocols should be in place for managing and responding to a fire in a chemical storage area?\",\n  \"How can manufacturers minimize waste and reduce environmental impact in the production of basic organic chemicals?\",\n  \"What methods can be used to detect and prevent corrosion in equipment used in the production of basic organic chemicals?\",\n  \"What are the best practices for training personnel in emergency response procedures for chemical plant incidents?\",\n  \"How can a production team investigate and address the root cause of a recurring quality control issue in the production of basic organic chemicals?\"\n]"
+        "questions": [
+            {
+                "question": "During the production of methanol, a leak in the reactor vessel is detected, releasing toxic gases into the surrounding area. How can the incident be managed to minimize environmental impact and ensure worker safety?"
+            },
+            {
+                "question": "A batch of ethylene oxide is found to be contaminated with impurities, affecting the quality of the final product. What steps can be taken to identify the source of contamination and prevent future occurrences?"
+            },
+            {
+                "question": "The distillation column in the production of benzene experiences a sudden drop in pressure, resulting in a loss of product quality. What measures can be implemented to stabilize the column and restore normal operation?"
+            },
+            {
+                "question": "A fire breaks out in the warehouse storing solvents used in the production of basic organic chemicals. How can the fire be extinguished quickly and safely, while minimizing damage to equipment and the environment?"
+            },
+            {
+                "question": "The wastewater treatment plant in the production facility is overwhelmed, causing a spill of untreated effluent into the nearby waterway. What actions can be taken to contain the spill and prevent further environmental damage?"
+            },
+            {
+                "question": "A critical piece of equipment, such as a pump or compressor, fails during the production of propylene, causing a shutdown of the process. How can the equipment be repaired or replaced quickly to minimize downtime and production losses?"
+            },
+            {
+                "question": "Operators in the production of butanol report symptoms of exposure to toxic chemicals, such as dizziness and nausea. What procedures can be followed to ensure the operators receive medical attention and to prevent further exposure?"
+            },
+            {
+                "question": "The production of styrene is affected by a shortage of raw materials, resulting in a decrease in production capacity. How can alternative suppliers be identified and raw materials procured to minimize the impact on production?"
+            },
+            {
+                "question": "A power outage occurs during the production of acetic acid, causing a loss of control over critical process parameters. What measures can be implemented to safely shut down the process and prevent accidents during the power outage?"
+            },
+            {
+                "question": "The quality control laboratory detects high levels of impurities in a batch of toluene, indicating a potential problem with the production process. How can the source of the impurities be identified and the production process adjusted to prevent future occurrences?"
+            }
+        ]
     },
     {
         "industry": "Processing of ferrous metals (foundries, smelting, etc.)",
-        "question": "[\n  \"What are the primary steps to take in response to a molten metal spill in a foundry environment?\",\n  \"How can foundry operators minimize the risk of casting defects due to inconsistent metal temperatures?\",\n  \"What safety protocols should be implemented to prevent employee injury from moving equipment and hot metals in a smelting facility?\",\n  \"What methods can be employed to reduce emissions and improve air quality in the vicinity of a ferrous metal processing plant?\",\n  \"In the event of a crucible failure, what procedures should be followed to ensure safe cleanup and minimize environmental impact?\",\n  \"What quality control measures can be put in place to detect and prevent the introduction of impurities during the ferrous metal smelting process?\",\n  \"How can the risk of explosion be mitigated in areas where ferrous metals are being processed and where sparks or open flames may be present?\",\n  \"What procedures should be followed to address a malfunction in the dust collection system of a ferrous metal processing facility?\",\n  \"In the case of an equipment failure leading to a production interruption, what steps can be taken to minimize downtime and quickly restore operations?\",\n  \"What training programs can be implemented to educate foundry workers on the proper handling and disposal of hazardous materials generated during ferrous metal processing?\"\n]"
+        "questions": [
+            {
+                "question": "In a foundry, the temperature of the molten metal exceeds the recommended level, causing potential damage to equipment and risking worker safety. How can this incident be managed to prevent further damage?"
+            },
+            {
+                "question": "A sudden power outage occurs in a smelting facility, resulting in the shutdown of critical systems. What steps should be taken to safely restore operations and minimize production loss?"
+            },
+            {
+                "question": "During the processing of ferrous metals, a worker is exposed to toxic fumes, requiring immediate medical attention. What procedures should be followed to ensure the worker's safety and facilitate a prompt return to work?"
+            },
+            {
+                "question": "A mechanical failure in a foundry's molding line causes a significant disruption to production. How can the incident be investigated and resolved to prevent future occurrences?"
+            },
+            {
+                "question": "In a smelting facility, a leak is discovered in a critical pipe carrying molten metal, posing a significant risk to worker safety and equipment damage. What actions should be taken to contain and repair the leak?"
+            },
+            {
+                "question": "A quality control issue is identified in the finished products of a ferrous metal processing plant, resulting in a potential recall. How can the incident be managed to minimize financial and reputational damage?"
+            },
+            {
+                "question": "A fire breaks out in a foundry's storage area, threatening to spread to other parts of the facility. What emergency procedures should be followed to extinguish the fire and prevent further damage?"
+            },
+            {
+                "question": "During maintenance activities in a smelting facility, a contractor is injured due to inadequate safety measures. How can the incident be investigated and what corrective actions should be taken to prevent similar incidents in the future?"
+            },
+            {
+                "question": "In a ferrous metal processing plant, a critical piece of equipment fails, causing a significant production backlog. What strategies can be employed to minimize downtime and expedite repairs?"
+            },
+            {
+                "question": "A environmental incident occurs in a foundry, resulting in the release of hazardous materials into the environment. How can the incident be managed to mitigate environmental damage and ensure regulatory compliance?"
+            }
+        ]
     },
     {
         "industry": "Production and storage of fertilizers",
-        "question": "[\n  \"What are the procedures for handling and containing ammonia leaks during fertilizer production?\",\n  \"How can we mitigate the risk of dust explosions in fertilizer storage facilities?\",\n  \"What safety protocols should be in place for workers handling hazardous materials in fertilizer manufacturing?\",\n  \"What are the standard operating procedures for responding to a fire in a fertilizer storage warehouse?\",\n  \"How can we prevent corrosion in equipment and storage containers used in fertilizer production and storage?\",\n  \"What measures can be taken to minimize the environmental impact of fertilizer spills or leaks during transport and storage?\",\n  \"What are the best practices for inspecting and maintaining equipment to prevent accidents in fertilizer production?\",\n  \"How can we ensure compliance with regulatory requirements for labeling and storage of fertilizers?\",\n  \"What emergency response plans should be in place in case of an accidental release of hazardous materials during fertilizer production?\",\n  \"What are the procedures for investigating and reporting incidents in fertilizer production and storage facilities?\"\n]"
+        "questions": [
+            {
+                "question": "During the production of ammonium nitrate, a leak is detected in the reactor vessel, releasing toxic fumes into the surrounding area. How should the operators manage this incident to minimize environmental and health risks?"
+            },
+            {
+                "question": "A batch of fertilizers stored in a warehouse is found to be contaminated with heavy metals. What procedures should be followed to safely handle and dispose of the contaminated products?"
+            },
+            {
+                "question": "A fire breaks out in the drying section of a fertilizer plant, threatening to spread to other areas. What measures should be taken to extinguish the fire and prevent further damage?"
+            },
+            {
+                "question": "A quality control test reveals that a shipment of fertilizers does not meet the required standards for nutrient content. How should the production team investigate and resolve this issue to prevent substandard products from reaching customers?"
+            },
+            {
+                "question": "An equipment failure causes a spill of concentrated acid used in fertilizer production, posing a risk to personnel and the environment. What steps should be taken to contain and clean up the spill?"
+            },
+            {
+                "question": "A worker is injured while operating a forklift in the fertilizer storage area. What first aid and incident reporting procedures should be followed to ensure the worker's safety and comply with regulatory requirements?"
+            },
+            {
+                "question": "A severe storm is forecasted to hit the area, posing a risk to outdoor fertilizer storage facilities. How should the storage facilities be prepared and secured to minimize damage and environmental impact?"
+            },
+            {
+                "question": "A customer complains about the quality of a fertilizer product, citing uneven nutrient distribution. What investigation and corrective action procedures should be implemented to address the customer's concerns and prevent similar issues in the future?"
+            },
+            {
+                "question": "A regulatory inspection reveals non-compliance with safety and environmental standards in the fertilizer production process. What measures should be taken to rectify the deficiencies and prevent future non-compliance?"
+            },
+            {
+                "question": "A transportation accident occurs while hauling fertilizers, resulting in a release of product into the environment. How should the incident be managed to minimize environmental harm and comply with regulatory requirements?"
+            }
+        ]
     },
     {
         "industry": "- not known / not applicable - ",
-        "question": "[\n  \"What protocols should be followed when addressing an unknown incident in a rapidly changing industry?\",\n  \"How do you prioritize incidents when the root cause is not immediately apparent?\",\n  \"What strategies can be employed to mitigate the impact of an incident when the necessary information is not available?\",\n  \"In the absence of industry-specific guidelines, what general principles should guide incident response efforts?\",\n  \"How can incident responders effectively communicate with stakeholders when the details of the incident are not well understood?\",\n  \"What role does intuition play in incident response when data and facts are limited or unreliable?\",\n  \"How can teams balance the need for swift action with the need for careful consideration when dealing with unprecedented incidents?\",\n  \"What methods can be used to assess and manage risk when the likelihood and potential impact of an incident are not well defined?\",\n  \"In the face of incomplete or inaccurate information, how can incident responders avoid unnecessary escalation or de-escalation of incidents?\",\n  \"How can organizations develop and maintain incident response plans that are adaptable to unexpected and unprecedented incidents?\"\n]"
+        "questions": [
+            {
+                "question": "Incident: Unknown entity attempting to access sensitive information. How to manage the incident and mitigate potential damage?"
+            },
+            {
+                "question": "Incident: Unidentified system failure resulting in data loss. What steps to take to restore data and prevent future occurrences?"
+            },
+            {
+                "question": "Incident: Unexplained increase in network traffic. How to identify the cause and manage the incident to prevent system overload?"
+            },
+            {
+                "question": "Incident: Unknown malware infecting company devices. What measures to take to contain and eliminate the malware?"
+            },
+            {
+                "question": "Incident: Unidentified individual accessing company premises. How to manage the incident and ensure employee safety?"
+            },
+            {
+                "question": "Incident: Unexplained changes to system configurations. What procedures to follow to identify the cause and reverse the changes?"
+            },
+            {
+                "question": "Incident: Unknown error causing system downtime. How to troubleshoot and resolve the issue to minimize business disruption?"
+            },
+            {
+                "question": "Incident: Unidentified data breach. What steps to take to assess the damage, notify affected parties, and prevent future breaches?"
+            },
+            {
+                "question": "Incident: Unexplained delays in system response times. How to investigate the cause and optimize system performance?"
+            },
+            {
+                "question": "Incident: Unknown security vulnerability exploited. What measures to take to patch the vulnerability and prevent future exploitation?"
+            }
+        ]
     },
     {
         "industry": "Production of pharmaceuticals",
-        "question": "[\n    \"What steps should be taken to investigate and resolve a batch of pharmaceuticals that fails to meet the required potency standards?\",\n    \"How can a production line be quickly and safely restarted after an unexpected shutdown due to equipment failure?\",\n    \"What procedures should be followed in the event of a chemical spill in a pharmaceutical manufacturing facility?\",\n    \"What measures can be taken to prevent contamination of pharmaceutical products during the manufacturing process?\",\n    \"How can deviations in temperature and humidity controls be addressed to prevent impact on pharmaceutical product quality?\",\n    \"What is the most effective way to handle a recall of a pharmaceutical product due to a manufacturing defect?\",\n    \"What protocols should be in place to manage and resolve incidents of operator error in the pharmaceutical manufacturing process?\",\n    \"How can pharmaceutical manufacturers ensure compliance with regulatory requirements during incident resolution?\",\n    \"What strategies can be employed to minimize downtime and optimize production schedule recovery after an incident in a pharmaceutical manufacturing facility?\",\n    \"What role do quality control and quality assurance play in identifying and resolving incidents in pharmaceutical production?\"\n]"
+        "questions": [
+            {
+                "question": "During the filling of vials with a sterile pharmaceutical product, a sudden power outage occurs, resulting in the potential contamination of the production line. How should the production team manage this incident to ensure product quality and safety?"
+            },
+            {
+                "question": "A batch of active pharmaceutical ingredients is found to be past its expiration date. What steps should be taken to investigate and resolve this incident, and prevent future occurrences?"
+            },
+            {
+                "question": "A critical equipment failure occurs during the manufacturing process, causing a significant delay in production. How can the maintenance team troubleshoot and resolve this incident, minimizing downtime and ensuring compliance with regulatory requirements?"
+            },
+            {
+                "question": "A deviation in the product's specification is detected during quality control testing. What actions should be taken to identify the root cause and implement corrective measures to resolve this incident and prevent future deviations?"
+            },
+            {
+                "question": "A water leak is discovered in the production area, potentially compromising the cleanliness and sterility of the environment. How should the incident be managed to prevent contamination and ensure compliance with good manufacturing practices?"
+            },
+            {
+                "question": "A supplier notifies the pharmaceutical company of a recall of a critical raw material due to contamination. What steps should be taken to manage this incident, ensure the quality of the final product, and mitigate potential risks to patients?"
+            },
+            {
+                "question": "An operator error results in the incorrect labeling of finished products. How should the quality team investigate and resolve this incident, and implement corrective actions to prevent future labeling errors?"
+            },
+            {
+                "question": "A computerized system used for production planning and batch release experiences a technical issue, causing a system downtime. What procedures should be followed to troubleshoot and resolve this incident, ensuring minimal disruption to production?"
+            },
+            {
+                "question": "A product complaint is received from a customer, reporting an issue with the product's packaging. What investigative steps should be taken to determine the root cause and implement corrective actions to resolve this incident and prevent future complaints?"
+            },
+            {
+                "question": "A pest control issue is identified in the production area, potentially compromising the quality and safety of the products. How should this incident be managed to eliminate the pest issue, prevent re-infestation, and ensure compliance with regulatory requirements?"
+            }
+        ]
     },
     {
         "industry": "Water and sewage (collection, supply, treatment)",
-        "question": "[\n    \"What procedures should be followed in the event of a sewage overflow to prevent environmental contamination and minimize health risks?\",\n    \"How can water treatment plants effectively respond to and mitigate the impact of a chemical spill or contamination incident?\",\n    \"What are the best practices for handling and resolving a water main break, including notification of affected customers and restoration of service?\",\n    \"In the event of a power outage, what backup systems and protocols should be in place to maintain continuous operation of water and sewage treatment facilities?\",\n    \"What methods can be employed to detect and prevent leaks in water distribution systems, and how can the likelihood of such incidents be minimized?\",\n    \"How should water and sewage utilities prepare for and respond to natural disasters, such as floods or hurricanes, to ensure continuity of service and protect infrastructure?\",\n    \"What safety protocols and emergency response plans should be established to protect workers and the public in the event of a hazardous materials incident at a water or sewage treatment facility?\",\n    \"In the event of a boil water advisory, what steps should be taken to notify the public, ensure compliance, and resolve the underlying issue causing the advisory?\",\n    \"How can water and sewage utilities prevent and respond to cyberattacks on their systems, including protection of customer data and prevention of service disruptions?\",\n    \"What measures can be taken to prevent and mitigate the effects of corrosion on water and sewage infrastructure, including pipelines and treatment facilities?\"\n]"
+        "questions": [
+            {
+                "question": "A water main burst in a residential area, flooding nearby homes and causing supply disruptions. How should the response team prioritize repairs and minimize the impact on affected customers?"
+            },
+            {
+                "question": "A sewage spill occurred due to a blockage in the collection system, contaminating a nearby waterway. What steps should be taken to contain the spill, clean up the affected area, and prevent future occurrences?"
+            },
+            {
+                "question": "A treatment plant experienced a power outage, resulting in a disruption to the water supply. What emergency procedures should be implemented to ensure continuity of service and maintain water quality?"
+            },
+            {
+                "question": "A customer reported a sewer backup in their basement, causing property damage and health concerns. How should the incident be investigated, and what measures should be taken to prevent similar backups in the future?"
+            },
+            {
+                "question": "A leak was detected in a water distribution pipe, resulting in significant water loss and potential contamination risks. What methods should be used to locate the leak, and how should repairs be coordinated to minimize supply disruptions?"
+            },
+            {
+                "question": "Heavy rainfall caused a combined sewer overflow, releasing untreated wastewater into a nearby waterbody. What measures should be taken to mitigate the environmental impact, and how can similar overflows be prevented in the future?"
+            },
+            {
+                "question": "A water quality test revealed elevated levels of a contaminant in the distribution system. How should the situation be managed, and what steps should be taken to notify and protect affected customers?"
+            },
+            {
+                "question": "A sewer pipe collapsed, causing a sinkhole to form in a public street. What procedures should be followed to ensure public safety, and how should repairs be executed to minimize traffic disruptions?"
+            },
+            {
+                "question": "A fire occurred at a wastewater treatment plant, damaging equipment and disrupting operations. What emergency response plan should be activated, and how should service be restored to prevent environmental harm?"
+            },
+            {
+                "question": "A customer complained about low water pressure, which was traced to a problem with the water supply infrastructure. How should the issue be diagnosed, and what repairs or upgrades should be made to ensure adequate pressure and flow rates?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations - carbon oxides",
-        "question": "[\n    \"What procedures should be followed in the event of a carbon monoxide leak in a chemical installation?\",\n    \"How can personnel respond to a reported incident of hydrogen sulfide exposure in a carbon oxide processing plant?\",\n    \"What safety protocols are in place for handling and storing carbon dioxide in chemical installations?\",\n    \"What measures can be taken to prevent the formation of explosive mixtures in carbon oxide production facilities?\",\n    \"How should emergency responders handle a reported fire in a carbon black production area?\",\n    \"What are the recommended steps for containing and mitigating a chemical spill involving carbon disulfide?\",\n    \"In the event of a power outage, what contingency plans should be in place for maintaining safe operation of carbon oxide production equipment?\",\n    \"How can the risk of over-pressurization be mitigated in systems handling compressed carbon dioxide?\",\n    \"What training is required for personnel responding to incidents involving toxic gases such as carbon monoxide in chemical installations?\",\n    \"What are the key considerations for conducting a root cause analysis following an incident in a carbon oxide production facility?\"\n]"
+        "questions": [
+            {
+                "question": "In a carbon monoxide production facility, a leak is detected in one of the pipes carrying the gas, what steps should be taken to safely contain and repair the leak?"
+            },
+            {
+                "question": "A carbon dioxide generator experiences an unexpected surge in pressure, how should operators respond to prevent injury and equipment damage?"
+            },
+            {
+                "question": "During a routine maintenance check, an issue is found with the carbon dioxide scrubber system, what procedures should be followed to rectify the problem without disrupting production?"
+            },
+            {
+                "question": "In the case of a carbon monoxide detector alarm sounding in an area where personnel are working, what immediate actions should be taken to ensure worker safety?"
+            },
+            {
+                "question": "If a fire were to break out in a storage area for carbon-based chemicals, what firefighting methods and safety precautions would be most effective?"
+            },
+            {
+                "question": "A blockage is discovered in the piping system of a carbon dioxide recovery unit, how can this issue be resolved while minimizing downtime?"
+            },
+            {
+                "question": "In the event of a spill involving a carbon-containing chemical, what protocols should be followed for cleanup and mitigation to prevent environmental impact?"
+            },
+            {
+                "question": "When a malfunction occurs in the control system of a carbon black production line, causing variations in product quality, what diagnostic steps should be taken to identify and rectify the issue?"
+            },
+            {
+                "question": "If an operator is accidentally exposed to high concentrations of carbon monoxide, what medical response and first aid measures should be administered?"
+            },
+            {
+                "question": "A significant deviation in the operating temperature of a carbon dioxide capture unit is observed, what corrective actions can be taken to stabilize the system and maintain efficiency?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations - ammonia",
-        "question": "[\n  \"What procedures should be followed in case of an ammonia leak in a chemical installation to minimize exposure and prevent environmental contamination?\",\n  \"How can a facility prevent and respond to an ammonia tank rupture, and what are the regulatory requirements for such incidents?\",\n  \"What are the best practices for conducting regular maintenance and inspections to prevent equipment failure and subsequent ammonia releases?\",\n  \"In the event of an ammonia spill, what methods are most effective for containing and neutralizing the spill to prevent further damage?\",\n  \"What training programs are recommended for personnel working with ammonia-based chemical installations to ensure they can respond effectively to incidents?\",\n  \"What role do emergency response plans play in mitigating the impact of an ammonia incident, and how often should these plans be updated and practiced?\",\n  \"How can the risk of ammonia exposure be mitigated during transportation, storage, and handling operations within chemical installations?\",\n  \"What are the key factors to consider when selecting personal protective equipment (PPE) for workers handling ammonia in chemical installations?\",\n  \"In the aftermath of an ammonia incident, what procedures should be followed to ensure a thorough investigation, and how can the findings be used to prevent future incidents?\",\n  \"How do regulatory standards and industry guidelines influence the design, operation, and maintenance of ammonia-based chemical installations to prevent and respond to incidents?\"\n]"
+        "questions": [
+            {
+                "question": "In the event of an ammonia leak from a storage tank, what procedures should be followed to prioritize personnel safety and minimize environmental impact?"
+            },
+            {
+                "question": "How should operators respond to a sudden increase in pressure within an ammonia reactor, and what steps can be taken to prevent a potential rupture?"
+            },
+            {
+                "question": "What measures can be implemented to manage and mitigate the effects of an ammonia release due to a failed valve, and how can the valve be safely repaired or replaced?"
+            },
+            {
+                "question": "In the case of a fire involving ammonia, what extinguishing agents are recommended, and what protective equipment should responders wear to ensure their safety?"
+            },
+            {
+                "question": "If an ammonia pump fails, causing a loss of cooling to a critical system, what temporary measures can be taken to maintain safe operating conditions until the pump is repaired or replaced?"
+            },
+            {
+                "question": "How should an ammonia spill on a floor or surface be neutralized and cleaned up to prevent slipping hazards and environmental contamination?"
+            },
+            {
+                "question": "What protocol should be followed if an employee is exposed to ammonia, including first aid measures, medical attention, and potential long-term health monitoring?"
+            },
+            {
+                "question": "In the event of an ammonia release into a waterway, what procedures should be followed to contain and remediate the spill, including notification of regulatory authorities?"
+            },
+            {
+                "question": "If an ammonia detector alarms due to high concentrations, what immediate actions should be taken to secure the area, ventilate if necessary, and identify the source of the leak?"
+            },
+            {
+                "question": "How can regular maintenance and inspection of ammonia equipment and piping help prevent common incidents, and what specific checks should be performed to ensure system integrity?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations - Industrial gases",
-        "question": "[\n    \"What procedures should be followed in case of a gas leak in a chemical installation to minimize risks and ensure employee safety?\",\n    \"How can a chemical installation operator prevent and respond to a fire incident involving industrial gases?\",\n    \"What are the best practices for handling and storing industrial gases to prevent accidents and incidents in a chemical installation?\",\n    \"What safety protocols should be implemented to prevent explosions in chemical installations handling industrial gases?\",\n    \"How can chemical installation operators mitigate the effects of a toxic gas release and ensure a safe evacuation of the area?\",\n    \"What are the key steps to take when responding to a chemical spill or leak in a chemical installation involving industrial gases?\",\n    \"How can regular maintenance and inspections help prevent common incidents in chemical installations handling industrial gases?\",\n    \"What training programs should be provided to employees working in chemical installations to ensure they are prepared to respond to emergencies involving industrial gases?\",\n    \"How can chemical installation operators ensure compliance with regulatory requirements and industry standards for handling industrial gases?\",\n    \"What procedures should be followed to investigate and report incidents involving industrial gases in a chemical installation?\"\n]"
+        "questions": [
+            {
+                "question": "A leak is detected in a hydrogen storage tank, how should the operator proceed to minimize the risk of explosion and ensure a safe shutdown?"
+            },
+            {
+                "question": "During a routine inspection, it is discovered that a valve on an oxygen pipeline is malfunctioning, what steps should be taken to repair or replace it without disrupting the gas supply?"
+            },
+            {
+                "question": "A sudden power outage occurs at a chemical installation, how can the operators safely manage the emergency shutdown of the industrial gas production process?"
+            },
+            {
+                "question": "There is an unexpected release of nitrogen gas in the production area, what is the best course of action to prevent asphyxiation and ensure the safety of personnel?"
+            },
+            {
+                "question": "A fire breaks out near a liquid carbon dioxide storage tank, what firefighting measures should be employed to prevent the fire from spreading and to mitigate the risk of tank rupture?"
+            },
+            {
+                "question": "An operator is exposed to a high concentration of argon gas, what first aid and medical treatment should be administered to minimize the effects of asphyxiation?"
+            },
+            {
+                "question": "The control system for a chemical reactor used in the production of industrial gases fails, how should the operators respond to safely stabilize the reaction and prevent a potential explosion?"
+            },
+            {
+                "question": "A valve on a chlorine gas cylinder is found to be leaking, what procedures should be followed to repair or replace the valve and prevent the release of toxic gas?"
+            },
+            {
+                "question": "Flooding occurs in an area where industrial gas cylinders are stored, how can the operators ensure the safe handling and removal of the cylinders to prevent accidents?"
+            },
+            {
+                "question": "An overpressure condition is detected in a helium storage system, what actions should be taken to safely relieve the pressure and prevent equipment damage or rupture?"
+            }
+        ]
     },
     {
         "industry": "Building & works of engineering construction",
-        "question": "[\n    \"What are the key steps to take when a crane collapses on a construction site during building and works of engineering construction?\",\n    \"How can site managers prevent and respond to trench collapses in excavation works?\",\n    \"What procedures should be followed in case of a fire breaking out in a multi-story building under construction?\",\n    \"What safety measures can be implemented to minimize the risk of falls from heights during scaffolding and roofing work?\",\n    \"What are the protocols for responding to and containing environmental spills, such as oil or chemical leaks, during construction activities?\",\n    \"How can construction teams mitigate the impact of inclement weather on site operations and ensure worker safety?\",\n    \"What strategies can be employed to prevent accidents involving heavy machinery and vehicles on construction sites?\",\n    \"What are the best practices for managing and responding to medical emergencies, such as injuries or illnesses, on construction sites?\",\n    \"How can site managers investigate and address near-miss incidents to prevent future accidents and improve site safety?\",\n    \"What procedures should be in place for responding to and managing structural failures or instability in buildings or other engineered structures during construction?\"\n]"
+        "questions": [
+            {
+                "question": "During excavation for a new foundation, unexpected groundwater is encountered. How should the site manager handle this situation to ensure project timeline and safety are maintained?"
+            },
+            {
+                "question": "A crane collapsed on a construction site due to high winds, causing damage to surrounding property. What steps should be taken to manage the incident and prevent future occurrences?"
+            },
+            {
+                "question": "A worker was injured while operating a piece of heavy machinery due to a mechanical failure. What procedures should be followed to investigate and address the root cause of the incident?"
+            },
+            {
+                "question": "A fire broke out in a storage area for construction materials, causing significant damage. How should the incident be managed to minimize downtime and ensure the project stays on schedule?"
+            },
+            {
+                "question": "A structural defect was discovered in a recently completed building, posing a risk to occupant safety. What actions should be taken to rectify the situation and prevent similar incidents in the future?"
+            },
+            {
+                "question": "A severe storm caused flooding on a construction site, resulting in equipment damage and soil erosion. How can the site be restored to a safe working condition, and what measures can be taken to prevent similar incidents?"
+            },
+            {
+                "question": "A subcontractor failed to meet a critical project deadline, causing delays to the overall project timeline. What steps should be taken to manage the situation and get the project back on track?"
+            },
+            {
+                "question": "Asbestos was discovered in a building undergoing renovation, posing a health risk to workers and occupants. How should the situation be handled to ensure a safe working environment and compliance with regulations?"
+            },
+            {
+                "question": "A near-miss incident occurred on a construction site when a worker fell from a scaffold but was caught by a safety harness. What procedures should be followed to investigate the incident and implement preventative measures?"
+            },
+            {
+                "question": "A dispute arose between the construction company and a supplier over the quality of materials delivered to the site. How should the dispute be managed to minimize delays and ensure the project stays within budget?"
+            }
+        ]
     },
     {
         "industry": "Production and storage of fireworks",
-        "question": "[\n  \"What procedures should be followed in the event of a fire breaking out during the production of fireworks?\",\n  \"How can the risk of explosion be mitigated when storing large quantities of fireworks?\",\n  \"What safety protocols are in place to prevent employee injury from explosions or chemical exposure?\",\n  \"What measures can be taken to prevent theft or unauthorized access to fireworks storage facilities?\",\n  \"What is the proper procedure for handling and disposing of defective or damaged fireworks?\",\n  \"How can the risk of environmental contamination be minimized in the event of a fireworks production accident?\",\n  \"What role do regular maintenance and inspections play in preventing equipment failure and resulting incidents?\",\n  \"What emergency response plan should be implemented in the event of a fireworks-related incident during a public display?\",\n  \"How can the risk of injury from falls or other accidents be reduced in a fireworks production or storage environment?\",\n  \"What training programs should be implemented to ensure that employees are prepared to respond to and manage incidents in the production and storage of fireworks?\"\n]"
+        "questions": [
+            {
+                "question": "During a fireworks production process, an operator reported a higher than expected temperature reading in one of the drying rooms. How should the production team respond to this incident?"
+            },
+            {
+                "question": "A fire broke out in the storage area of a fireworks facility. What are the immediate steps that should be taken by the facility's emergency response team?"
+            },
+            {
+                "question": "A batch of fireworks was found to have an inconsistent burst pattern during a quality control test. What actions should be taken to investigate and resolve the issue?"
+            },
+            {
+                "question": "An employee was injured while handling fireworks in the production area. What procedures should be followed to ensure the employee receives proper medical attention and to prevent future incidents?"
+            },
+            {
+                "question": "A power outage occurred during the peak production season, affecting the operation of critical equipment. How can the production team minimize the impact of the outage on the production schedule?"
+            },
+            {
+                "question": "A complaint was received from a neighboring community about excessive noise levels during a fireworks testing event. What steps can be taken to mitigate the noise and prevent similar complaints in the future?"
+            },
+            {
+                "question": "A quantity of fireworks was found to be damaged during transportation to a storage facility. What procedures should be followed to inspect and disposition the damaged products?"
+            },
+            {
+                "question": "An unauthorized person was found to have accessed a restricted area of the fireworks production facility. How should the security breach be investigated and what measures can be taken to prevent future incidents?"
+            },
+            {
+                "question": "A supplier of raw materials notified the fireworks production facility of a potential quality issue with a recent shipment. What actions should be taken to assess the impact on production and ensure product quality?"
+            },
+            {
+                "question": "A significant deviation from the standard operating procedure was observed during a production run. How should the incident be documented and what corrective actions can be taken to prevent similar deviations in the future?"
+            }
+        ]
     },
     {
         "industry": "Processing of non-ferrous metals (foundries, smelting, etc.)",
-        "question": "[\n    \"What procedures should be followed in case of a crucible rupture during smelting operations in a non-ferrous metal foundry?\",\n    \"How can molten metal splashing incidents be prevented or minimized in a foundry environment?\",\n    \"What are the best practices for resolving a blockage in a metal tapping system during the smelting process?\",\n    \"What safety protocols should be implemented to address and mitigate the risks of toxic fume exposure in non-ferrous metal processing?\",\n    \"What measures can be taken to reduce the occurrence of metal spillages during transportation within the foundry?\",\n    \"In the event of a furnace malfunction, what steps should be taken to safely shut down the furnace and prevent further damage?\",\n    \"How can overheating of equipment be prevented, and what actions should be taken if overheating does occur during the smelting process?\",\n    \"What are the procedures for handling and containing a metal leak from a damaged or faulty holding furnace?\",\n    \"What strategies can be employed to minimize the environmental impact of chemical runoff from non-ferrous metal processing operations?\",\n    \"What training programs should be implemented to prepare foundry workers for emergency response situations, such as a fire or chemical spill?\"\n]"
+        "questions": [
+            {
+                "question": "In a copper smelting facility, a furnace suddenly loses temperature control, leading to a potential meltdown. How can this incident be managed to prevent a catastrophic failure?"
+            },
+            {
+                "question": "A worker in an aluminum foundry reports symptoms of metal fume fever after being exposed to high levels of fumes during a casting operation. What steps should be taken to treat the worker and prevent future incidents?"
+            },
+            {
+                "question": "During a routine maintenance check, a zinc processing plant discovers a significant leak in the sulfuric acid storage tank. How should the leak be contained and repaired to minimize environmental impact?"
+            },
+            {
+                "question": "A batch of titanium alloy is found to have excessive porosity, rendering it unusable for aerospace applications. What quality control measures can be implemented to prevent similar incidents in the future?"
+            },
+            {
+                "question": "A fire breaks out in the dust collection system of a nickel processing facility. What emergency procedures should be followed to extinguish the fire and prevent it from spreading?"
+            },
+            {
+                "question": "A crane operator in a brass foundry accidentally drops a heavy load, causing damage to equipment and potentially injuring nearby workers. How can the incident be investigated and what corrective actions can be taken to prevent similar accidents?"
+            },
+            {
+                "question": "A tin smelting plant experiences a power outage, causing the furnace to cool down rapidly. What procedures should be followed to safely restart the furnace and prevent damage to the equipment?"
+            },
+            {
+                "question": "A worker in a lead processing facility is found to have elevated blood lead levels during a routine medical checkup. What measures can be taken to reduce lead exposure and ensure a safe working environment?"
+            },
+            {
+                "question": "A gold refining facility discovers that a batch of gold bars has been contaminated with silver, affecting their purity and value. What steps can be taken to identify the source of the contamination and prevent it from happening again?"
+            },
+            {
+                "question": "A magnesium foundry experiences a series of unexplained mold failures, resulting in significant production losses. How can the incident be investigated and what corrective actions can be taken to resolve the issue?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations - inorganic acids",
-        "question": "[\n  \"What procedures should be followed in case of a sulfuric acid spill in the production area to minimize environmental impact and ensure worker safety?\",\n  \"How can the risk of corrosion in piping systems be mitigated when handling hydrochloric acid in chemical installations?\",\n  \"What are the best practices for managing and storing inorganic acid waste to prevent accidents and reduce the risk of environmental contamination?\",\n  \"What emergency response plan should be implemented in the event of a nitric acid leak in a chemical installation, and how often should employees be trained on this plan?\",\n  \"What safety measures should be taken when performing maintenance tasks on equipment used for inorganic acid production to prevent worker exposure and equipment damage?\",\n  \"How can the formation of harmful byproducts during the production of inorganic acids be minimized or prevented through process optimization and control?\",\n  \"What personal protective equipment (PPE) is recommended for workers handling inorganic acids, and how often should this equipment be inspected and replaced?\",\n  \"What methods can be employed to detect and prevent the formation of explosive atmospheres when handling inorganic acids, such as hydrogen fluoride?\",\n  \"How can chemical installations prevent and respond to incidents involving inorganic acid vapors, such as phosphoric acid, in the workplace?\",\n  \"What are the key factors to consider when developing a preventive maintenance program for equipment and piping systems used in inorganic acid production to minimize the risk of incidents?\"\n]"
+        "questions": [
+            {
+                "question": "In the event of a sulfuric acid spill, what procedures should be followed to minimize environmental contamination and ensure personnel safety?"
+            },
+            {
+                "question": "How should a leak in a hydrochloric acid storage tank be managed to prevent further damage and potential explosions?"
+            },
+            {
+                "question": "What steps should be taken in response to a nitric acid exposure incident involving skin or eye contact with the acid?"
+            },
+            {
+                "question": "In the case of a phosphoric acid feed system failure, what actions can be taken to restore production while minimizing downtime and potential safety risks?"
+            },
+            {
+                "question": "What emergency response plan should be implemented in the event of an uncontrolled release of hydrogen fluoride gas from a process vessel?"
+            },
+            {
+                "question": "How can the risk of over-pressurization in an acetic acid reactor be mitigated during startup and shutdown operations?"
+            },
+            {
+                "question": "What fire extinguishing methods are most effective for combating fires involving inorganic acid spills or leaks, and how should they be applied?"
+            },
+            {
+                "question": "In the event of a power failure affecting the cooling system of a sulfurous acid tank, what measures can be taken to prevent overheating and potential tank rupture?"
+            },
+            {
+                "question": "What first aid and medical treatment procedures should be administered to personnel who have inhaled fumes from a hydrofluoric acid release?"
+            },
+            {
+                "question": "How should a clogged or blocked line containing chromic acid be safely cleared to avoid acid spills and personnel exposure?"
+            }
+        ]
     },
     {
         "industry": "LPG production, bottling and bulk distribution",
-        "question": "[\n  \"What procedures should be followed in the event of an LPG leak during the bottling process?\",\n  \"How can operators quickly and safely respond to a fire incident at an LPG bulk distribution terminal?\",\n  \"What measures can be taken to prevent and mitigate the effects of overfilling or underfilling of LPG cylinders during the bottling process?\",\n  \"In the event of an emergency shutdown of an LPG production facility, what steps should be taken to safely restart operations?\",\n  \"What are the best practices for investigating and reporting incidents involving LPG transportation accidents?\",\n  \"How can LPG production facilities reduce the risk of equipment failure and subsequent incidents due to corrosion or mechanical damage?\",\n  \"What training programs are most effective for preparing personnel to respond to and manage LPG-related incidents at bulk distribution terminals?\",\n  \"In the event of an LPG spill or leak during transportation, what procedures should be followed to minimize environmental impact and ensure public safety?\",\n  \"What are the key factors to consider when conducting a risk assessment for LPG production, bottling, and bulk distribution operations to prevent incidents?\",\n  \"How can LPG facilities ensure compliance with regulatory requirements and industry standards for incident reporting and response?\"\n]"
+        "questions": [
+            {
+                "question": "A leak is detected in an LPG storage tank during a routine inspection, how should the incident be managed to prevent further leakage and ensure safety?"
+            },
+            {
+                "question": "An LPG tanker truck is involved in an accident on a highway, resulting in a small spill, what steps should be taken to contain the spill and minimize environmental impact?"
+            },
+            {
+                "question": "A faulty valve is identified during the bottling process, causing LPG to escape, how can the incident be resolved quickly to prevent accidents and maintain production?"
+            },
+            {
+                "question": "An LPG bottle is found to be overfilled during a quality control check, what actions should be taken to safely rectify the situation and prevent future occurrences?"
+            },
+            {
+                "question": "A fire breaks out in the bottling plant due to an electrical fault, how should the incident be responded to in order to minimize damage and ensure personnel safety?"
+            },
+            {
+                "question": "An LPG tanker is delayed at a distribution center, causing a backlog of deliveries, what strategies can be employed to manage the situation and prevent future delays?"
+            },
+            {
+                "question": "A customer complains about a leaking LPG cylinder, how should the incident be handled to resolve the issue promptly and maintain customer satisfaction?"
+            },
+            {
+                "question": "An LPG pipeline rupture occurs due to corrosion, resulting in a significant release of product, what measures should be taken to respond to the incident and prevent further environmental damage?"
+            },
+            {
+                "question": "A forklift operator accidentally damages an LPG cylinder in the storage area, what procedures should be followed to assess and respond to the incident?"
+            },
+            {
+                "question": "An unexpected power outage occurs at the LPG bottling plant, how can the incident be managed to minimize disruption to production and ensure a prompt recovery?"
+            }
+        ]
     },
     {
         "industry": "Mining activities (tailings & physicochemical processes)",
-        "question": "[\n    \"What procedures should be followed in case of a tailings dam failure to minimize environmental damage and ensure public safety?\",\n    \"How can the risk of acid mine drainage be mitigated in mining operations, and what measures can be taken to prevent its occurrence?\",\n    \"What are the best practices for monitoring and controlling the physicochemical processes in tailings management to prevent accidents and environmental hazards?\",\n    \"In the event of a spill or leak of hazardous chemicals during mining activities, what emergency response protocols should be implemented to protect workers and the environment?\",\n    \"What strategies can be employed to prevent the formation of toxic gases in mining environments, and how can their release be controlled in case of an incident?\",\n    \"How can the stability of tailings dams be ensured through regular monitoring and maintenance, and what warning signs indicate potential failure?\",\n    \"What methods can be used to remediate contaminated soil and groundwater in the aftermath of a mining incident, and how can their effectiveness be measured?\",\n    \"In cases where multiple stakeholders are involved, what communication protocols should be established to coordinate incident response efforts in the mining industry?\",\n    \"What role can technology, such as sensors and monitoring systems, play in detecting early warnings of potential incidents in tailings management and physicochemical processes?\",\n    \"How can mining companies develop and implement effective incident response plans that balance the need for timely action with the requirement for thorough investigation and analysis?\"\n]"
+        "questions": [
+            {
+                "question": "In a tailings storage facility, a leak is detected in the liner system, risking contamination of groundwater. How should the facility operators manage the incident to prevent environmental damage?"
+            },
+            {
+                "question": "During a physicochemical process, an unexpected chemical reaction occurs, releasing toxic gases into the air. What procedures should be followed to mitigate the risks to personnel and the environment?"
+            },
+            {
+                "question": "A portion of the tailings dam fails due to heavy rainfall, causing a significant release of tailings into a nearby watercourse. What are the immediate steps that should be taken to manage the incident and prevent further environmental harm?"
+            },
+            {
+                "question": "In a mineral processing plant, a fire breaks out in the crushing and grinding area, posing a risk to personnel and equipment. How should the incident be responded to in order to minimize damage and ensure a timely return to operations?"
+            },
+            {
+                "question": "A change in the physicochemical conditions of the tailings results in the formation of a hazardous byproduct, which poses a risk to workers and the environment. What actions should be taken to manage the hazard and prevent adverse consequences?"
+            },
+            {
+                "question": "An earthquake strikes the area where a tailings storage facility is located, causing damage to the facility's infrastructure. How should the facility operators assess and manage the risks associated with the damage to prevent further incidents?"
+            },
+            {
+                "question": "A pipe rupture occurs in a process water system, resulting in the release of large quantities of water and potentially hazardous substances into the environment. What procedures should be followed to respond to the incident and minimize environmental harm?"
+            },
+            {
+                "question": "A failure in the dewatering system of a tailings storage facility results in the accumulation of water, posing a risk of tailings dam failure. How should the facility operators manage the incident to prevent a catastrophic failure?"
+            },
+            {
+                "question": "During a maintenance shutdown, a valve is mistakenly left open, allowing hazardous substances to escape into the environment. What steps should be taken to respond to the incident and prevent further releases?"
+            },
+            {
+                "question": "A change in the chemistry of the process water results in the formation of scaling or corrosive substances, which poses a risk to equipment and personnel. How should the incident be managed to prevent equipment damage and ensure a safe working environment?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations - sulphur oxides, oleum",
-        "question": "[\n    \"What procedures should be followed in the event of a sulphur dioxide leak in a chemical installation?\",\n    \"How can oleum spills be effectively contained and cleaned up to minimize environmental impact?\",\n    \"What are the best practices for responding to a sulphuric acid tank overflow in a chemical plant?\",\n    \"What safety protocols should be in place to prevent injuries from sulphur oxide exposure during maintenance activities?\",\n    \"What methods can be used to mitigate the effects of a sulphur dioxide emission exceedance in a chemical installation?\",\n    \"How can the risk of oleum reaction with water be minimized during transportation and storage?\",\n    \"What emergency response plans should be established to address a sulphur oxide release due to equipment failure?\",\n    \"What personal protective equipment (PPE) is recommended for workers handling oleum in a chemical installation?\",\n    \"What procedures should be followed to investigate and report a sulphur oxide-related incident in a chemical plant?\",\n    \"How can regular maintenance and inspection of equipment help prevent sulphur oxide-related incidents in a chemical installation?\"\n]"
+        "questions": [
+            {
+                "question": "During a routine inspection, a leak is discovered in a sulphur dioxide storage tank, releasing toxic fumes into the atmosphere. How can this incident be safely and effectively contained?"
+            },
+            {
+                "question": "A worker is exposed to oleum while handling a defective valve, resulting in severe chemical burns. What are the immediate steps to take in order to provide adequate medical attention and prevent further injury?"
+            },
+            {
+                "question": "A fire breaks out in the sulphur oxidation unit due to an electrical malfunction. What procedures should be followed to extinguish the fire and prevent its spread to other areas of the installation?"
+            },
+            {
+                "question": "A malfunction in the scrubbing system leads to an unexpected release of sulphur dioxide into the atmosphere, exceeding permitted emission levels. How can this incident be mitigated to minimize environmental impact?"
+            },
+            {
+                "question": "A chemical reaction gets out of control during the production of oleum, causing a rapid increase in temperature and pressure. What emergency measures should be taken to prevent a catastrophic failure of the reactor?"
+            },
+            {
+                "question": "A sulphur oxide leak is detected in a nearby residential area, prompting concerns about public health and safety. How should the incident be communicated to the affected community and what measures should be taken to protect them?"
+            },
+            {
+                "question": "An operator error results in the overfilling of a sulphur storage tank, leading to a spill and potential environmental contamination. What procedures should be followed to clean up the spill and prevent further releases?"
+            },
+            {
+                "question": "A pipe rupture occurs in the oleum transfer line, releasing the highly corrosive substance onto the ground. What are the necessary steps to take in order to contain the spill, neutralize the oleum, and repair the damaged pipeline?"
+            },
+            {
+                "question": "An unexpected power outage causes the shutdown of the sulphur oxide emission control system, resulting in uncontrolled releases of toxic gases. How can the system be safely restarted and what measures should be taken to prevent future occurrences?"
+            },
+            {
+                "question": "A defect is discovered in the lining of a sulphur oxide storage tank, compromising its integrity and posing a risk of leakage. What are the recommended procedures for inspecting, repairing, or replacing the defective lining to prevent an incident?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations - fluorine or hydrogen fluoride",
-        "question": "[\n    \"What are the standard procedures for responding to a hydrogen fluoride leak in a chemical installation?\",\n    \"How can we prevent and mitigate the risks of fluorine exposure to personnel during maintenance operations?\",\n    \"What are the key considerations for designing and implementing an emergency response plan for a fluorine or hydrogen fluoride incident?\",\n    \"What personal protective equipment is recommended for workers handling fluorine or hydrogen fluoride in a chemical installation?\",\n    \"What measures can be taken to minimize the environmental impact of a hydrogen fluoride release into the atmosphere or water?\",\n    \"How often should chemical installations handling fluorine or hydrogen fluoride conduct drills and training exercises for emergency response scenarios?\",\n    \"What are the most effective methods for neutralizing and cleaning up hydrogen fluoride spills in a chemical installation?\",\n    \"What are the regulatory requirements for reporting and documenting incidents involving fluorine or hydrogen fluoride in a chemical installation?\",\n    \"How can chemical installations ensure compliance with occupational exposure limits for fluorine and hydrogen fluoride?\",\n    \"What are the best practices for conducting a root cause analysis and implementing corrective actions after a fluorine or hydrogen fluoride incident?\"\n]"
+        "questions": [
+            {
+                "question": "In the event of a hydrogen fluoride leak from a storage tank, what procedures should be followed to minimize exposure and contain the spill?"
+            },
+            {
+                "question": "How should personnel respond to a fluorine gas detector alarm in the processing area to ensure a safe and effective resolution?"
+            },
+            {
+                "question": "What steps can be taken to prevent and manage a thermal runaway reaction in a fluorine-based chemical reactor?"
+            },
+            {
+                "question": "In the case of an accidental release of hydrogen fluoride into the atmosphere, what emergency response measures should be implemented to protect nearby communities?"
+            },
+            {
+                "question": "What methods can be used to safely and effectively clean up a hydrogen fluoride spill on a concrete surface in a chemical installation?"
+            },
+            {
+                "question": "How can operators quickly and safely isolate a section of piping that has developed a leak of fluorine gas?"
+            },
+            {
+                "question": "What are the recommended procedures for rescuing a worker who has been overcome by fluorine or hydrogen fluoride vapors in the workplace?"
+            },
+            {
+                "question": "In the event of a fire involving fluorine or hydrogen fluoride, what extinguishing agents and techniques should be used to minimize the risk of escalation?"
+            },
+            {
+                "question": "What measures can be implemented to prevent the formation of hazardous byproducts during the neutralization of hydrogen fluoride waste streams?"
+            },
+            {
+                "question": "How should a chemical installation respond to a report of fluorine or hydrogen fluoride contamination in the water supply to prevent environmental harm?"
+            }
+        ]
     },
     {
         "industry": "Chemical installations - nitrogen oxides",
-        "question": "[\n    \"What are the standard procedures for containing and mitigating the effects of a nitrogen oxides leak in a chemical installation?\",\n    \"How can operators quickly respond to and manage the risks associated with a NOx release during plant startup or shutdown?\",\n    \"What safety protocols should be in place to prevent worker exposure to nitrogen oxides during maintenance activities in chemical installations?\",\n    \"In the event of a nitrogen oxides incident, what communication strategies should be employed to inform stakeholders, including the public and regulatory agencies?\",\n    \"What role does regular maintenance play in preventing nitrogen oxides incidents in chemical installations, and how often should equipment be inspected?\",\n    \"How can chemical installations ensure compliance with regulatory standards for nitrogen oxides emissions, particularly during periods of high production?\",\n    \"What training programs should be implemented for personnel to effectively manage and respond to nitrogen oxides-related incidents in chemical installations?\",\n    \"What are the key considerations for developing an emergency response plan specific to nitrogen oxides incidents in chemical installations?\",\n    \"How can the Root Cause Analysis (RCA) method be applied to investigate and learn from nitrogen oxides incidents in chemical installations?\",\n    \"What technologies or systems can be integrated into chemical installations to monitor and reduce nitrogen oxides emissions, and what are their maintenance requirements?\"\n]"
+        "questions": [
+            {
+                "question": "In a nitrogen oxide production facility, a sudden increase in emissions is detected, exceeding regulatory limits. How can the facility manager effectively respond to and mitigate the situation?"
+            },
+            {
+                "question": "A leak is discovered in a nitric acid storage tank, posing a risk to the environment and worker safety. What steps should be taken to safely contain and repair the leak?"
+            },
+            {
+                "question": "During a routine maintenance shutdown, a nitrogen oxide analytical instrument fails to calibrate, potentially leading to inaccurate emissions monitoring. How can the issue be diagnosed and resolved to ensure compliance with regulations?"
+            },
+            {
+                "question": "A process upset occurs, resulting in an unexpected release of nitrogen dioxide into the atmosphere. What emergency procedures should be initiated to minimize the impact on the surrounding community?"
+            },
+            {
+                "question": "Corrosion is detected in a section of piping carrying nitric acid, posing a risk of a catastrophic failure. How should the affected piping be inspected, repaired, or replaced to prevent a major incident?"
+            },
+            {
+                "question": "A worker is exposed to nitrogen dioxide while performing tasks in the production area, resulting in respiratory distress. What first aid and medical protocols should be followed to ensure the worker's safety?"
+            },
+            {
+                "question": "A power outage affects the nitrogen oxide abatement system, leading to a potential increase in emissions. How can the system be safely restarted, and what measures can be taken to minimize emissions during the outage?"
+            },
+            {
+                "question": "An unexpected malfunction occurs in the selective catalytic reduction (SCR) system, used to control nitrogen oxide emissions. What troubleshooting steps should be taken to identify and rectify the problem?"
+            },
+            {
+                "question": "A nitrogen oxide storage tank is found to be nearing its maximum storage capacity, posing a risk of over-pressurization. How can the situation be managed to prevent a tank rupture or other safety incident?"
+            },
+            {
+                "question": "A regulatory inspection reveals non-compliance with nitrogen oxide emissions standards, resulting in potential fines and penalties. How should the facility manager develop and implement a corrective action plan to achieve compliance?"
+            }
+        ]
     }
 ]
