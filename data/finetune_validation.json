@@ -1,0 +1,684 @@
+[
+    {
+        "industry": "Electronics & electrical engineering",
+        "question": "How can one identify and resolve electromagnetic interference issues in electrical systems?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98485, Requested 3352. Please try again in 26m26.607s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - inorganic acids",
+        "question": "What safety measures should be taken when performing maintenance tasks on equipment used for inorganic acid production to prevent worker exposure and equipment damage?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98222, Requested 3371. Please try again in 22m55.628s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Processing of metals using electrolytic or chemical processes",
+        "question": "How can manufacturers ensure the quality and consistency of their metal products when using electrolytic or chemical processing methods?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98579, Requested 3363. Please try again in 27m57.078s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - sulphur oxides, oleum",
+        "question": "How can oleum spills be effectively contained and cleaned up to minimize environmental impact?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98183, Requested 3353. Please try again in 22m6.69s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "LPG production, bottling and bulk distribution",
+        "question": "How can LPG production facilities reduce the risk of equipment failure and subsequent incidents due to corrosion or mechanical damage?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98206, Requested 3363. Please try again in 22m35.117s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Processing of metals",
+        "question": "What procedures should be in place for responding to and containing chemical spills or leaks in a metal processing environment?",
+        "response": {
+            "answer": "<span style='color: #0000ff'>To respond to and contain chemical spills or leaks in a metal processing environment, several procedures should be in place, taking into account the potential risks and hazards associated with handling and storing chemicals in such facilities.</span> <span style='color: #008000'>Firstly, proper training for employees on handling chemicals, emergency response procedures, and the use of personal protective equipment is crucial, as highlighted by accident 351 where the overfilling of a tank caused a hydrogen fluoride leak.</span> <span style='color: #ff0000'>Secondly, the implementation of safety measures such as adequate ventilation, proper tank maintenance, and regular inspections can significantly reduce the risk of chemical spills or leaks, as seen in accidents like 93 where a destructive fire occurred at a metal production plant during maintenance work.</span> <span style='color: #0000ff'>Additionally, having an emergency response plan in place, which includes procedures for containment, cleanup, and disposal of spilled chemicals, is essential, as well as ensuring that all employees are aware of the plan and their roles in executing it.</span> <span style='color: #008000'>It is also important to consider the lessons learned from past accidents, such as the importance of proper labeling and storage of chemicals, and the need for regular maintenance and inspection of equipment to prevent leaks and spills.</span> <span style='color: #0000ff'>By integrating these practices and learning from past incidents, metal processing facilities can significantly reduce the risk of chemical spills or leaks and ensure a safe working environment.</span>",
+            "references": [
+                {
+                    "accident_id": 351,
+                    "event_type": "Major Accident",
+                    "industry_type": "Processing of metals",
+                    "accident_title": "Overfilling of a tank caused a hydrogen fluoride flow through the vent pipes",
+                    "url": "https://emars.jrc.ec.europa.eu/en/emars/accident/view/fca342a4-1cb8-b4c6-cae6-cf94c06d7018",
+                    "color": "#008000"
+                },
+                {
+                    "accident_id": 93,
+                    "event_type": "Major Accident",
+                    "industry_type": "Processing of ferrous metals (foundries, smelting, etc.)",
+                    "accident_title": "Destructive fire at a metal production plant during maintenance work",
+                    "url": "https://emars.jrc.ec.europa.eu/en/emars/accident/view/e41e5302-a931-5764-1f0d-d006b475614a",
+                    "color": "#ff0000"
+                }
+            ]
+        }
+    },
+    {
+        "industry": "Wholesale and retail storage and distribution (excluding LPG)",
+        "question": "How can inventory discrepancies be investigated and resolved in a wholesale and retail storage and distribution setting?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98557, Requested 3359. Please try again in 27m34.612s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "General engineering, manufacturing and assembly",
+        "question": "What are the best practices for troubleshooting and resolving issues with automated assembly lines?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98566, Requested 3354. Please try again in 27m38.129s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - fluorine or hydrogen fluoride",
+        "question": "What are the key considerations for designing and implementing an emergency response plan for a fluorine or hydrogen fluoride incident?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98166, Requested 3363. Please try again in 22m1.041s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - Industrial gases",
+        "question": "How can chemical installation operators mitigate the effects of a toxic gas release and ensure a safe evacuation of the area?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98279, Requested 3361. Please try again in 23m36.915s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Agriculture",
+        "question": "How can farmers balance the need for irrigation with concerns about water conservation and efficiency?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98404, Requested 3355. Please try again in 25m19.504s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Plastic and rubber manufacture",
+        "question": "How can manufacturers ensure compliance with regulatory requirements and industry standards for environmental and worker safety?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98764, Requested 3361. Please try again in 30m35.543s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Leisure and sport activities (e.g. ice rink)",
+        "question": "How can staff be trained to respond to and manage slips, trips, and falls on the ice or surrounding areas?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98514, Requested 3356. Please try again in 26m54.903999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production of basic organic chemicals",
+        "question": "What are the steps to troubleshoot and resolve issues with a reactor system in the production of basic organic chemicals?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98396, Requested 3360. Please try again in 25m16.383s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Handling and transportation centres (ports, airports, lorry parks, marshalling yards, etc.)",
+        "question": "What procedures should be in place for handling and transporting hazardous materials at ports, airports, and other transportation centres to minimize the risk of accidents?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98721, Requested 3372. Please try again in 30m7.518999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Waste storage, treatment and disposal",
+        "question": "What emergency response plans should be in place in the event of a natural disaster impacting a waste disposal facility, such as a hurricane or earthquake?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98737, Requested 3368. Please try again in 30m18.025999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and storage of fertilizers",
+        "question": "What are the best practices for inspecting and maintaining equipment to prevent accidents in fertilizer production?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98363, Requested 3358. Please try again in 24m46.181s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Wholesale and retail storage and distribution (excluding LPG)",
+        "question": "What is the best approach to handling customer complaints regarding damaged or missing goods during transportation?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98554, Requested 3358. Please try again in 27m31.275s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and storage of pesticides, biocides, fungicides",
+        "question": "What quality control measures should be implemented to ensure the potency and safety of biocides during the production process?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98535, Requested 3361. Please try again in 27m17.81s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Processing of metals",
+        "question": "How can workplace accidents involving heavy machinery be minimized in a metal processing plant?",
+        "response": {
+            "answer": "<span style=\"color: #0000ff\">To minimize workplace accidents involving heavy machinery in a metal processing plant, several measures can be taken based on the provided context and lessons learned from past accidents.</span> <span style=\"color: #008000\">In the case of accident 351, which involved the overfilling of a tank causing a hydrogen fluoride leak, it is crucial to follow proper procedures for handling and storing chemicals, ensuring that tanks are not overfilled and that adequate ventilation is in place.</span> <span style=\"color: #ff0000\">Similarly, in accident 345, where a carbon monoxide leak occurred during maintenance of a blower, the implementation of an extended CO-warning system and a disconnection device can be beneficial in preventing such incidents.</span> <span style=\"color: #0000ff\">Additionally, the use of personal protective equipment, proper training for employees, and regular maintenance of machinery can significantly reduce the risk of accidents.</span> <span style=\"color: #ff0000\">It is also important to note that in accident 458 and 1086, which involved fires in metal processing plants, the implementation of safety measures such as well-dimensioned containment basins and the realization of prevention measures considering the lessons learned from the accidents can be vital in minimizing the consequences of such incidents.</span>",
+            "references": [
+                {
+                    "accident_id": 351,
+                    "event_type": "Major Accident",
+                    "industry_type": "Processing of metals",
+                    "accident_title": "Overfilling of a tank caused a hydrogen fluoride flow through the vent pipes",
+                    "url": "https://emars.jrc.ec.europa.eu/en/emars/accident/view/fca342a4-1cb8-b4c6-cae6-cf94c06d7018",
+                    "color": "#008000"
+                },
+                {
+                    "accident_id": 345,
+                    "event_type": "Major Accident",
+                    "industry_type": "Processing of metals",
+                    "accident_title": "Carbon monoxide leak during maintenance to a blower in a metal processing plant and installation of a complementary CO-warning",
+                    "url": "https://emars.jrc.ec.eu.eu/en/emars/accident/view/20989023-a1ed-6874-e80c-7981156cc906",
+                    "color": "#ff0000"
+                },
+                {
+                    "accident_id": 458,
+                    "event_type": "Major Accident",
+                    "industry_type": "Processing of metals",
+                    "accident_title": "Fire in industry for metal processing",
+                    "url": "https://emars.jrc.ec.europa.eu/en/emars/accident/view/db9abf87-bdf7-8efb-019f-73120dc04e46",
+                    "color": "#ff0000"
+                },
+                {
+                    "accident_id": 1086,
+                    "event_type": "Major Accident",
+                    "industry_type": "Processing of non-ferrous metals (foundries, smelting, etc.)",
+                    "accident_title": "Accident in metal recycling plant",
+                    "url": "https://emars.jrc.ec.europa.eu/en/emars/accident/view/04558cdd-4ed6-11e8-a5bf-005056ad0167",
+                    "color": "#ff0000"
+                }
+            ]
+        }
+    },
+    {
+        "industry": "Chemical installations ",
+        "question": "What are the best practices for containing and mitigating the effects of a gas leak in a chemical manufacturing facility?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98525, Requested 3360. Please try again in 27m8.26s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and manufacturing of pulp and paper",
+        "question": "What methods are used to detect and prevent contamination in the pulp and paper production process?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98431, Requested 3354. Please try again in 25m42.132s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "LPG production, bottling and bulk distribution",
+        "question": "What measures can be taken to prevent and mitigate the effects of overfilling or underfilling of LPG cylinders during the bottling process?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98210, Requested 3364. Please try again in 22m39.705s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - chlorine",
+        "question": "What procedures should be followed in the event of a chlorine spill or release in a chemical plant?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98453, Requested 3354. Please try again in 26m0.764s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "- not known / not applicable - ",
+        "question": "In the absence of industry-specific guidelines, what general principles should guide incident response efforts?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98353, Requested 3357. Please try again in 24m36.656s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Electronics & electrical engineering",
+        "question": "What procedures should be followed to repair a faulty power supply unit in an electronic device?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98483, Requested 3353. Please try again in 26m26.226s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production of basic organic chemicals",
+        "question": "How can a production team investigate and address the root cause of a recurring quality control issue in the production of basic organic chemicals?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98387, Requested 3366. Please try again in 25m14.181s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - other fine chemicals",
+        "question": "What safety protocols should be followed when dealing with a leak of a hazardous chemical in a fine chemicals plant?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98670, Requested 3358. Please try again in 29m12.125s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Waste storage, treatment and disposal",
+        "question": "What protocols are in place for responding to and containing odors emanating from waste disposal facilities that are impacting nearby communities?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98740, Requested 3366. Please try again in 30m18.775999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "General chemicals manufacture (not otherwise specified int the list)",
+        "question": "What are the most important considerations for conducting regular safety audits and risk assessments in a general chemicals manufacturing facility?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98689, Requested 3366. Please try again in 29m35.034s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Handling and transportation centres (ports, airports, lorry parks, marshalling yards, etc.)",
+        "question": "How can handling and transportation centre operators ensure compliance with customs regulations and prevent incidents of smuggling or non-compliance?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98725, Requested 3367. Please try again in 30m6.897s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "LNG storage and distribution",
+        "question": "What maintenance schedules should be established for cryogenic equipment used in LNG storage and distribution facilities?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98488, Requested 3360. Please try again in 26m36.004s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Water and sewage (collection, supply, treatment)",
+        "question": "How should water and sewage utilities prepare for and respond to natural disasters, such as floods or hurricanes, to ensure continuity of service and protect infrastructure?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98321, Requested 3373. Please try again in 24m23.22s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production of pharmaceuticals",
+        "question": "How can deviations in temperature and humidity controls be addressed to prevent impact on pharmaceutical product quality?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98337, Requested 3360. Please try again in 24m25.636s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Manufacture of food products and beverages",
+        "question": "What steps should be taken to address and prevent the growth of mold and bacteria in food and beverage production facilities?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98642, Requested 3361. Please try again in 28m49.943s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - fluorine or hydrogen fluoride",
+        "question": "What are the regulatory requirements for reporting and documenting incidents involving fluorine or hydrogen fluoride in a chemical installation?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98159, Requested 3365. Please try again in 21m56.200999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and storage of fertilizers",
+        "question": "What safety protocols should be in place for workers handling hazardous materials in fertilizer manufacturing?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98368, Requested 3357. Please try again in 24m50.267999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Processing of metals",
+        "question": "How can the risk of musculoskeletal injuries be minimized for workers performing repetitive tasks, such as metal lifting or bending, in a processing plant?",
+        "response": {
+            "error": "Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on tokens per minute (TPM): Limit 6000, Requested 6065, please reduce your message size and try again. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Processing of ferrous metals (foundries, smelting, etc.)",
+        "question": "How can foundry operators minimize the risk of casting defects due to inconsistent metal temperatures?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98384, Requested 3355. Please try again in 25m2.209s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Electronics & electrical engineering",
+        "question": "How can one diagnose and fix issues related to overheating in electronic components?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98481, Requested 3350. Please try again in 26m21.159999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - ammonia",
+        "question": "In the aftermath of an ammonia incident, what procedures should be followed to ensure a thorough investigation, and how can the findings be used to prevent future incidents?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98288, Requested 3373. Please try again in 23m54.744s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Manufacture of food products and beverages",
+        "question": "How can foreign object contamination be prevented and resolved in food processing lines?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98643, Requested 3351. Please try again in 28m42.536999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and manufacturing of pulp and paper",
+        "question": "What measures can be taken to prevent and respond to fires in a pulp and paper production facility?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98439, Requested 3354. Please try again in 25m48.321s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - other fine chemicals",
+        "question": "How do you troubleshoot and resolve issues with clogged pipelines in a chemical installation?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98672, Requested 3353. Please try again in 29m9.015s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - fluorine or hydrogen fluoride",
+        "question": "How can we prevent and mitigate the risks of fluorine exposure to personnel during maintenance operations?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98168, Requested 3356. Please try again in 21m56.228999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production of basic organic chemicals",
+        "question": "What are the best practices for training personnel in emergency response procedures for chemical plant incidents?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98388, Requested 3358. Please try again in 25m8.51s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Wholesale and retail storage and distribution (excluding LPG)",
+        "question": "What strategies can be implemented to minimize the impact of equipment failures or maintenance downtime on wholesale and retail storage and distribution operations?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98545, Requested 3370. Please try again in 27m34.231s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Waste storage, treatment and disposal",
+        "question": "How can waste disposal facilities mitigate the risk of landfill fires and what actions should be taken in the event of a fire?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98744, Requested 3361. Please try again in 30m18.195999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - sulphur oxides, oleum",
+        "question": "What procedures should be followed to investigate and report a sulphur oxide-related incident in a chemical plant?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98172, Requested 3358. Please try again in 22m1.773s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - carbon oxides",
+        "question": "How should emergency responders handle a reported fire in a carbon black production area?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98308, Requested 3352. Please try again in 23m53.904s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Petrochemical / Oil Refineries",
+        "question": "What are the best practices for conducting an incident investigation after a near-miss or accident in a petrochemical facility?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98748, Requested 3361. Please try again in 30m21.919s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Processing of ferrous metals (foundries, smelting, etc.)",
+        "question": "What quality control measures can be put in place to detect and prevent the introduction of impurities during the ferrous metal smelting process?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98378, Requested 3366. Please try again in 25m6.729s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Textiles manufacturing and treatment",
+        "question": "How can fabric shrinkage during the treatment process be minimized and resolved?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98715, Requested 3349. Please try again in 29m42.652999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "LNG storage and distribution",
+        "question": "What safety protocols are in place for LNG tanker truck loading and unloading operations?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98498, Requested 3352. Please try again in 26m37.788s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations ",
+        "question": "What communication strategies are crucial for coordinating with emergency responders and regulatory agencies during a chemical incident?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98518, Requested 3363. Please try again in 27m4.634s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Waste storage, treatment and disposal",
+        "question": "How can waste treatment facilities minimize the risk of explosions or other accidents involving flammable or combustible materials?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98735, Requested 3362. Please try again in 30m11.584s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and storage of pesticides, biocides, fungicides",
+        "question": "How can pesticide manufacturers prevent cross-contamination between different products during production?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98537, Requested 3356. Please try again in 27m14.73s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Other activity (not otherwise specified int the list)",
+        "question": "How can incidents of supply chain disruptions be mitigated and resolved?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98600, Requested 3347. Please try again in 28m1.833999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and manufacturing of pulp and paper",
+        "question": "What steps can be taken to troubleshoot and resolve issues with paper machine performance?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98434, Requested 3352. Please try again in 25m42.876s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production of basic organic chemicals",
+        "question": "What safety measures should be taken when handling highly flammable organic chemicals in a production environment?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98397, Requested 3358. Please try again in 25m15.895999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - inorganic acids",
+        "question": "How can chemical installations prevent and respond to incidents involving inorganic acid vapors, such as phosphoric acid, in the workplace?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98216, Requested 3364. Please try again in 22m44.662s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Ceramics (bricks, pottery, glass, cement, etc.)",
+        "question": "What procedures should be followed to clean and maintain equipment used in the ceramics industry?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98463, Requested 3354. Please try again in 26m9.427s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Manufacture of glass",
+        "question": "How can the risk of thermal stress and resulting breakage be minimized in the annealing process?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98419, Requested 3353. Please try again in 25m30.159999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - other fine chemicals",
+        "question": "What procedures should be in place for managing and containing fires in a chemical installation?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98666, Requested 3353. Please try again in 29m4.053s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Petrochemical / Oil Refineries",
+        "question": "What procedures should be followed in the event of a hydrogen sulfide gas leak in a petrochemical plant?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98760, Requested 3355. Please try again in 30m26.65s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Building & works of engineering construction",
+        "question": "How can site managers prevent and respond to trench collapses in excavation works?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98269, Requested 3350. Please try again in 23m18.757s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - Industrial gases",
+        "question": "What safety protocols should be implemented to prevent explosions in chemical installations handling industrial gases?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98281, Requested 3359. Please try again in 23m36.437s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Other activity (not otherwise specified int the list)",
+        "question": "What processes can be implemented to address and resolve incidents related to product quality or customer complaints?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98589, Requested 3359. Please try again in 28m2.289s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "LPG production, bottling and bulk distribution",
+        "question": "What procedures should be followed in the event of an LPG leak during the bottling process?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98213, Requested 3352. Please try again in 22m31.811s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Textiles manufacturing and treatment",
+        "question": "What procedures should be followed to address a dyeing defect in a textile manufacturing process?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98716, Requested 3354. Please try again in 29m48.216s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Plastic and rubber manufacture",
+        "question": "How can companies investigate and address the root causes of recurring quality control issues in plastic and rubber manufacturing?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98761, Requested 3362. Please try again in 30m33.94s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - fluorine or hydrogen fluoride",
+        "question": "How can chemical installations ensure compliance with occupational exposure limits for fluorine and hydrogen fluoride?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98157, Requested 3359. Please try again in 21m49.782s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Processing of metals using electrolytic or chemical processes",
+        "question": "How can operators prevent and mitigate the risks associated with hydrogen gas evolution during chemical metal processing?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98586, Requested 3360. Please try again in 28m0.649s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - fluorine or hydrogen fluoride",
+        "question": "What are the best practices for conducting a root cause analysis and implementing corrective actions after a fluorine or hydrogen fluoride incident?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98156, Requested 3366. Please try again in 21m54.593s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Ceramics (bricks, pottery, glass, cement, etc.)",
+        "question": "How can warping or deformities in ceramics be prevented during the firing process?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98471, Requested 3350. Please try again in 26m12.514999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - other fine chemicals",
+        "question": "How do you handle a power outage in a fine chemicals facility to minimize equipment damage and prevent accidents?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98668, Requested 3358. Please try again in 29m9.62s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and storage of fertilizers",
+        "question": "How can we mitigate the risk of dust explosions in fertilizer storage facilities?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98370, Requested 3350. Please try again in 24m45.464s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - inorganic acids",
+        "question": "What emergency response plan should be implemented in the event of a nitric acid leak in a chemical installation, and how often should employees be trained on this plan?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98223, Requested 3372. Please try again in 22m57.73s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Building & works of engineering construction",
+        "question": "How can site managers investigate and address near-miss incidents to prevent future accidents and improve site safety?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98259, Requested 3359. Please try again in 23m17.818s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "General chemicals manufacture (not otherwise specified int the list)",
+        "question": "How can general chemicals manufacturers ensure compliance with environmental regulations and prevent pollution incidents?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98696, Requested 3360. Please try again in 29m36.061s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Manufacture of food products and beverages",
+        "question": "What actions should be taken in response to a pest infestation in a food processing facility, and how can future infestations be prevented?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98636, Requested 3364. Please try again in 28m47.519999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and manufacturing of pulp and paper",
+        "question": "What are the best practices for managing and reducing wastewater in the pulp and paper industry?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98436, Requested 3353. Please try again in 25m44.986s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Processing of non-ferrous metals (foundries, smelting, etc.)",
+        "question": "What are the best practices for resolving a blockage in a metal tapping system during the smelting process?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98239, Requested 3356. Please try again in 22m57.953999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations ",
+        "question": "How can operators respond to a pipeline rupture in a chemical installation to minimize environmental damage?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98528, Requested 3356. Please try again in 27m7.28s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Leisure and sport activities (e.g. ice rink)",
+        "question": "What is the best practice for conducting regular risk assessments and safety inspections in leisure and sport facilities, such as an ice rink?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98504, Requested 3365. Please try again in 26m54.008s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production and storage of fertilizers",
+        "question": "How can we prevent corrosion in equipment and storage containers used in fertilizer production and storage?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98365, Requested 3356. Please try again in 24m46.927s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production of basic organic chemicals",
+        "question": "How can operators prevent and respond to equipment failures in a continuous process chemical plant?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98398, Requested 3354. Please try again in 25m13.676s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Chemical installations - fluorine or hydrogen fluoride",
+        "question": "What are the most effective methods for neutralizing and cleaning up hydrogen fluoride spills in a chemical installation?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98160, Requested 3360. Please try again in 21m53.093999999s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Manufacture of food products and beverages",
+        "question": "What emergency procedures should be established to handle fires or explosions in facilities that use fryers, ovens, or other high-heat equipment for food production?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98632, Requested 3371. Please try again in 28m49.833s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    },
+    {
+        "industry": "Production of pharmaceuticals",
+        "question": "What steps should be taken to investigate and resolve a batch of pharmaceuticals that fails to meet the required potency standards?",
+        "response": {
+            "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01jg6y1k9zeft87bxws0pyj58r` on : Limit 100000, Used 98343, Requested 3362. Please try again in 24m32.293s. Visit https://console.groq.com/docs/rate-limits for more information.', 'type': '', 'code': 'rate_limit_exceeded'}}"
+        }
+    }
+]
