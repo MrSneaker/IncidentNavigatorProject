@@ -11,14 +11,14 @@ export default function RegisterPage() {
 
     const fields = [
         {
-            label: "Username :",
-            id: "username",
-            type: "text",
-        },
-        {
             label: "Email :",
             id: "email",
             type: "email",
+        },
+        {
+            label: "Username :",
+            id: "username",
+            type: "text",
         },
         {
             label: "Password",

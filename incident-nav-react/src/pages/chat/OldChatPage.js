@@ -6,7 +6,7 @@ import { IoSend as SendIcon } from "react-icons/io5";
 import { FaStop as StopIcon } from 'react-icons/fa';
 import ReactMarkdown from 'react-markdown';
 
-import { listMessages, sendMessage, renameChat, chatInfo } from '../scripts/chat';
+import { getListMessages, sendMessage, renameChat, chatInfo } from '../../scripts/chat';
 
 export default function ChatPage() {
     const [currentChatName, setCurrentChatName] = useState('Chat Title');
@@ -37,7 +37,7 @@ export default function ChatPage() {
 
 
     function updateListMessages(id) {
-        listMessages(id).then((response) => {
+        getListMessages(id).then((response) => {
             if (response.chat_id === id) {
                 setMessages(response.messages);
             }
@@ -81,7 +81,6 @@ export default function ChatPage() {
                                 return push();
                             });
                         }
-
                         push();
                     }
                 });

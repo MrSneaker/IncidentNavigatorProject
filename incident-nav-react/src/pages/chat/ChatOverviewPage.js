@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { BiSolidMessageSquareEdit } from "react-icons/bi";
-import { newChat, listChats, delChat } from "../scripts/chat";
+import { newChat, listChats, delChat } from "@/scripts/chat";
 import { MdDeleteOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
 
@@ -21,10 +21,12 @@ const ChatOverview = () => {
     }
 
     function updateList() {
-        listChats().then((chats) => {
+        listChats()?.then((chats) => {
             // order chats by date (updated_at)
             chats.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
             setChats(chats);
+        }).catch((error) => {
+            console.error(error);
         });
     }
 

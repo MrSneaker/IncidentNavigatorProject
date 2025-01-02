@@ -29,23 +29,21 @@ async function delChat(id) {
 }
 
 async function listChats() {
-    try{
-        const reponse = await fetch('/chat/list', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            }
-        })
-        const chats = await reponse.json()
-        return chats.data
-    } catch (error) {
-        console.error(error)
-        return []
+    const reponse = await fetch('/chat/list', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+    })
+    const chats = await reponse.json()
+    if (chats.error) {
+        throw new Error(chats.error)
     }
+    return chats.data
 }
 
-async function listMessages(chat_id) {
+async function getListMessages(chat_id) {
     const reponse = await fetch(`/chat/msgs?chat_id=${chat_id}`, {
         method: 'GET',
         headers: {
@@ -93,9 +91,8 @@ async function chatInfo(chat_id){
         }
     })
     const response_json = await reponse.json()
-    console.log(response_json)
     const data = response_json?.data
     return data
 }
 
-export { newChat, delChat, listChats, listMessages, sendMessage, renameChat, chatInfo }
+export { newChat, delChat, listChats, getListMessages, sendMessage, renameChat, chatInfo }

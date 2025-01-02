@@ -7,8 +7,9 @@ import { logout, getCurrent } from './scripts/auth';
 // Pages
 import PrivateRoute from './components/auth/PrivateRoute';
 import NotLogRoute from './components/auth/NotLogRoute';
-import ChatPage from './pages/ChatPage';
-import ChatOverviewPage from './pages/ChatOverviewPage';
+import { default as ChatPage2 } from './pages/chat/OldChatPage';
+import ChatPage from './pages/chat/ChatPage';
+import ChatOverviewPage from './pages/chat/ChatOverviewPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
@@ -49,6 +50,7 @@ function App() {
             <Route path="/login" element={<NotLogRoute><LoginPage /></NotLogRoute>} />
             <Route path="/register" element={<NotLogRoute><RegisterPage /></NotLogRoute>} />
             <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+            <Route path="/chat2/:id" element={<PrivateRoute><ChatPage2 /></PrivateRoute>} />
             <Route path="/chat/:id" element={<PrivateRoute><ChatPage /></PrivateRoute>} />
             <Route path="/chat" element={<PrivateRoute><ChatOverviewPage /></PrivateRoute>} />
             <Route path="/logout" element={<LogoutPage />} />
