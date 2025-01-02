@@ -8,6 +8,34 @@ def get_uuid():
     return uuid4().hex
 
 
+class Ticket(db.Model):
+    __tablename__ = 'tickets'
+    id = db.Column(db.String(32), primary_key=True, unique=True, default=get_uuid)
+    message_id = db.Column(db.String(32), db.ForeignKey('messages.id'), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now)
+    # Content
+    accident_id = db.Column(db.Integer, nullable=False)
+    event_type = db.Column(db.String(32), nullable=False)
+    industry_type = db.Column(db.String(32), nullable=False)
+    title = db.Column(db.Text, nullable=False)
+    url = db.Column(db.Text, nullable=False)
+    color = db.Column(db.String(7), nullable=False)  # hex color
+    
+    def __repr__(self):
+        return f'<Ticket {self.ticket_id}>'
+
+    
+    def get_message(self):
+        return Message.query.get(self.message_id)
+    
+    def get_chat(self):
+        return self.get_message().get_chat()
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+
 class Message(db.Model):
     __tablename__ = 'messages'
     id = db.Column(db.String(32), primary_key=True, unique=True, default=get_uuid)
@@ -16,6 +44,11 @@ class Message(db.Model):
     source = db.Column(db.Boolean, default=False)
     message = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
+    tickets = db.relationship('Ticket', backref='message', lazy=True)
+    status = db.Column(db.Integer, default=0, nullable=False)
+    
+    def list_tickets(self):
+        return [ticket.to_dict() for ticket in self.tickets]
     
     def __repr__(self):
         return f'<Message {self.message}>'
@@ -27,12 +60,17 @@ class Message(db.Model):
             'user_id': self.user_id,
             'source': self.source,
             'message': self.message,
+            'status': self.status,
             'created_at': self.created_at
         }
     
     def get_chat(self):
         return Chat.query.get(self.chat_id)
     
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
 
 class Chat(db.Model):
     __tablename__ = 'chats'
@@ -50,7 +88,7 @@ class Chat(db.Model):
         self.updated_at = datetime.datetime.now()
         db.session.commit()
     
-    def get_messages(self):
+    def get_messages(self) -> Message | None:
         return Message.query.filter_by(user_id=self.user_id, chat_id=self.id).all()
     
     def add_message(self, msg: Message):
@@ -99,4 +137,3 @@ class Chat(db.Model):
         db.session.add(chat)
         db.session.commit()
         return chat
-    

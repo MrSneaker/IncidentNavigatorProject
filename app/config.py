@@ -10,7 +10,7 @@ class ApplicationConfig:
     SECRET_KEY = SECRET_KEY
     
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = False
     SQLALCHEMY_DATABASE_URI = 'sqlite:///./db.sqlite'
     SQLALCHEMY_BINDS = {
         'user': 'sqlite:///./user.sqlite',
