@@ -85,25 +85,30 @@ export default function ChatPage({ }) {
         reader.read().then(value => {
             function process({ done, value }) {
                 try {
+                    console.log('Done ? ', done)
+                    console.log('Value ? ', value)
+                    console.log('Value Type ? ', typeof(value))
                     if (!done) {
                         setBusy(true);
                         // Extract json
                         accumulatedChunks += value
                         let jsonMessages;
                         let isValidChunk = false;
-                        if (accumulatedChunks.indexOf('data: ') !== -1) {
-                            jsonMessages = accumulatedChunks.split('data: ').filter(Boolean);
+                        if (accumulatedChunks) {
+                            jsonMessages = accumulatedChunks
                             isValidChunk = true;
                         }
 
                         if (isValidChunk) {
-                            accumulatedChunks = jsonMessages.pop(); // Keep the incomplete message for the next iteration
+                            // accumulatedChunks = jsonMessages.pop(); // Keep the incomplete message for the next iteration
                             completedReply = handleChunk(jsonMessages, completedReply);
                             setListMessages([...lm, { "source": "model", status: 0, "parts": completedReply }])
                         }
                         return reader.read().then(value => { process(value) })
                     }
                     else {
+                        console.log('JSON msg : ', completedReply)
+
                         const parts = JSON.parse(completedReply);
                         setListMessages([...lm, { "source": "model", status: 1, "parts": parts }])
                     }
@@ -126,22 +131,27 @@ export default function ChatPage({ }) {
 
 
     function handleChunk(jsonMessages, completedReply) {
-        for (const jsonMsg of jsonMessages) {
-            if (jsonMsg.trim() !== '') {
-                const msg = JSON.parse(jsonMsg);
-                let reply = '';
-                // Extract the generated reply from the response
-                if (msg.choices[0].finish_reason !== 'stop') {
-                    reply = msg.choices[0].delta.content;
-                }
 
-                // Handle the generated reply as desired
-                if (reply) {
-                    completedReply += reply;
+        try {
+            return JSON.parse(jsonMessages);
+        } catch(e) {
+            for (const jsonMsg of jsonMessages) {
+                if (jsonMsg.trim() !== '') {
+                    const msg = JSON.parse(jsonMsg);
+                    let reply = '';
+                    // Extract the generated reply from the response
+                    if (msg.choices[0].finish_reason !== 'stop') {
+                        reply = msg.choices[0].delta.content;
+                    }
+    
+                    // Handle the generated reply as desired
+                    if (reply) {
+                        completedReply += reply;
+                    }
                 }
             }
+            return completedReply;
         }
-        return completedReply;
     }
 
     function abortResponse() {
@@ -177,7 +187,7 @@ export default function ChatPage({ }) {
                 <ChatTickets listMessages={listMessages} focusOn={focusOn}/>
                 <ChatInput sendInput={send} isBusy={isBusy} abortResponse={abortResponse} />
                 <p>
-                    {responseError}
+                    {responseError ? `${responseError.message || responseError.toString()}${responseError.stack ? `\n${responseError.stack.split('\n')[1]}` : ''}` : ''}
                 </p>
             </div>
         </div>

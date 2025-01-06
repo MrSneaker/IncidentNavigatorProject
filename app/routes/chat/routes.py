@@ -1,15 +1,19 @@
+import logging
 import os
 import json
 import time
 import datetime
 from flask import request, Response, current_app
 import google.generativeai as genai
+import requests
 
 from . import chat
 from .models import Chat, Message, Ticket
 from .utils.jwt_utils import token_required, verify_jwt
 
 genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+
+LLM_URI = "http://localhost:8000/invoke"
 
 def get_uid():
     """
@@ -187,7 +191,34 @@ def send_msg():
     # history : is a list of messages of all the chat history before the current message
     # msg     : is the current message that the user sent
     
-    return test_response(None, user_id, chat_id, current_app.app_context())
+    payload = {
+        "user_id": user_id,
+        "chat_id": chat_id,
+        "question": message,
+        "industries": ['all'] # TODO : Add industries in User account information
+    }
+
+    try:
+        response = requests.post(LLM_URI, json=payload)
+
+        logging.error(f'Model response = {response}')
+        
+        if response.status_code == 200:
+            logging.error(f'Model response = {response.json()}')
+            return response.json(), 200
+        else:
+            return {
+                'error': 7,
+                'message': 'Failed to invoke chain',
+                'data': response.json()
+            }, response.status_code
+
+    except Exception as e:
+        return {
+            'error': 8,
+            'message': 'An error occurred while invoking the chain',
+            'data': str(e)
+        }, 500
     
 def test_response(_, user_id, chat_id, ctx):
     import random

@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.logger import logger
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai.chat_models import ChatOpenAI
@@ -15,8 +16,18 @@ import json
 import warnings
 from collections import defaultdict
 from threading import Lock
+import logging
 
 warnings.filterwarnings('ignore')
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
 
 app = FastAPI()
 
@@ -32,29 +43,35 @@ app.add_middleware(
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
+
 @app.get("/")
 async def redirect_root_to_docs():
     return RedirectResponse("/docs")
 
+
 class MemoryManager:
     def __init__(self):
-        self.user_chat_memories = defaultdict(lambda: defaultdict(ConversationBufferWindowMemory))
+        self.user_chat_memories = defaultdict(
+            lambda: defaultdict(ConversationBufferWindowMemory))
         self.lock = Lock()
 
     def get_memory(self, user_id, chat_id):
         with self.lock:
             return self.user_chat_memories[user_id][chat_id]
 
+
 memory_manager = MemoryManager()
+
 
 def get_industry(input):
     return input['industries']
+
 
 def get_json_from_markdown(markdown_text):
     try:
         json_match = re.search(r'```json(.*?)```', markdown_text, re.DOTALL)
         if json_match:
-            json_string = json_match.group(1).strip()            
+            json_string = json_match.group(1).strip()
             json_data = json.loads(json_string)
             return json_data
         else:
@@ -64,12 +81,14 @@ def get_json_from_markdown(markdown_text):
         print(f"Error decoding JSON: {e}")
         return markdown_text
 
+
 llm = ChatOpenAI(
     openai_api_base="https://api.groq.com/openai/v1/",
     model="llama-3.3-70b-versatile",
     temperature=1,
     api_key=API_KEY
 )
+
 
 @app.post("/invoke")
 async def invoke_chain(request: Request):
@@ -86,16 +105,17 @@ async def invoke_chain(request: Request):
             return {"error": "Missing chat_id in request."}
 
         memory = memory_manager.get_memory(user_id, chat_id)
-        
 
         runnable_context = RunnablePassthrough.assign(
-            chat_history=RunnableLambda(memory.load_memory_variables) | itemgetter("history")
+            chat_history=RunnableLambda(
+                memory.load_memory_variables) | itemgetter("history")
         ) | CONTEXT_PROMPT | llm | StrOutputParser()
 
         runnable = (
             RunnablePassthrough.assign(
                 question=runnable_context,
-                memory= RunnableLambda(memory.load_memory_variables) | itemgetter("history"),
+                memory=RunnableLambda(
+                    memory.load_memory_variables) | itemgetter("history"),
                 industries=RunnableLambda(get_industry)
             )
             | retrieve
@@ -108,6 +128,7 @@ async def invoke_chain(request: Request):
         result = await runnable.ainvoke(body)
         memory.chat_memory.add_user_message(body.get("question"))
         memory.chat_memory.add_ai_message(str(result))
+        logger.info(f'Model Result : {result}')
         return result
     except Exception as e:
         return {"error": str(e)}
