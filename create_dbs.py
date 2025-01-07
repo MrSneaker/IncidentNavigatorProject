@@ -19,7 +19,6 @@ warnings.filterwarnings("ignore")
 MONGO_URI = "mongodb://root:root@localhost:27017/"
 DATABASE_NAME = "incident_db"
 COLLECTION_NAME = "incident_collection"
-# weaviate_client = weaviate.connect_to_local()
 
 http_host = "localhost"
 http_port = 8081
@@ -152,11 +151,12 @@ if __name__ == "__main__":
     # setup_mysql_users()
 
     # Load and clean the data
-    raw_data = pd.read_excel("data/eMARS.xlsx")
-    keep = ["Accident ID", "Event Type", "Industry Type", "Accident Title", "Start Date", "Finish Date", "Accident Description", "Causes of the accident", "Consequences", "Emergency response", "Lesson Learned"]
-    keep_data = raw_data.copy()[keep]
-    cleaned_data = keep_data.dropna().reset_index(drop=True)
-    cleaned_data = update_with_urls(cleaned_data)
+    # raw_data = pd.read_excel("data/eMARS.xlsx")
+    # keep = ["Accident ID", "Event Type", "Industry Type", "Accident Title", "Start Date", "Finish Date", "Accident Description", "Causes of the accident", "Consequences", "Emergency response", "Lesson Learned"]
+    # keep_data = raw_data.copy()[keep]
+    # cleaned_data = keep_data.dropna().reset_index(drop=True)
+    # cleaned_data = update_with_urls(cleaned_data)
+    print("Starting")
     cleaned_data = pd.read_csv("data/cleaned.csv")
 
     # Populate the Weaviate Vector Database
@@ -175,7 +175,9 @@ if __name__ == "__main__":
                 }
             )
         )
+    print("Weaviate Documents created --- Filling the database")
     db = WeaviateVectorStore.from_documents(weaviate_docs, embeddings, client=weaviate_client, index_name="incident")
+    print("Database filled")
 
     # Create and populate Mongo Database
     mongo_docs = [preprocess_row(row) for row in cleaned_data.to_dict(orient="records")]
