@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ChatHeader from './components/ChatHeader';
 import ChatView from './components/ChatView';
 import ChatInput from './components/ChatInput';
@@ -14,17 +14,21 @@ export default function ChatPage({ }) {
     const [chatNameError, setChatNameError] = useState('');
     // Chat content
     const [listMessages, setListMessages] = useState([]);
+    const [listErrors, setListErrors] = useState('');
     const [postMessage, setPostMessage] = useState('');
+    const abortControllerRef = useRef(null);
+    const [sendError, setSendError] = useState('');
     const [focusOn, setFocusOn] = useState(-1);
     const [isBusy, setBusy] = useState(false);
     const [responseError, setError] = useState(null);
-    let abortController = new AbortController();
+
 
     function modifyChatName(name) {
+        setChatNameError("");
         const response = renameChat(chatId, name);
         response.then((response) => {
             if (response.error) {
-                setChatNameError(`Error ${response.error}: ${response.message}`);
+                setChatNameError(`Failed to rename chat (${response.message})`);
             }
         })
     }
@@ -39,10 +43,13 @@ export default function ChatPage({ }) {
 
     // On postMessage change, send message to chat
     useEffect(() => {
+        setSendError("")
         if (postMessage.length > 0) {
             // Send message to chat
-            abortController = new AbortController()
-            const response = sendMessage(chatId, postMessage, abortController.signal);
+            setBusy(true)
+            abortControllerRef.current = new AbortController();
+            const signal = abortControllerRef.current.signal;
+            const response = sendMessage(chatId, postMessage, signal);
             // Handle the stream response
             response.then((response) => {
                 const reader = response.body.getReader();
@@ -56,7 +63,6 @@ export default function ChatPage({ }) {
                                     controller.close();
                                     return;
                                 }
-                                setBusy(true);
                                 const chunk = new TextDecoder("utf-8").decode(value);
                                 controller.enqueue(chunk);
                                 return push();
@@ -68,9 +74,8 @@ export default function ChatPage({ }) {
 
                 })
             })
+                .catch(handleError)
                 .then(handleStream)
-                .catch(handleError);
-
             setPostMessage('');
         }
 
@@ -79,49 +84,58 @@ export default function ChatPage({ }) {
     function handleStream(stream) {
         const reader = stream.getReader();
         const lm = listMessages;
+        let isCancelled = false;
         let accumulatedChunks = '';
         let completedReply = '';
+        setListMessages([...lm, { "source": "model", status: 0, "parts": { answer: '', references: [] } }])
 
-        reader.read().then(value => {
-            function process({ done, value }) {
-                try {
-                    if (!done) {
-                        setBusy(true);
-                        // Extract json
-                        accumulatedChunks += value
-                        let jsonMessages;
-                        let isValidChunk = false;
-                        if (accumulatedChunks.indexOf('data: ') !== -1) {
-                            jsonMessages = accumulatedChunks.split('data: ').filter(Boolean);
-                            isValidChunk = true;
-                        }
-
-                        if (isValidChunk) {
-                            accumulatedChunks = jsonMessages.pop(); // Keep the incomplete message for the next iteration
-                            completedReply = handleChunk(jsonMessages, completedReply);
-                            setListMessages([...lm, { "source": "model", status: 0, "parts": completedReply }])
-                        }
-                        return reader.read().then(value => { process(value) })
-                    }
-                    else {
-                        const parts = JSON.parse(completedReply);
-                        setListMessages([...lm, { "source": "model", status: 1, "parts": parts }])
-                    }
-                    setBusy(false);
-
-                } catch (error) {
-                    setBusy(false);
-                    setError(error);
+        function process({ done, value }) {
+            if (isCancelled) return; // Arrêter si annulé
+            if (!done) {
+                // Extract json
+                accumulatedChunks += value
+                let jsonMessages;
+                let isValidChunk = false;
+                if (accumulatedChunks.indexOf('data: ') !== -1) {
+                    jsonMessages = accumulatedChunks.split('data: ').filter(Boolean);
+                    isValidChunk = true;
                 }
+
+                if (isValidChunk) {
+                    accumulatedChunks = jsonMessages.pop(); // Keep the incomplete message for the next iteration
+                    completedReply = handleChunk(jsonMessages, completedReply);
+                    setListMessages([...lm, { "source": "model", status: 0, "parts": completedReply }])
+                }
+                return reader.read().then(process);
             }
-            process(value);
-        });
+            else {
+                const parts = JSON.parse(completedReply);
+                setListMessages([...lm, { "source": "model", status: 1, "parts": parts }])
+            }
+        }
+
+        reader.read().then(process).catch(
+            (error) => {
+                if (error.name !== 'AbortError') {
+                    console.log(error);
+                }
+
+            }
+        );
+
+        return () => {
+            isCancelled = true;
+            reader.cancel();
+        }
     }
+
+    useEffect(() => {
+        console.log(isBusy);
+    }, [isBusy]);
 
     function handleError(error) {
         setBusy(false);
-        setError(error);
-        console.error(error)
+        console.log(error)
     }
 
 
@@ -145,7 +159,11 @@ export default function ChatPage({ }) {
     }
 
     function abortResponse() {
-        // TODO
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+            abortControllerRef.current = null;
+            setBusy(false);
+        }
     }
 
     // On page load, get chat ID from URL and update chat
@@ -174,11 +192,18 @@ export default function ChatPage({ }) {
             <ChatHeader chatName={chatName} setChatName={modifyChatName} renameError={chatNameError} />
             <div className='container flex flex-col w-full xl:w-[60%] h-[90%] items-center justify-center p-2 gap-2 rounded-3xl bg-black/10' id='chat-container'>
                 <ChatView listMessages={listMessages} setFocusOn={setFocusOn} />
-                <ChatTickets listMessages={listMessages} focusOn={focusOn}/>
+                <ChatTickets listMessages={listMessages} focusOn={focusOn} />
+                {listErrors && (
+                    <p className='text-red-500'>
+                        {listErrors}
+                    </p>
+                )}
                 <ChatInput sendInput={send} isBusy={isBusy} abortResponse={abortResponse} />
-                <p>
-                    {responseError}
-                </p>
+                {responseError && (
+                    <p>
+                        {responseError}
+                    </p>
+                )}
             </div>
         </div>
     )

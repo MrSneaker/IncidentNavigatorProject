@@ -13,6 +13,23 @@ app.config.from_object(config)
 # Add /auth and /chat routes
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(chat, url_prefix='/chat')
+routes = [
+    '/',
+    '/login',
+    '/register',
+    '/chat',
+    '/chat/<path:path>',
+    '/profile',
+]
+
+# each reoute will return the public/index.html file
+for route in routes:
+    app.add_url_rule(route, f'index_{route}', lambda: send_from_directory('public', 'index.html'))
+
+
+@app.route('/<path:path>')
+def files(path):
+    return send_from_directory('public', path)
 
 
 with app.app_context():
@@ -30,24 +47,5 @@ with app.app_context():
     with app.app_context():
         db.create_all()
 
-
-routes = [
-    '/',
-    '/login',
-    '/register',
-    '/chat',
-    '/chat/<path:path>',
-    '/profile',
-]
-    
-# each reoute will return the public/index.html file
-for route in routes:
-    app.add_url_rule(route, f'index_{route}', lambda: send_from_directory('public', 'index.html'))
-
-@app.route('/<path:path>')
-def files(path):
-    return send_from_directory('public', path)
-
-    
 if __name__ == '__main__':
     app.run(debug=True)

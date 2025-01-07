@@ -8,10 +8,10 @@ from ..chat.utils.jwt_utils import generate_jwt
 def me():
     user_id = session.get('user_id', None)
     if user_id is None:
-        return {'error': 1, 'message': 'Unauthorized', 'data': None}, 201
+        return {'error': 1, 'message': 'Unauthorized', 'data': None}, 401
     user = User.get_user(id=user_id)
     if user is None:
-        return {'error': 2, 'message': 'User not found', 'data': None}, 202
+        return {'error': 2, 'message': 'User not found', 'data': None}, 404 
     return {'error': 0, 'message': 'User found', 'data': {
         'id': user.id,
         'email': user.email,
@@ -65,9 +65,9 @@ def login():
             'token': token
         }}, 200
     return {
-        1: {'error': 3, 'message': 'User not found', 'data': None},
-        2: {'error': 4, 'message': 'Incorrect password', 'data': None}
-    }.get(err, {'error': 5, 'message': 'Unknown error', 'data': None}), 404
+        1: ({'error': 3, 'message': 'User not found', 'data': None}, 404),
+        2: ({'error': 4, 'message': 'Incorrect password', 'data': None}, 403)
+    }.get(err, ({'error': 5, 'message': 'Unknown error', 'data': None}, 400))
     
 @auth.route('/logout', methods=['POST'])
 def logout():

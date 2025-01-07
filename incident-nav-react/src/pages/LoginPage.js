@@ -6,6 +6,7 @@ export default function LoginPage() {
     const navigate = useNavigate();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submissionStatus, setSubmissionStatus] = useState(null);
+    const [submissionError, setSubmissionError] = useState('');
 
     const fields = [
         {
@@ -45,7 +46,9 @@ export default function LoginPage() {
         login(formValues.email, formValues.password).then((response) => {
             setIsSubmitting(false);
             if (response.error !== 0) {
+                setSubmissionError(response.message)
                 setSubmissionStatus('error');
+
             } else {
                 navigate('/');
             }
@@ -89,7 +92,9 @@ export default function LoginPage() {
                                     Connect
                                 </button>
                                 {submissionStatus === 'error' && (
-                                    <p className="text-red-500 mt-2">Invalid email or password. Please try again.</p>
+                                    <p className="text-red-500 mt-2">
+                                        Failed to login, {submissionError}.
+                                    </p>
                                 )}
                                 <Link to="/register" className="hover:text-light-accent hover:dark:text-dark-accent mt-2 hover:underline">
                                     Create an account

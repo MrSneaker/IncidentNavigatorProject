@@ -4,7 +4,7 @@
 
 /* ThemeToggle.css */
 :root {
-    --transition-duration: 0.3s;
+    --transition-duration: 0.1s;
 }
 
 html {
@@ -13,4 +13,29 @@ html {
 
 body, button, .flex {
     transition: background-color var(--transition-duration), color var(--transition-duration);
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 5px;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+    border: 0px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+body:hover ::-webkit-scrollbar {
+    opacity: 1;
 }

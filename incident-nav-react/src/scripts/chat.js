@@ -1,23 +1,31 @@
 async function newChat() {
+    const reponse = await fetch('/chat/new', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        },
+        body: JSON.stringify({ name: 'New Chat' })
+    })
+
+    // Check if the response is an error (not 2xx)
+    if (reponse.status >= 300) {
+        return { error: reponse.status, message:  reponse.message? reponse.message : reponse.statusText }
+    }
+
     try {
-        const chat = await fetch('/chat/new', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            },
-            body: JSON.stringify({ name: 'New Chat' })
-        })
-        return chat
+        // Parse the response
+        const data = await reponse.json()
+        return data
+
     } catch (error) {
-        console.error(error)
-        return null
+        return { error: -1, message: 'Invalid response' }
     }
 
 }
 
 async function delChat(id) {
-    const chat = await fetch(`/chat/delete`, {
+    const response = await fetch(`/chat/delete`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -25,7 +33,19 @@ async function delChat(id) {
         },
         body: JSON.stringify({ id: id })
     })
-    return chat
+    
+    // Check if the response is an error (not 2xx)
+    if (response.status >= 300) {
+        return { error: response.status, message:  response.message? response.message : response.statusText }
+    }
+
+    // Parse the response
+    try {
+        const data = await response.json()
+        return data
+    } catch (error) {
+        return { error: -1, message: 'Invalid response' }
+    }
 }
 
 async function listChats() {
@@ -36,11 +56,19 @@ async function listChats() {
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         }
     })
-    const chats = await reponse.json()
-    if (chats.error) {
-        throw new Error(chats.error)
+    
+    // Check if the response is an error (not 2xx)
+    if (reponse.status >= 300) {
+        return { error: reponse.status, message:  reponse.message? reponse.message : reponse.statusText }
     }
-    return chats.data
+
+    // Parse the response
+    try {
+        const data = await reponse.json()
+        return data
+    } catch (error) {
+        return { error: -1, message: 'Invalid response' }
+    }
 }
 
 async function getListMessages(chat_id) {
@@ -51,12 +79,15 @@ async function getListMessages(chat_id) {
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
     })
+    if (reponse.status >= 300) {
+        return { error: reponse.status, message:  reponse.message? reponse.message : reponse.statusText }
+    }
     const response_json = await reponse.json()
     const data = response_json?.data
     return data
 }
 
-async function sendMessage(chat_id, message, abortSignal){
+async function sendMessage(chat_id, message, abortSignal) {
     const reponse = await fetch(`/chat/send`, {
         method: 'POST',
         headers: {
@@ -64,12 +95,12 @@ async function sendMessage(chat_id, message, abortSignal){
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
         signal: abortSignal,
-        body: JSON.stringify({ chat_id: chat_id, parts: message })
+        body: JSON.stringify({  : chat_id, parts: message })
     })
     return reponse
 }
 
-async function renameChat(chat_id, name){
+async function renameChat(chat_id, name) {
     const reponse = await fetch(`/chat/rename`, {
         method: 'PUT',
         headers: {
@@ -78,11 +109,18 @@ async function renameChat(chat_id, name){
         },
         body: JSON.stringify({ id: chat_id, name: name })
     })
-
-    return reponse
+    if (reponse.status >= 300) {
+        return { error: reponse.status, message:  reponse.message ? reponse.message : reponse.statusText }
+    }
+    try {
+        const data = await reponse.json()
+        return data
+    } catch (error) {
+        return { error: -1, message: 'Invalid response' }
+    }
 }
 
-async function chatInfo(chat_id){
+async function chatInfo(chat_id) {
     const reponse = await fetch(`/chat/info?id=${chat_id}`, {
         method: 'GET',
         headers: {

@@ -44,7 +44,7 @@ export default function ChatTickets({ listMessages, focusOn }) {
 
     return (
         <div
-            className="relative xl:fixed overflow-y-auto rounded-3xl flex flex-col items-center justify-start gap-2 p-2 transition-all duration-300"
+            className="relative xl:fixed overflow-y-hidden rounded-3xl flex flex-col items-center justify-start gap-2 p-2 transition-all duration-300"
             style={{
                 top: xl ? top + 'px' : '0',
                 height: xl ? height + 'px' : 'auto',
@@ -72,9 +72,9 @@ export default function ChatTickets({ listMessages, focusOn }) {
                             <li
                                 key={index}
                                 className='flex flex-col items-start justify-start gap-2 p-2 rounded-lg bg-black/10 w-max-[200px] w-full'
-                                style={{ maxWidth: width / 2 - 20 + 'px'}}
+                                style={{ maxWidth: width / 2 - 30 + 'px'}}
                             >
-                                {/* Header */}
+                                {/* Hea10pxder */}
                                 <div
                                     className='flex flex-row items-start justify-start gap-2 w-full'
                                     style={{ color: ticket.color }}

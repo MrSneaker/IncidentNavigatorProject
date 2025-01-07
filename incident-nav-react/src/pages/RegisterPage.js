@@ -2,53 +2,49 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { register } from "../scripts/auth";
 
+// Form fields
+const fields = [
+    {
+        label: "Email :",
+        id: "email",
+        type: "email",
+    },
+    {
+        label: "Username :",
+        id: "username",
+        type: "text",
+    },
+    {
+        label: "Password",
+        id: "password",
+        type: "password",
+    },
+    {
+        label: "Confirm Password",
+        id: "confirm_password",
+        type: "password",
+    },
+];
+
+const passwordCriteria = {
+    minLength: { label: 'Minimum 8 characters', isValid: false },
+    uppercase: { label: 'Uppercase letter', isValid: false },
+    lowercase: { label: 'Lowercase letter', isValid: false },
+    number: { label: 'Number', isValid: false },
+    specialChar: { label: 'Special character', isValid: false },
+};
+
 export default function RegisterPage() {
     const [emailError, setEmailError] = useState("");
     const [usernameError, setUsernameError] = useState("");
     const [confirmPasswordError, setConfirmPasswordError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submissionStatus, setSubmissionStatus] = useState(null);
-
-    const fields = [
-        {
-            label: "Email :",
-            id: "email",
-            type: "email",
-        },
-        {
-            label: "Username :",
-            id: "username",
-            type: "text",
-        },
-        {
-            label: "Password",
-            id: "password",
-            type: "password",
-        },
-        {
-            label: "Confirm Password",
-            id: "confirm_password",
-            type: "password",
-        },
-    ];
-
-    const [formValues, setFormValues] = useState({
-        email: "",
-        username: "",
-        password: "",
-        confirm_password: ""
-    });
-
-    const passwordCriteria = {
-        minLength: { label: 'Minimum 8 characters', isValid: false },
-        uppercase: { label: 'Uppercase letter', isValid: false },
-        lowercase: { label: 'Lowercase letter', isValid: false },
-        number: { label: 'Number', isValid: false },
-        specialChar: { label: 'Special character', isValid: false },
-    };
-
+    const [submissionStatus, setSubmissionStatus] = useState('');
+    const [submitError, setSubmitError] = useState(null);
+    const [formValues, setFormValues] = useState({ email: "", username: "", password: "", confirm_password: "" });
     const [criteria, setCriteria] = useState(passwordCriteria);
 
+    // Check if all criteria are met and no errors
     const isFormValid = () => {
         return (
             formValues.email &&
@@ -61,6 +57,7 @@ export default function RegisterPage() {
         );
     };
 
+    // Check if all criteria are met and no errors
     function onFieldChange(e) {
         const { id, value } = e.target;
         setFormValues({ ...formValues, [id]: value });
@@ -98,6 +95,7 @@ export default function RegisterPage() {
         }
     }
 
+    // Clear form values and errors
     function clearForm() {
         setSubmissionStatus(null);
         setFormValues({
@@ -112,17 +110,21 @@ export default function RegisterPage() {
         setConfirmPasswordError("");
     }
 
+    // Submit form
     function onSubmit(e) {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmissionStatus(null);
-        
-        const { email, username, password } = formValues;   
+
+        const { email, username, password } = formValues;
         register(email, username, password).then((response) => {
             if (response.error) {
                 setSubmissionStatus('error');
+                setSubmitError(`${response.error} - ${response.message}`);
+
             } else {
                 setSubmissionStatus('success');
+                setSubmitError('');
             }
             setIsSubmitting(false);
         });
@@ -145,21 +147,26 @@ export default function RegisterPage() {
             <hr className="my-4 dark:border-white/20 border-black/20 w-full" />
 
             <div className="h-full w-full my-auto">
+
                 {isSubmitting ? (
                     <div className="flex justify-center items-center h-32 flex-col gap-2">
                         <div className="loader border-t-transparent border-solid border-4 border-light-accent rounded-full w-12 h-12 animate-spin"></div>
                         <p className="mr-2 text-light-accent dark:text-dark-accent">Registering...</p>
                     </div>
+
                 ) : submissionStatus === 'success' ? (
+                    
                     <div className="text-center flex flex-col gap-2 items-center h-full">
                         <p className="text-green-500">Registration successful!</p>
                         <Link to="/login" className="hover:text-light-accent hover:dark:text-dark-accent mt-2 hover:underline">
                             Go to login
                         </Link>
                     </div>
+
                 ) : submissionStatus === 'error' ? (
                     <div className="text-center">
                         <p className="text-red-500">An error occurred. Please try again.</p>
+                        <p className="text-red-500">{submitError}</p>
                         <p className="hover:text-light-accent hover:dark:text-dark-accent mt-2 hover:underline hover:cursor-pointer"
                             onClick={clearForm}>
                             Try again

@@ -11,16 +11,10 @@ export default function ChatHeader({ chatName, setChatName, renameError }) {
         setCurrentChatName(chatName);
     }, [chatName]);
 
-    useEffect(() => {
-        if (renameError) {
-            alert(renameError);
-        }
-    }, [renameError]);
-
     return (
         <div className="flex items-center justify-between w-full p-2 gap-4">
             <Link to="/chat" className="text-2xl font-bold"> <IoMdArrowBack /> </Link>
-            <div className="relative text-2xl font-bold w-full flex items-center justify-center">
+            <div className="relative text-2xl font-bold w-full flex flex-col items-center justify-center">
                 <div className='w-full h-full flex items-center justify-center max-w-[400px]'>
                     <input
                         type="text"
@@ -45,6 +39,13 @@ export default function ChatHeader({ chatName, setChatName, renameError }) {
                         className="relative top-0 right-0 text-2xl font-bold text-white transform -translate-x-[40px] hover:cursor-pointer"
                     />
                 </div>
+                {
+                    renameError && (
+                        <p className="text-light-alert dark:text-dark-alert text-sm font-normal">
+                            {renameError}
+                        </p>
+                    )
+                }
             </div>
         </div>
     )

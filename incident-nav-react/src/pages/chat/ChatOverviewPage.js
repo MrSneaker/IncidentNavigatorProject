@@ -4,6 +4,8 @@ import { BiSolidMessageSquareEdit } from "react-icons/bi";
 import { newChat, listChats, delChat } from "@/scripts/chat";
 import { MdDeleteOutline } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { IoRefreshCircle } from "react-icons/io5";
+
 
 const ChatOverview = () => {
     const now = new Date();
@@ -11,9 +13,17 @@ const ChatOverview = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [chatId, setChatId] = useState('');
     const [chats, setChats] = useState([]);
+    const [newError, setNewError] = useState(null);
+    const [deleteError, setDeleteError] = useState(null);
+    const [listError, setListError] = useState(null);
 
     function createChat() {
-        newChat().then((chat) => {
+        setNewError(null);
+        newChat().then((response) => {
+            if (response.error) {
+                setNewError(response.message);
+                return;
+            }
             updateList();
         }).catch((error) => {
             console.error(error);
@@ -21,20 +31,38 @@ const ChatOverview = () => {
     }
 
     function updateList() {
-        listChats()?.then((chats) => {
+        setListError(null);
+        listChats()?.then((response) => {
+            if (response.error) {
+                setListError(response.message);
+                return;
+            }
             // order chats by date (updated_at)
+            const chats = response.data;
             chats.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
             setChats(chats);
         }).catch((error) => {
-            console.error(error);
+            setListError('An error occurred while fetching chat list.');
         });
     }
 
     function removeChat(id) {
-        delChat(id).then(() => {
+        setDeleteError(null);
+        delChat(id).then((response) => {
+            if (response.error) {
+                setDeleteError(response.message);
+                return;
+            }
             updateList();
         });
     }
+
+    useEffect(() => {
+        setTimeout(
+            () => {
+                setDeleteError("")
+            }, 5000)
+    }, [deleteError]);
 
     function onDeleteButtonClick(id) {
         if (showPopup) {
@@ -66,10 +94,13 @@ const ChatOverview = () => {
                 Access your recent chats, create new ones, or search through chat history. This interface is designed to make your incident resolution journey smarter and more efficient.
             </p>
 
-            <div className="flex flex-row mt-6">
+            <div className="flex flex-col mt-6 items-center justify-center">
                 <button className="flex felx-col btn btn-primary p-2 px-4 m-2 gap-2 rounded-full min-w-[100px] max-w-[200px] text-center justify-center items-center font-bold border-2 border-dark-accent text-dark-accent hover:text-light-background hover:dark:text-dark-background  hover:bg-dark-accent hover:scale-110 transition-transform" onClick={createChat}>
                     New Chat <BiSolidMessageSquareEdit className="text-2xl" />
                 </button>
+                <p className="text-center text-light-alert dark:text-dark-alert">
+                    {newError ? `Failed to create new chat (${newError})` : ''}
+                </p>
             </div>
 
             <div className="container h-full bg-light-surface dark:bg-dark-surface rounded-xl p-6 mt-10 flex flex-col items-center justify-start shadow-lg drop-shadow-xl border border-black/10">
@@ -134,9 +165,31 @@ const ChatOverview = () => {
                         <p className="text-light-text dark:text-dark-text/50 text-center">
                             No chats found.
                         </p>
+                        {
+                            listError && (
+                                <>
+                                    <p className="text-light-alert dark:text-dark-alert text-center">
+                                        {listError}
+                                    </p>
+                                    <button
+                                        className="text-light-text/30 dark:text-dark-text/30 hover:text-light-accent hover:dark:text-dark-accent hover:underline text-center flex flex-row items-center gap-1 transition-100"
+                                        onClick={updateList}>
+                                        <IoRefreshCircle className="text-[20px]" />
+                                        Retry
+                                    </button>
+                                </>
+                            )
+                        }
                     </div>
                 )}
 
+                {
+                    deleteError && (
+                        <p className="text-center text-light-alert dark:text-dark-alert">
+                            Failed to delete chat ({deleteError})
+                        </p>
+                    )
+                }
             </div>
             {showPopup && (
                 <div id="popup-confirm-delete" className="popup absolute z-10 w-full h-full top-0 left-0 flex items-center justify-center bg-black/50">

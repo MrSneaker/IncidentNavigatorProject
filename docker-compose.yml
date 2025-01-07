@@ -34,17 +34,17 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
 
-  redis:
-    image: redis:6.2
-    container_name: redis
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    command: ["redis-server", "--appendonly", "yes"]
-    restart: always
+  # redis:
+  #   image: redis:6.2
+  #   container_name: redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   command: ["redis-server", "--appendonly", "yes"]
+  #   restart: always
 
 volumes:
   weaviate_data:
   mongo_data:
-  redis_data:
+  # redis_data:

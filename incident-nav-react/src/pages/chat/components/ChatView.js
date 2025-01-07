@@ -16,8 +16,10 @@ export default function ChatView({ listMessages, setFocusOn, ...props }) {
 
     function handleResize() {
         const chat = document.getElementById('chat-view');
-        chat.scrollTop = chat.scrollHeight;
-        searchLastVisibleIndex();
+        if (chat){
+            chat.scrollTop = chat.scrollHeight;
+            searchLastVisibleIndex();
+        }
     }
 
     function searchLastVisibleIndex() {
@@ -74,20 +76,26 @@ export default function ChatView({ listMessages, setFocusOn, ...props }) {
                 <div key={index} className="flex flex-row items-center justify-start gap-2">
                     {message.source === 'user' ? (
                         <div className="message user-message flex flex-row w-full items-end justify-end gap-2">
-                            <div className="p-2 px-[15px] m-1 min-w-[40px] max-w-[65%] rounded-lg rounded-br-none bg-dark-accent text-light-surface break-words">
+                            <div className="p-2 px-[20px] m-1 min-w-[40px] max-w-[90%] md:max-w-[80%] rounded-3xl rounded-br-none bg-dark-accent text-light-surface break-words">
                                 <Markdown>{message.parts.answer}</Markdown>
                             </div>
                         </div>
                     ) : (
-                        <div
-                            className="message model-message flex flex-row w-full items-start justify-start gap-2"
-                        >
-                            <div className="p-2 min-w-[40px] max-w-[65%] px-[15px] m-1 rounded-lg rounded-bl-none bg-black/20 break-words"
-                                style={{ border: index === lastVisibleIndex ? `1px solid rgba(255, 255, 255, 0.5)`: 'none' }}
+                        <div className="message model-message flex flex-row w-full items-start justify-start gap-2">
+                            <div className="p-4 px-[20px] min-w-[40px] max-w-[90%] md:max-w-[80%] m-1 rounded-3xl rounded-bl-none break-words transition-background-color duration-300"
+                                style={{ backgroundColor: index === lastVisibleIndex ? `rgba(0, 0, 0, 0.2)` : 'transparent' }}
                             >
-                                <Markdown className="text-left">
-                                    {message.parts.answer}
-                                </Markdown>
+                                {message.status === 0 ? (
+                                    <div className="flex items-center gap-2">
+                                        <div className="border-t-transparent border-solid border-2 rounded-full p-2 w-4 h-4 animate-spin border-light-accent bg-transparent"
+                                        />
+                                        <span className="text-light-text/50 dark:text-dark-text/50">Responding...</span>
+                                    </div>
+                                ) : (
+                                    <Markdown className="text-left">
+                                        {message.parts.answer}
+                                    </Markdown>
+                                )}
                             </div>
                         </div>
                     )}

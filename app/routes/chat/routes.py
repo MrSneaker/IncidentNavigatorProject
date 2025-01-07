@@ -4,6 +4,7 @@ import time
 import datetime
 from flask import request, Response, current_app
 import google.generativeai as genai
+from werkzeug.exceptions import ClientDisconnected
 
 from . import chat
 from .models import Chat, Message, Ticket
@@ -186,10 +187,21 @@ def send_msg():
     
     # history : is a list of messages of all the chat history before the current message
     # msg     : is the current message that the user sent
+    response = random_test_response()
+
+    try:
+        return current_app.response_class(
+            convert_response(response, user_id, chat_id, current_app.app_context()),
+            content_type='text/event-stream'
+        )
+    except ClientDisconnected:
+        print("Client disconnected.")
+        return '', 204
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return {'error': 7, 'message': 'Unexpected error', 'data': None}, 500
     
-    return test_response(None, user_id, chat_id, current_app.app_context())
-    
-def test_response(_, user_id, chat_id, ctx):
+def random_test_response():
     import random
     respose_json = [
         {
@@ -279,9 +291,7 @@ def test_response(_, user_id, chat_id, ctx):
         def __init__(self, text):
             self.text = text
             
-    # split into sentence of 64 words
-    response = [Chunk(response_str)]
-    return convert_response(response, user_id, chat_id, ctx)
+    return [Chunk(response_str)]
     
         
 def check_response(json_response) -> dict:
@@ -319,25 +329,29 @@ def convert_response(response, user_id, chat_id, ctx):
     full_response = ''
     for chunk in response:
         full_response += chunk.text
-        # Split the response into words to make the response more human-like (optional)
         msg = {"choices": [{"delta": {"content": f"{chunk.text}"}, "finish_reason": None}]}
-        yield f"data: {json.dumps(msg)}\n\n"
+        try:
+            yield f"data: {json.dumps(msg)}\n\n"
+            time.sleep(5)
+        except GeneratorExit:
+            print("Connection closed by client.")
+            return
+        except Exception as e:
+            print(f"Error in convert_response: {e}")
+            return
 
-    # Save the response on the database
     try:
         json_response = json.loads(full_response)
-        # Check if the response is valid
         error = check_response(json_response)
         if error.get('error', 0) != 0:
             raise Exception(error['message'])
-        
+
         with ctx:
             tickets = []
             message = Message(user_id=user_id, chat_id=chat_id, message=json_response['answer'], source=False)
             for ref in json_response['references']:
                 ticket = Ticket(
                     message_id=message.id,
-                    # Content
                     accident_id=ref['accident_id'],
                     event_type=ref['event_type'],
                     industry_type=ref['industry_type'],
@@ -346,27 +360,22 @@ def convert_response(response, user_id, chat_id, ctx):
                     color=ref['color']
                 )
                 tickets.append(ticket)
-            
+
             message.tickets = tickets
-            
-            # Save the message and tickets
+
             for ticket in tickets:
                 ticket.save()
             message.save()
-            
+
         print('Response saved')
-        
+
     except json.JSONDecodeError:
         raise Exception('Invalid response from the model')
-    
-    
-    # Final message to stop the conversation
+
     final_chunk = {
         "choices": [{"delta": {"content": ""}, "finish_reason": "stop"}]
     }
     yield f"data: {json.dumps(final_chunk)}\n\n"
-    
-    
-    
+
     
     
