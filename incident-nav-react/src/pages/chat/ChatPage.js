@@ -186,9 +186,9 @@ export default function ChatPage({ }) {
                 <ChatView listMessages={listMessages} setFocusOn={setFocusOn} />
                 <ChatTickets listMessages={listMessages} focusOn={focusOn}/>
                 <ChatInput sendInput={send} isBusy={isBusy} abortResponse={abortResponse} />
-                <p>
+                {/* <p>
                     {responseError ? `${responseError.message || responseError.toString()}${responseError.stack ? `\n${responseError.stack.split('\n')[1]}` : ''}` : ''}
-                </p>
+                </p> */}
             </div>
         </div>
     )

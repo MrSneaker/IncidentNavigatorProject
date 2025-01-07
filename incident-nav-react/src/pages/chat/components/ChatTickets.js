@@ -92,6 +92,10 @@ export default function ChatTickets({ listMessages, focusOn }) {
                                     <span className='font-italic'>
                                         Industry: {ticket.industry_type}
                                     </span>
+                                    <br/>
+                                    <span className='font-italic'>
+                                        Url: <a href={ticket.url}>{ticket.url}</a>
+                                    </span>
                                 </div>
                             </li>
                         ))

@@ -41,6 +41,7 @@ class CustomJSONEncoder(json.JSONEncoder):
 
 def retrieve(data):
     industries = data['industries']
+    print(industries)
     query = data['question']
     retriever = create_retriever(industries)
     docs = retriever.invoke(query)

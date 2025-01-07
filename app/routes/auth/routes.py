@@ -49,7 +49,6 @@ def login():
         return {'error': 1, 'message': 'Email is required', 'data': None}, 400
     if not password:
         return {'error': 2, 'message': 'Password is required', 'data': None}, 400
-
     user: User = User.get_user(email=email)
     err = 1 if user is None else 2 if not bcrypt.check_password_hash(user.password, password) else 0
     if not err:
