@@ -205,6 +205,9 @@ def send_msg():
         
         if response.status_code == 200:
             logging.error(f'Model response = {response.json()}')
+            
+            manage_model_response(response, user_id, chat_id, chat)
+            
             return response.json(), 200
         else:
             return {
@@ -214,6 +217,7 @@ def send_msg():
             }, response.status_code
 
     except Exception as e:
+        logging.error(e)
         return {
             'error': 8,
             'message': 'An error occurred while invoking the chain',
@@ -344,6 +348,25 @@ def check_response(json_response) -> dict:
             if 'color' not in ref:
                 return {'error': 11, 'message': 'Missing color field'}
     return {'error': 0, 'message': 'Response is valid'}
+
+
+def manage_model_response(response, user_id, chat_id, chat):
+    data = response.json()
+    assistant_msg = Message(user_id=user_id, chat_id=chat_id, message=data['answer'], source=False)
+    chat.add_message(assistant_msg)
+            
+    for ticket_data in data['references']:
+        ticket = Ticket(
+            message_id=assistant_msg.id,
+            accident_id=ticket_data.get('accident_id', -1),
+            event_type=ticket_data.get('event_type', 'Not available'),
+            industry_type=ticket_data.get('industry_type', 'Not available'),
+            title=ticket_data.get('accident_title', 'Not available'),
+            url=ticket_data.get('url', 'Not available'),
+            color=ticket_data.get('color', '#FFFFFF')
+        )
+        ticket.save()
+            
     
 
 def convert_response(response, user_id, chat_id, ctx):

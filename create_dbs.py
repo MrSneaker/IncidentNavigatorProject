@@ -1,5 +1,5 @@
 import pandas as pd
-import mysql.connector
+# import mysql.connector
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain_core.documents import Document
 import weaviate
