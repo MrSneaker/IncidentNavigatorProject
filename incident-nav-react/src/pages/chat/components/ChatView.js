@@ -24,9 +24,14 @@ export default function ChatView({ listMessages, setFocusOn, ...props }) {
 
     function searchLastVisibleIndex() {
         // get the chat view
-        const chat = document.getElementById('chat-view');
-        const messages = chat.getElementsByClassName('message');
+        const chat = document.querySelector('#chat-view');
+        const messages = chat.querySelectorAll('.message');
         setLastVisibleIndex(-1);
+
+        if (chat.scrollHeight - chat.scrollTop === chat.clientHeight) {
+            setLastVisibleIndex(messages.length - 1);
+            return lastVisibleIndex;
+        }
 
         let minDistance = chat.clientHeight;
         for (let i = 0; i < messages.length; i++) {
@@ -54,7 +59,7 @@ export default function ChatView({ listMessages, setFocusOn, ...props }) {
     }
 
     useEffect(() => {
-        const chat = document.getElementById('chat-view');
+        const chat = document.querySelector('#chat-view');
         const resizeObserver = new ResizeObserver(handleResize);
         resizeObserver.observe(chat);
         chat.addEventListener('scroll', onScroll);
@@ -65,7 +70,7 @@ export default function ChatView({ listMessages, setFocusOn, ...props }) {
     }, []);
 
     useEffect(() => {
-        const chat = document.getElementById('chat-view');
+        const chat = document.querySelector('#chat-view');
         chat.scrollTop = chat.scrollHeight;
         searchLastVisibleIndex();
     }, [listMessages]);

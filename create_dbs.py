@@ -19,7 +19,6 @@ warnings.filterwarnings("ignore")
 MONGO_URI = "mongodb://root:root@localhost:27017/"
 DATABASE_NAME = "incident_db"
 COLLECTION_NAME = "incident_collection"
-# weaviate_client = weaviate.connect_to_local()
 
 http_host = "localhost"
 http_port = 8081
@@ -135,7 +134,9 @@ if __name__ == "__main__":
                 }
             )
         )
+    print("Weaviate Documents created --- Filling the database")
     db = WeaviateVectorStore.from_documents(weaviate_docs, embeddings, client=weaviate_client, index_name="incident")
+    print("Database filled")
 
     # Create and populate Mongo Database
     mongo_docs = [preprocess_row(row) for row in cleaned_data.to_dict(orient="records")]

@@ -12,7 +12,15 @@ import json
 MONGO_URI = "mongodb://root:root@localhost:27017/"
 DATABASE_NAME = "incident_db"
 COLLECTION_NAME = "incident_collection"
-weaviate_client = weaviate.connect_to_local(port=8081)
+
+http_host = "localhost"
+http_port = 8081
+http_secure = False
+grpc_host = "localhost"
+grpc_port = 50051
+grpc_secure = False
+
+weaviate_client = weaviate.connect_to_custom(http_host, http_port, http_secure, grpc_host, grpc_port, grpc_secure)
 embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-large-v2", cache_folder="./embedding_model")
 
 def get_documents_ids(retrieved_docs):

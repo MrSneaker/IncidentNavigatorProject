@@ -31,11 +31,11 @@ export default function ChatTickets({ listMessages, focusOn }) {
     }, []);
 
     useEffect(() => {
-        if (focusOn < 0){
+        if (focusOn < 0) {
             setListTickets([])
         }
-        const list =  listMessages[focusOn]?.parts.references
-        if (!list){
+        const list = listMessages[focusOn]?.parts.references
+        if (!list) {
             setListTickets([])
         } else {
             setListTickets(list)
@@ -68,31 +68,39 @@ export default function ChatTickets({ listMessages, focusOn }) {
             >
                 <ul className='flex flex-wrap w-full gap-2 '>
                     {
-                       listTickets.map((ticket, index) => (
+                        listTickets.map((ticket, index) => (
                             <li
                                 key={index}
-                                className='flex flex-col items-start justify-start gap-2 p-2 rounded-lg bg-black/10 w-max-[200px] w-full'
-                                style={{ maxWidth: width / 2 - 30 + 'px'}}
+                                className='flex flex-col items-start justify-start gap-2 p-2 rounded-lg bg-black/10 w-max-[200px] w-full transition-colors duration-200 hover:bg-black/20'
+                                style={{ maxWidth: width / 2 - 20 + 'px' }}
                             >
-                                {/* Hea10pxder */}
-                                <div
-                                    className='flex flex-row items-start justify-start gap-2 w-full'
-                                    style={{ color: ticket.color }}
+                                <a
+                                    href={ticket.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full h-full flex flex-col items-start justify-start gap-2"
+                                    style={{ textDecoration: 'none', color: 'inherit' }} // Keep original styles
                                 >
-                                    <span className='font-bold'>#{ticket.accident_id}</span>
-                                    <span className='font-bold w-full'>{ticket.event_type}</span>
-                                </div>
-                                <hr className='w-full border-t border-gray-300 opacity-30' />
-                                {/* Body */}
-                                <div className='flex flex-col items-start justify-start gap-2 w-full'>
-                                    <span>{ticket.accident_title}</span>
-                                </div>
-                                {/* Footer */}
-                                <div>
-                                    <span className='font-italic'>
-                                        Industry: {ticket.industry_type}
-                                    </span>
-                                </div>
+                                    {/* Header */}
+                                    <div
+                                        className='flex flex-row items-start justify-start gap-2 w-full'
+                                        style={{ color: ticket.color }}
+                                    >
+                                        <span className='font-bold'>#{ticket.accident_id}</span>
+                                        <span className='font-bold w-full'>{ticket.event_type}</span>
+                                    </div>
+                                    <hr className='w-full border-t border-gray-300 opacity-30' />
+                                    {/* Body */}
+                                    <div className='flex flex-col items-start justify-start gap-2 w-full'>
+                                        <span>{ticket.accident_title}</span>
+                                    </div>
+                                    {/* Footer */}
+                                    <div>
+                                        <span className='font-italic'>
+                                            Industry: {ticket.industry_type}
+                                        </span>
+                                    </div>
+                                </a>
                             </li>
                         ))
                     }
@@ -100,6 +108,6 @@ export default function ChatTickets({ listMessages, focusOn }) {
                 </ul>
 
             </div>
-        </div>
+        </div >
     )
 }

@@ -1,16 +1,19 @@
+import logging
 import os
 import json
 import time
 import datetime
 from flask import request, Response, current_app
 import google.generativeai as genai
-from werkzeug.exceptions import ClientDisconnected
+import requests
 
 from . import chat
 from .models import Chat, Message, Ticket
 from .utils.jwt_utils import token_required, verify_jwt
 
 genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
+
+LLM_URI = "http://localhost:8000/invoke"
 
 def get_uid():
     """
@@ -187,21 +190,41 @@ def send_msg():
     
     # history : is a list of messages of all the chat history before the current message
     # msg     : is the current message that the user sent
-    response = random_test_response()
+    
+    payload = {
+        "user_id": user_id,
+        "chat_id": chat_id,
+        "question": message,
+        "industries": 'all' # TODO : Add industries in User account information
+    }
 
     try:
-        return current_app.response_class(
-            convert_response(response, user_id, chat_id, current_app.app_context()),
-            content_type='text/event-stream'
-        )
-    except ClientDisconnected:
-        print("Client disconnected.")
-        return '', 204
+        response = requests.post(LLM_URI, json=payload)
+
+        logging.error(f'Model response = {response}')
+        
+        if response.status_code == 200:
+            logging.error(f'Model response = {response.json()}')
+            
+            manage_model_response(response, user_id, chat_id, chat)
+            
+            return response.json(), 200
+        else:
+            return {
+                'error': 7,
+                'message': 'Failed to invoke chain',
+                'data': response.json()
+            }, response.status_code
+
     except Exception as e:
-        print(f"Unexpected error: {e}")
-        return {'error': 7, 'message': 'Unexpected error', 'data': None}, 500
+        logging.error(e)
+        return {
+            'error': 8,
+            'message': 'An error occurred while invoking the chain',
+            'data': str(e)
+        }, 500
     
-def random_test_response():
+def test_response(_, user_id, chat_id, ctx):
     import random
     respose_json = [
         {
@@ -323,6 +346,25 @@ def check_response(json_response) -> dict:
             if 'color' not in ref:
                 return {'error': 11, 'message': 'Missing color field'}
     return {'error': 0, 'message': 'Response is valid'}
+
+
+def manage_model_response(response, user_id, chat_id, chat):
+    data = response.json()
+    assistant_msg = Message(user_id=user_id, chat_id=chat_id, message=data['answer'], source=False)
+    chat.add_message(assistant_msg)
+            
+    for ticket_data in data['references']:
+        ticket = Ticket(
+            message_id=assistant_msg.id,
+            accident_id=ticket_data.get('accident_id', -1),
+            event_type=ticket_data.get('event_type', 'Not available'),
+            industry_type=ticket_data.get('industry_type', 'Not available'),
+            title=ticket_data.get('accident_title', 'Not available'),
+            url=ticket_data.get('url', 'Not available'),
+            color=ticket_data.get('color', '#FFFFFF')
+        )
+        ticket.save()
+            
     
 
 def convert_response(response, user_id, chat_id, ctx):

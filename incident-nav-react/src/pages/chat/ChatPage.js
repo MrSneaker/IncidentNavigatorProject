@@ -41,121 +41,35 @@ export default function ChatPage({ }) {
         setPostMessage(msg);
     }
 
-    // On postMessage change, send message to chat
     useEffect(() => {
         setSendError("")
         if (postMessage.length > 0) {
-            // Send message to chat
-            setBusy(true)
-            abortControllerRef.current = new AbortController();
-            const signal = abortControllerRef.current.signal;
-            const response = sendMessage(chatId, postMessage, signal);
-            // Handle the stream response
-            response.then((response) => {
-                const reader = response.body.getReader();
-                return new ReadableStream({
-                    start(controller) {
-
-                        function push() {
-                            return reader.read().then(({ done, value }) => {
-                                if (done) {
-                                    setBusy(false);
-                                    controller.close();
-                                    return;
-                                }
-                                const chunk = new TextDecoder("utf-8").decode(value);
-                                controller.enqueue(chunk);
-                                return push();
-                            });
-                        }
-
-                        push();
-                    }
-
+            // Send the message
+            setBusy(true);
+            abortController = new AbortController()
+            sendMessage(chatId, postMessage, abortController.signal)
+                .then(async (response) => {
+                    const jsonResponse = await response.json();
+                    setListMessages((prevMessages) => [
+                        ...prevMessages,
+                        { source: 'model', status: 1, parts: jsonResponse },
+                    ]);
                 })
-            })
-                .catch(handleError)
-                .then(handleStream)
-            setPostMessage('');
+                .catch((error) => {
+                    setError(error);
+                    console.error('Error while managing answer', error);
+                })
+                .finally(() => {
+                    setBusy(false);
+                    setPostMessage('');
+                });
         }
-
     }, [postMessage]);
-
-    function handleStream(stream) {
-        const reader = stream.getReader();
-        const lm = listMessages;
-        let isCancelled = false;
-        let accumulatedChunks = '';
-        let completedReply = '';
-        setListMessages([...lm, { "source": "model", status: 0, "parts": { answer: '', references: [] } }])
-
-        function process({ done, value }) {
-            if (isCancelled) return; // Arrêter si annulé
-            if (!done) {
-                // Extract json
-                accumulatedChunks += value
-                let jsonMessages;
-                let isValidChunk = false;
-                if (accumulatedChunks.indexOf('data: ') !== -1) {
-                    jsonMessages = accumulatedChunks.split('data: ').filter(Boolean);
-                    isValidChunk = true;
-                }
-
-                if (isValidChunk) {
-                    accumulatedChunks = jsonMessages.pop(); // Keep the incomplete message for the next iteration
-                    completedReply = handleChunk(jsonMessages, completedReply);
-                    setListMessages([...lm, { "source": "model", status: 0, "parts": completedReply }])
-                }
-                return reader.read().then(process);
-            }
-            else {
-                const parts = JSON.parse(completedReply);
-                setListMessages([...lm, { "source": "model", status: 1, "parts": parts }])
-            }
-        }
-
-        reader.read().then(process).catch(
-            (error) => {
-                if (error.name !== 'AbortError') {
-                    console.log(error);
-                }
-
-            }
-        );
-
-        return () => {
-            isCancelled = true;
-            reader.cancel();
-        }
-    }
-
-    useEffect(() => {
-        console.log(isBusy);
-    }, [isBusy]);
 
     function handleError(error) {
         setBusy(false);
-        console.log(error)
-    }
-
-
-    function handleChunk(jsonMessages, completedReply) {
-        for (const jsonMsg of jsonMessages) {
-            if (jsonMsg.trim() !== '') {
-                const msg = JSON.parse(jsonMsg);
-                let reply = '';
-                // Extract the generated reply from the response
-                if (msg.choices[0].finish_reason !== 'stop') {
-                    reply = msg.choices[0].delta.content;
-                }
-
-                // Handle the generated reply as desired
-                if (reply) {
-                    completedReply += reply;
-                }
-            }
-        }
-        return completedReply;
+        setError(error);
+        console.error(error)
     }
 
     function abortResponse() {

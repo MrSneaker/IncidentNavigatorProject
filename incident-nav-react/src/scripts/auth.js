@@ -106,9 +106,10 @@ async function getCurrent() {
     try {
         const response = await fetch('/auth/@me', {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
+            headers: { 
+            'Content-Type': 'application/json',
+            },
+            credentials: 'include',
         });
         if (response.status === 500) {
             return { error: 500, message: "Internal server error" }

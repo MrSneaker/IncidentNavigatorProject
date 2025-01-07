@@ -1,14 +1,16 @@
 from flask import Flask, send_from_directory
+from flask_cors import CORS
 from config import ApplicationConfig
 from flask_sqlalchemy import SQLAlchemy
-
 from routes import db
-from routes.auth import auth, session, cors, bcrypt
+from routes.auth import auth, session, bcrypt
 from routes.chat import chat
 
 config = ApplicationConfig()
 app = Flask(__name__, static_folder='public')
 app.config.from_object(config)
+
+CORS(app,origins="*", supports_credentials=True)
 
 # Add /auth and /chat routes
 app.register_blueprint(auth, url_prefix='/auth')
@@ -33,16 +35,8 @@ def files(path):
 
 
 with app.app_context():
-    # Initialize bcrypt
     bcrypt.init_app(app)
-    
-    # Initialize cors
-    cors.init_app(app)
-    
-    # Initialize session
-    session.init_app(app)
-    
-    # Init databases
+    session.init_app(app)  # Keep this if you need session management
     db.init_app(app)
     with app.app_context():
         db.create_all()

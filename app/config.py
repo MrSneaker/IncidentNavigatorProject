@@ -23,6 +23,3 @@ class ApplicationConfig:
     SESSION_REDIS = redis.from_url("redis://127.0.0.1:6379")
     SESSION_COOKIE_SAMESITE = 'Strict'
     PERMANENT_SESSION_LIFETIME = timedelta(minutes=30)
-    
-    GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
-    GEMINI_MAX_TOKENS = 2000
