@@ -195,7 +195,7 @@ def send_msg():
         "user_id": user_id,
         "chat_id": chat_id,
         "question": message,
-        "industries": ['all'] # TODO : Add industries in User account information
+        "industries": 'all' # TODO : Add industries in User account information
     }
 
     try:
