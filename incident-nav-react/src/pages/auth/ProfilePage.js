@@ -1,18 +1,16 @@
-import React from 'react';
-import { getCurrent, rename } from '../scripts/auth';
+import React, { useState, useEffect } from 'react';
+import { getCurrent, rename } from '../../scripts/auth';
 import { FaSave } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
 
 export default function ProfilePage() {
-    const navigate = useNavigate();
-    const [usernameError, setUsernameError] = React.useState(''); // Initialize usernameError state variable
-    const [emailError, setEmailError] = React.useState(''); // Initialize emailError state variable
-    const [currentUsername, setCurrentUsername] = React.useState(''); // Initialize currentUsername state variable
-    const [currentEmail, setCurrentEmail] = React.useState(''); // Initialize currentEmail state variable
-    const [userName, setUserName] = React.useState(''); // Initialize userName state variable
-    const [userEmail, setUserEmail] = React.useState(''); // Initialize userEmail state variable
+    const [usernameError, setUsernameError] = useState(''); // Initialize usernameError state variable
+    const [emailError, setEmailError] = useState(''); // Initialize emailError state variable
+    const [currentUsername, setCurrentUsername] = useState(''); // Initialize currentUsername state variable
+    const [currentEmail, setCurrentEmail] = useState(''); // Initialize currentEmail state variable
+    const [userName, setUserName] = useState(''); // Initialize userName state variable
+    const [userEmail, setUserEmail] = useState(''); // Initialize userEmail state variable
 
-    React.useEffect(() => {
+    useEffect(() => {
         getCurrent().then(response => {
             if (response.error) {
                 console.error(response.error);

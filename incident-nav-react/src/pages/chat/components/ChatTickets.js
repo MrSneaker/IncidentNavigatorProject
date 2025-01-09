@@ -13,7 +13,6 @@ export default function ChatTickets({ listMessages, focusOn }) {
 
     useEffect(() => {
         function handleResize() {
-            const footer = document.querySelector('footer');
             const chat = document.getElementById('chat-container');
             // t = chat top position + chat height + 10px
             const t = chat.offsetTop;

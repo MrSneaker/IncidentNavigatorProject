@@ -1,7 +1,7 @@
 from flask import request, session
 from . import auth, bcrypt
 from .models import User
-from ..chat.utils.jwt_utils import generate_jwt
+from ..chat.utils.token import generate_jwt
 
 
 @auth.route('/@me', methods=['GET'])

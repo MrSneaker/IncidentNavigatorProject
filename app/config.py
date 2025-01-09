@@ -1,7 +1,6 @@
 from dotenv import load_dotenv
 from datetime import timedelta
-from routes.chat.utils.jwt_utils import SECRET_KEY
-import os
+from routes.chat.utils.token import SECRET_KEY
 import redis
 
 load_dotenv()

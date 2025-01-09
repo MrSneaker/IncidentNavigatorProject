@@ -1,8 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask import current_app
 import datetime
 from uuid import uuid4
+from typing import List
 
-from .. import db
+from ... import db
 
 def get_uuid():
     return uuid4().hex
@@ -23,20 +25,36 @@ class Ticket(db.Model):
     
     def __repr__(self):
         return f'<Ticket {self.ticket_id}>'
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'message_id': self.message_id,
+            'created_at': self.created_at,
+            'accident_id': self.accident_id,
+            'event_type': self.event_type,
+            'industry_type': self.industry_type,
+            'title': self.title,
+            'url': self.url,
+            'color': self.color
+        }
 
-    
-    def get_message(self):
-        return Message.query.get(self.message_id)
-    
-    def get_chat(self):
-        return self.get_message().get_chat()
-    
     def save(self):
         db.session.add(self)
         db.session.commit()
 
 
 class Message(db.Model):
+    # Source values
+    SOURCE_MODEL = False
+    SOURCE_USER = True
+    
+    # Status values
+    STATUS_ERROR = -1
+    STATUS_PENDING = 0
+    STATUS_SUCCESS = 1
+    
+    # Table
     __tablename__ = 'messages'
     id = db.Column(db.String(32), primary_key=True, unique=True, default=get_uuid)
     user_id = db.Column(db.String(32), db.ForeignKey('users.id'), nullable=False)
@@ -47,9 +65,9 @@ class Message(db.Model):
     tickets = db.relationship('Ticket', backref='message', lazy=True)
     status = db.Column(db.Integer, default=0, nullable=False)
     
-    def list_tickets(self):
-        return [ticket.to_dict() for ticket in self.tickets]
-    
+    def list_tickets(self) -> List[Ticket]:
+        return Ticket.query.filter_by(message_id=self.id).all()
+        
     def __repr__(self):
         return f'<Message {self.message}>'
     
@@ -61,11 +79,10 @@ class Message(db.Model):
             'source': self.source,
             'message': self.message,
             'status': self.status,
+            'tickets': [ticket.to_dict() for ticket in self.list_tickets()],
             'created_at': self.created_at
         }
     
-    def get_chat(self):
-        return Chat.query.get(self.chat_id)
     
     def save(self):
         db.session.add(self)
@@ -83,27 +100,80 @@ class Chat(db.Model):
     def __repr__(self):
         return f'<Chat {self.message}>'
     
-    def rename(self, name):
-        self.name = name
-        self.updated_at = datetime.datetime.now()
+    @staticmethod
+    def create(user_id: str, name: str) -> 'Chat | None':
+        if not user_id:
+            return None
+        if not name:
+            name = 'New Chat'
+        chat = Chat(user_id=user_id, name=name)
+        db.session.add(chat)
         db.session.commit()
-    
-    def get_messages(self) -> Message | None:
-        return Message.query.filter_by(user_id=self.user_id, chat_id=self.id).all()
-    
-    def add_message(self, msg: Message):
-        msg.chat_id = self.id
-        msg.user_id = self.user_id
-        db.session.add(msg)
-        db.session.commit()
-        
-    def delete(self):
+        return chat
+
+    def delete(self) -> bool:
         messages = Message.query.filter_by(chat_id=self.id).all()
         for message in messages:
             db.session.delete(message)
         db.session.delete(self)
         db.session.commit()
+        return True
+
+    @staticmethod
+    def list(user_id: str) -> List['Chat']:
+        return Chat.query.filter_by(user_id=user_id).all() if user_id else []
+
+    @staticmethod
+    def get(user_id: str, chat_id: str) -> 'Chat | None':
+        return Chat.query.filter_by(user_id=user_id, id=chat_id).first() if user_id and chat_id else None
+
+    def rename(self, name) -> bool:
+        if not name:
+            return False
+        self.name = name
+        self.updated_at = datetime.datetime.now()
+        db.session.commit()
+        return True
+    
+    def messages(self) -> List[Message]:
+        return Message.query.filter_by(user_id=self.user_id, chat_id=self.id).all()
+    
+    def add_message(self, msg: Message | dict) -> bool:
+        if isinstance(msg, dict):
+            msg = Message(**msg)
+            
+        if msg.chat_id != self.id:
+            return False
+        msg.chat_id = self.id
+        msg.user_id = self.user_id
+        db.session.add(msg)
+        db.session.commit()
+        return True
+    
+    def remove_message(self, msg: Message | str) -> bool:
+        if isinstance(msg, str):
+            msg = Message.query.get(msg)
+        if msg.chat_id != self.id:
+            return False
         
+        db.session.delete(msg)
+        db.session.commit()
+        return True
+    
+    def history(self):
+        return [
+            {'role': 'user' if message.source else 'model', 'parts': message.message}
+            for message in self.messages()
+        ]
+        
+    def last_updated(self):
+        msgs = self.messages()
+        last_updated = self.updated_at
+        for msg in msgs:
+            if msg.created_at > last_updated:
+                last_updated = msg.created_at
+        return last_updated
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -112,28 +182,3 @@ class Chat(db.Model):
             'created_at': int(self.created_at.timestamp() * 1000),
             'modified_at': int(self.last_updated().timestamp() * 1000),
         }
-
-    def history(self):
-        return [
-            {'role': 'user' if message.source else 'model', 'parts': message.message}
-            for message in self.get_messages()
-        ]
-        
-    def last_updated(self):
-        msgs = self.get_messages()
-        last_updated = self.updated_at
-        for msg in msgs:
-            if msg.created_at > last_updated:
-                last_updated = msg.created_at
-        return last_updated
-    
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-        
-    @staticmethod
-    def create(user_id, name):
-        chat = Chat(user_id=user_id, name=name)
-        db.session.add(chat)
-        db.session.commit()
-        return chat

@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthProvider } from './components/auth/AuthContext';
-import { logout, getCurrent } from './scripts/auth';
+import { logout } from './scripts/auth';
 
 // Pages
 import PrivateRoute from './components/auth/PrivateRoute';
 import NotLogRoute from './components/auth/NotLogRoute';
 import ChatPage from './pages/chat/ChatPage';
 import ChatOverviewPage from './pages/chat/ChatOverviewPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import ProfilePage from './pages/ProfilePage';
+import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
+import ProfilePage from './pages/auth/ProfilePage';
 import HomePage from './pages/HomePage';
 import Layout from './components/layout';
 

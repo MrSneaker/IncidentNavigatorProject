@@ -7,22 +7,20 @@ import { getListMessages, sendMessage, renameChat, chatInfo } from '@/scripts/ch
 
 
 
-export default function ChatPage({ }) {
+export default function ChatPage() {
     // Chat global information
     const [chatId, setChatId] = useState('');
     const [chatName, setChatName] = useState('Chat Title');
     const [chatNameError, setChatNameError] = useState('');
     // Chat content
     const [listMessages, setListMessages] = useState([]);
-    const [listErrors, setListErrors] = useState('');
     const [postMessage, setPostMessage] = useState('');
     const abortControllerRef = useRef(null);
     const [sendError, setSendError] = useState('');
     const [focusOn, setFocusOn] = useState(-1);
     const [isBusy, setBusy] = useState(false);
     const [responseError, setError] = useState(null);
-
-
+    
     function modifyChatName(name) {
         setChatNameError("");
         const response = renameChat(chatId, name);
@@ -41,29 +39,34 @@ export default function ChatPage({ }) {
         setPostMessage(msg);
     }
 
-    useEffect(() => {
+    function handlePostMessageChange(event) {
         setSendError("")
         if (postMessage.length > 0) {
             // Send the message
             setBusy(true);
-            abortController = new AbortController()
-            sendMessage(chatId, postMessage, abortController.signal)
+            const previousMessages = listMessages;
+            setListMessages([...previousMessages, { source: 'model', status: 0, parts: { answer: "Responding...", references: [] } }]);
+            abortControllerRef.current = new AbortController()
+
+            sendMessage(chatId, postMessage, abortControllerRef.current.signal)
                 .then(async (response) => {
                     const jsonResponse = await response.json();
-                    setListMessages((prevMessages) => [
-                        ...prevMessages,
-                        { source: 'model', status: 1, parts: jsonResponse },
-                    ]);
+                    setListMessages([...previousMessages, jsonResponse?.data]);
                 })
                 .catch((error) => {
-                    setError(error);
-                    console.error('Error while managing answer', error);
+                    if (error.name === 'AbortError') {
+                        setListMessages([...previousMessages, { source: 'model', status: -1, parts: { answer: "Request aborted", references: [] } }]);
+                    }
                 })
                 .finally(() => {
                     setBusy(false);
                     setPostMessage('');
                 });
         }
+    }
+
+    useEffect(() => {
+        handlePostMessageChange();
     }, [postMessage]);
 
     function handleError(error) {
@@ -89,7 +92,7 @@ export default function ChatPage({ }) {
 
         const chat = chatInfo(id);
         chat.then((response) => {
-            setChatName(response.name);
+            setChatName(response?.name);
         });
 
         // Update the list of message
@@ -107,17 +110,18 @@ export default function ChatPage({ }) {
             <div className='container flex flex-col w-full xl:w-[60%] h-[90%] items-center justify-center p-2 gap-2 rounded-3xl bg-black/10' id='chat-container'>
                 <ChatView listMessages={listMessages} setFocusOn={setFocusOn} />
                 <ChatTickets listMessages={listMessages} focusOn={focusOn} />
-                {listErrors && (
-                    <p className='text-red-500'>
-                        {listErrors}
-                    </p>
-                )}
-                <ChatInput sendInput={send} isBusy={isBusy} abortResponse={abortResponse} />
                 {responseError && (
                     <p>
                         {responseError}
                     </p>
                 )}
+                <ChatInput sendInput={send} isBusy={isBusy} abortResponse={abortResponse} />
+                {sendError && (
+                    <p>
+                        {sendError}
+                    </p>
+                )}
+
             </div>
         </div>
     )

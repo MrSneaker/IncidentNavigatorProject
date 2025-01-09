@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { register } from "../scripts/auth";
+import { register } from "../../scripts/auth";
 
 // Form fields
 const fields = [

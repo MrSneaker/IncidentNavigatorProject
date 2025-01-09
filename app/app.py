@@ -1,10 +1,12 @@
 from flask import Flask, send_from_directory
 from flask_cors import CORS
-from config import ApplicationConfig
 from flask_sqlalchemy import SQLAlchemy
+
 from routes import db
 from routes.auth import auth, session, bcrypt
 from routes.chat import chat
+from routes.llm import llm
+from config import ApplicationConfig
 
 config = ApplicationConfig()
 app = Flask(__name__, static_folder='public')
@@ -15,6 +17,7 @@ CORS(app,origins="*", supports_credentials=True)
 # Add /auth and /chat routes
 app.register_blueprint(auth, url_prefix='/auth')
 app.register_blueprint(chat, url_prefix='/chat')
+app.register_blueprint(llm, url_prefix='/llm')
 routes = [
     '/',
     '/login',
