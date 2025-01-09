@@ -121,7 +121,7 @@ const ChatOverview = () => {
                         {chats.map((chat) => (
                             <li key={chat.id}>
                                 <Link
-                                    to={`/chat/${chat.id}`}
+                                    to={`/chat?id=${chat.id}`}
                                     className="flex flex-row justify-between items-center p-4 border border-black/10 bg-light-surface dark:bg-dark-surface hover:bg-light-accent hover:dark:bg-dark-accent hover:scale-105 hover:cursor-pointer transition-transform relative group">
                                     <h3>{chat.name || <em className="opacity-50">Untitled Chat</em>}</h3>
                                     <p className="text-sm text-light-text dark:text-dark-text/50">
@@ -130,18 +130,20 @@ const ChatOverview = () => {
                                                 const prefix = chat.updated_at === chat.created_at ? 'Created' : 'Updated';
                                                 const diff = (currentTimestamp - new Date(chat.updated_at).getTime()) / 1000;
 
-                                                const years = Math.floor(diff / (60 * 60 * 24 * 365));
-                                                if (years > 0) return `${prefix} ${years} year${years > 1 ? 's' : ''} ago`;
-                                                const months = Math.floor(diff / (60 * 60 * 24 * 30));
-                                                if (months > 0) return `${prefix} ${months} month${months > 1 ? 's' : ''} ago`;
-                                                const days = Math.floor(diff / (60 * 60 * 24));
-                                                if (days > 0) return `${prefix} ${days} day${days > 1 ? 's' : ''} ago`;
-                                                const hours = Math.floor(diff / (60 * 60));
-                                                if (hours > 0) return `${prefix} ${hours} hour${hours > 1 ? 's' : ''} ago`;
-                                                const minutes = Math.floor(diff / (60));
-                                                if (minutes > 0) return `${prefix} ${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-                                                const seconds = Math.floor(diff);
-                                                if (seconds > 0) return `${prefix} ${seconds} second${seconds > 1 ? 's' : ''} ago`;
+                                                const units = [
+                                                    { name: 'year', seconds: 60 * 60 * 24 * 365 },
+                                                    { name: 'month', seconds: 60 * 60 * 24 * 30 },
+                                                    { name: 'day', seconds: 60 * 60 * 24 },
+                                                    { name: 'hour', seconds: 60 * 60 },
+                                                    { name: 'minute', seconds: 60 },
+                                                    { name: 'second', seconds: 1 }
+                                                ];
+                                                for (const unit of units) {
+                                                    const amount = Math.floor(diff / unit.seconds);
+                                                    if (amount > 0) {
+                                                        return `${prefix} ${amount} ${unit.name}${amount > 1 ? 's' : ''} ago`;
+                                                    }
+                                                }
                                                 return `${prefix} just now`;
                                             })()
                                         }

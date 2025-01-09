@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { AuthProvider } from './components/auth/AuthContext';
 import { logout } from './scripts/auth';
@@ -15,6 +15,14 @@ import ProfilePage from './pages/auth/ProfilePage';
 import HomePage from './pages/HomePage';
 import Layout from './components/layout';
 
+
+function ChatRoute() {
+  // http://localhost:3000/chat?id=e74e21132e1b4fce9f1dda981c5b40d1
+  const query = new URLSearchParams(useLocation().search);
+  const chatId = query.get('id');
+  return chatId ? <ChatPage chatId={chatId} /> : <ChatOverviewPage />;
+}
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
@@ -24,11 +32,10 @@ function App() {
 
     useEffect(() => {
       const response = logout();
-      console.log(response);
 
       setTimeout(() => {
         navigate('/');
-      }, 1000);
+      }, 500);
     }, [navigate]);
 
     return null;
@@ -40,6 +47,7 @@ function App() {
     const favicon = document.querySelector("link[rel='icon']");
     favicon.href = 'data:,';
   }, []);
+
   return (
     <Router>
       <Layout isAuthenticated={isAuthenticated} username={username}>
@@ -49,8 +57,7 @@ function App() {
             <Route path="/login" element={<NotLogRoute><LoginPage /></NotLogRoute>} />
             <Route path="/register" element={<NotLogRoute><RegisterPage /></NotLogRoute>} />
             <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-            <Route path="/chat/:id" element={<PrivateRoute><ChatPage /></PrivateRoute>} />
-            <Route path="/chat" element={<PrivateRoute><ChatOverviewPage /></PrivateRoute>} />
+            <Route path="/chat" element={<PrivateRoute><ChatRoute /></PrivateRoute>} />
             <Route path="/logout" element={<LogoutPage />} />
           </Routes>
         </AuthProvider>

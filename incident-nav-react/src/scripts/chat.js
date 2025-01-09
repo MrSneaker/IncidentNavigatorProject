@@ -1,5 +1,24 @@
+import { refreshToken } from "./auth";
+
+async function fetchWithToken(url, options, attempt = 0) {
+    const response = await fetch(url, options);
+
+    // If Unauthorized (401), try refreshing the token
+    if (response.status === 401 && attempt < 3) {
+        console.error(`Failed to fetch ${url} with token, refreshing token (attempt ${attempt + 1})`); 
+        const refreshResponse = await refreshToken();
+        if (refreshResponse.error === 0) {
+            // Retry the request with the new token
+            options.headers['Authorization'] = `Bearer ${sessionStorage.getItem('token')}`;
+            return fetchWithToken(url, options, attempt + 1);
+        }
+    }
+
+    return response;
+}
+
 async function newChat() {
-    const response = await fetch('/chat/new', {
+    const response = await fetchWithToken('/chat/new', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -24,7 +43,7 @@ async function newChat() {
 }
 
 async function delChat(id) {
-    const response = await fetch(`/chat/delete`, {
+    const response = await fetchWithToken(`/chat/delete`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -47,7 +66,7 @@ async function delChat(id) {
 }
 
 async function listChats() {
-    const response = await fetch('/chat/list', {
+    const response = await fetchWithToken('/chat/list', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -69,7 +88,7 @@ async function listChats() {
 }
 
 async function getListMessages(chat_id) {
-    const response = await fetch(`/chat/msgs?chat_id=${chat_id}`, {
+    const response = await fetchWithToken(`/chat/msgs?chat_id=${chat_id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -84,7 +103,7 @@ async function getListMessages(chat_id) {
 }
 
 async function sendMessage(chat_id, message, abortSignal) {
-    return await fetch(`/chat/send`, {
+    return await fetchWithToken(`/chat/send`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -96,7 +115,7 @@ async function sendMessage(chat_id, message, abortSignal) {
 }
 
 async function renameChat(chat_id, name) {
-    const response = await fetch(`/chat/rename`, {
+    const response = await fetchWithToken(`/chat/rename`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -115,15 +134,17 @@ async function renameChat(chat_id, name) {
 }
 
 async function chatInfo(chat_id) {
-    const response = await fetch(`/chat/info?id=${chat_id}`, {
+    const response = await fetchWithToken(`/chat/info?id=${chat_id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         }
     })
-    const response_json = await response.json()
-    return response_json?.data;
+    if (response.status >= 300) {
+        throw new Error(response.statusText)
+    }
+    return await response.json();
 }
 
 export { newChat, delChat, listChats, getListMessages, sendMessage, renameChat, chatInfo }

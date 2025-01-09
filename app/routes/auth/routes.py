@@ -95,10 +95,12 @@ def refresh_token():
     user_id = session.get('user_id', None)
     if user_id is None:
         return {'error': 1, 'message': 'Unauthorized', 'data': None}, 201
+    
     user: User = User.get_user(id=user_id)
     if user is None:
         return {'error': 2, 'message': 'User not found', 'data': None}, 202
-    token = generate_jwt(user.username)
+    
+    token = generate_jwt(user.id)
     return {'error': 0, 'message': 'Token refreshed', 'data': {
         'token': token
     }}, 200

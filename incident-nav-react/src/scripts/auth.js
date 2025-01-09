@@ -124,7 +124,7 @@ async function getCurrent() {
 
 async function refreshToken() {
     try {
-        const response = await fetch('/auth/refresh', {
+        const response = await fetch('/auth/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

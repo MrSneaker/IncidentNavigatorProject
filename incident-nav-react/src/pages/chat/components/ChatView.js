@@ -38,7 +38,6 @@ function changeColor(text) {
 
 function Markdown({ children, ...props }) {
     const content = changeColor(children)
-    console.log(content);
     return <ReactMarkdown rehypePlugins={[rehypeRaw]} {...props}>{content}</ReactMarkdown>
 }
 

@@ -23,19 +23,17 @@ routes = [
     '/login',
     '/register',
     '/chat',
-    '/chat/<path:path>',
     '/profile',
 ]
 
-# each reoute will return the public/index.html file
+# each route will return the public/index.html file
+# this is needed for react-router to work
 for route in routes:
     app.add_url_rule(route, f'index_{route}', lambda: send_from_directory('public', 'index.html'))
-
 
 @app.route('/<path:path>')
 def files(path):
     return send_from_directory('public', path)
-
 
 with app.app_context():
     bcrypt.init_app(app)
