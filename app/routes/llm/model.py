@@ -15,15 +15,6 @@ from .utils.retriever import retrieve
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
-model = ChatOpenAI(
-    openai_api_base="https://api.groq.com/openai/v1/",
-    model="llama-3.3-70b-versatile",
-    temperature=1,
-    api_key=API_KEY
-)
-
-memory = MemoryManager()
-
 def get_json_from_markdown(markdown_text):
     try:
         json_match = re.search(r'```json(.*?)```', markdown_text, re.DOTALL)
@@ -36,12 +27,28 @@ def get_json_from_markdown(markdown_text):
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON: {e}")
         return markdown_text
-
-
+        
 class LLM:
-    def __init__(self):
-        self.model = model
-        self.memory = memory
+    def __init__(self, config: dict):
+        """
+        Initialise l'objet LLM avec une configuration utilisateur.
+        
+        :param config: Dictionnaire contenant les paramètres pour configurer ChatOpenAI.
+        """
+        self.config = config
+        self.model = self.create_model()
+        self.memory = MemoryManager()
+
+    def create_model(self):
+        """
+        Crée une instance de ChatOpenAI en utilisant la configuration.
+        """
+        return ChatOpenAI(
+            openai_api_base=self.config.get("uri", ""),
+            model=self.config.get("model", "llama-3.3-70b-versatile"),
+            temperature=1,
+            api_key=self.config.get("api_key", os.getenv("API_KEY")),
+        )
 
     def get_memory(self, user_id, chat_id):
         return self.memory.get_memory(user_id, chat_id)
@@ -81,5 +88,5 @@ class LLM:
         except Exception as e:
             print(f"Error invoking chain: {e}")
             return {"error": str(e)}
-        
+
         

@@ -1,6 +1,6 @@
 async function getAllLLMs() {
     try {
-        const response = await fetch('/llm/llms', {
+        const response = await fetch('/llm-conf/llms', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,7 +21,7 @@ async function getAllLLMs() {
 }
 
 async function addLLM(uri, api_key, model) {
-    const response = await fetch('/llm/llm', {
+    const response = await fetch('/llm-conf/llm', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ async function addLLM(uri, api_key, model) {
 }
 
 async function deleteLLM(llmId) {
-    const response = await fetch(`/llm/llm/${llmId}`, {
+    const response = await fetch(`/llm-conf/llm/${llmId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ async function deleteLLM(llmId) {
 }
 
 async function updateLLM(llmId, uri, api_key, model) {
-    const response = await fetch(`/llm/llm/${llmId}`, {
+    const response = await fetch(`/llm-conf/llm/${llmId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ async function updateLLM(llmId, uri, api_key, model) {
 }
 
 async function getLLM(llmId) {
-    const response = await fetch(`/llm/llm/${llmId}`, {
+    const response = await fetch(`/llm-conf/llm/${llmId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -94,4 +94,20 @@ async function getLLM(llmId) {
     return data;
 }
 
-export { getAllLLMs, addLLM, deleteLLM, updateLLM, getLLM };
+async function selectLlm(llmId) {
+    const response = await fetch(`/llm-conf/select/${llmId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+    });
+
+    const data = await response.json();
+
+    return data;
+}
+
+
+
+export { getAllLLMs, addLLM, deleteLLM, updateLLM, getLLM, selectLlm };

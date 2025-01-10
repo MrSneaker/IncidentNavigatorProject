@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getCurrent, rename } from '../../scripts/auth';
 import { FaSave } from 'react-icons/fa';
 
@@ -73,7 +74,7 @@ export default function ProfilePage() {
             </h1>
 
             <div className="flex flex-col justify-start h-full w-full xl:w-[60%] p-3 gap-2 rounded-3xl bg-light-surface dark:bg-dark-surface shadow-lg">
-                <div className="flex flex-col gap-2 h-full">
+                <div className="flex flex-col gap-2 h-[25%]">
                     <label htmlFor="email" className="text-lg font-semibold dark:text-dark-text/50 text-light-text">Email:</label>
                     <input type="email" id="email" name="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)}
                         className="p-2 border border-black/20 dark:border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-light-accent dark:bg-dark-surface dark:text-dark-text" />
@@ -84,18 +85,7 @@ export default function ProfilePage() {
                         className="p-2 border border-black/20 dark:border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-light-accent dark:bg-dark-surface dark:text-dark-text" />
                     <p className="text-red-500 text-sm">{usernameError}</p>
                 </div>
-                <div>
-                    <h3 className="mt-4 text-lg font-semibold dark:text-dark-text/50 text-light-text">Industries:</h3>
-                    <ul>
-                        {currentIndustries.map(industry => (
-                            <li key={industry}>{industry}</li>
-                        ))}
-                        {currentIndustries.forEach(industry => {
-                            console.log('industry: ',industry)
-                        })
-                        }
-                    </ul>
-                </div>
+
                 <div className="flex justify-end mt-4">
                     <button className={`bg-green-500 text-white font-bold py-2 px-4 rounded-xl flex items-center ${userName === currentUsername && userEmail === currentEmail ? '' : 'hover:bg-green-700 hover:scale-110 transition-transform'}`}
                         onClick={saveUserProfile}
@@ -103,6 +93,19 @@ export default function ProfilePage() {
                         <FaSave className="inline-block mr-2" />
                         Save
                     </button>
+                </div>
+
+                <div>
+                    <h3 className="mt-4 text-lg font-semibold dark:text-dark-text/50 text-light-text">Industries:</h3>
+                    <ul>
+                        {currentIndustries.map(industry => (
+                            <li key={industry.id}>{industry.name}</li>
+                        ))}
+                        {currentIndustries.forEach(industry => {
+                            console.log('industry: ',industry)
+                        })
+                        }
+                    </ul>
                 </div>
             </div>
         </div>

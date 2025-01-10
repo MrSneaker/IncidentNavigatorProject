@@ -1,7 +1,7 @@
 import logging
 from flask import request, session
-from . import llm
-from ..config_llm.models import LLM
+from . import llmConf
+from .models import LLMConfig
 from ..auth.models import User
 
 logging.basicConfig(
@@ -12,20 +12,20 @@ logging.basicConfig(
     ]
 )
 
-@llm.route('/llms', methods=['GET'])
+@llmConf.route('/llms', methods=['GET'])
 def get_all_llm():
-    llm_models = LLM.query.all()
+    llm_models = LLMConfig.query.all()
     data = [model.to_dict() for model in llm_models]
     return {'error': 0, 'message': 'LLM models retrieved', 'llms': data}, 200
 
-@llm.route('/llm/<llm_id>', methods=['GET'])
+@llmConf.route('/llm/<llm_id>', methods=['GET'])
 def get_llm(llm_id):
-    llm_model = LLM.query.get(llm_id)
+    llm_model = LLMConfig.query.get(llm_id)
     if not llm_model:
         return {'error': 1, 'message': 'LLM model not found', 'data': None}, 404
     return {'error': 0, 'message': 'LLM model retrieved', 'data': llm_model.to_dict()}, 200
 
-@llm.route('/llm', methods=['POST'])
+@llmConf.route('/llm', methods=['POST'])
 def add_llm_route():
     user_id = session.get('user_id', None)
     if user_id is None:
@@ -44,9 +44,9 @@ def add_llm_route():
     if not uri or not api_key or not model:
         return {'error': 3, 'message': 'URI, API key and model name are required', 'data': None}, 400
 
-    return LLM.add_llm(uri, api_key, model)
+    return LLMConfig.add_llm(uri, api_key, model, False)
 
-@llm.route('/llm/<llm_id>', methods=['PUT'])
+@llmConf.route('/llm/<llm_id>', methods=['PUT'])
 def update_llm(llm_id):
     user_id = session.get('user_id', None)
     if user_id is None:
@@ -56,7 +56,7 @@ def update_llm(llm_id):
     if user is None or not user.admin:
         return {'error': 2, 'message': 'Permission denied', 'data': None}, 403
 
-    llm_model = LLM.query.get(llm_id)
+    llm_model = LLMConfig.query.get(llm_id)
     if not llm_model:
         return {'error': 3, 'message': 'LLM model not found', 'data': None}, 404
 
@@ -73,7 +73,7 @@ def update_llm(llm_id):
 
     return {'error': 0, 'message': 'LLM model updated', 'data': llm_model.to_dict()}, 200
 
-@llm.route('/llm/<llm_id>', methods=['DELETE'])
+@llmConf.route('/llm/<llm_id>', methods=['DELETE'])
 def delete_llm(llm_id):
     user_id = session.get('user_id', None)
     if user_id is None:
@@ -83,19 +83,23 @@ def delete_llm(llm_id):
     if user is None or not user.admin:
         return {'error': 2, 'message': 'Permission denied', 'data': None}, 403
 
-    llm_model = LLM.query.get(llm_id)
+    llm_model = LLMConfig.query.get(llm_id)
     if not llm_model:
         return {'error': 3, 'message': 'LLM model not found', 'data': None}, 404
 
-    LLM.delete_llm(llm_model.id)
+    LLMConfig.delete_llm(llm_model.id)
 
     return {'error': 0, 'message': 'LLM model deleted', 'data': None}, 200
 
-@llm.route('/llm/<llm_id>/partial-api-key', methods=['GET'])
+@llmConf.route('/llm/<llm_id>/partial-api-key', methods=['GET'])
 def get_partial_api_key(llm_id):
-    llm_model = LLM.query.get(llm_id)
+    llm_model = LLMConfig.query.get(llm_id)
     if not llm_model:
         return {'error': 1, 'message': 'LLM model not found', 'data': None}, 404
 
     partial_api_key = llm_model.get_partial_api_key()
     return {'error': 0, 'message': 'Partial API key retrieved', 'data': {'partial_api_key': partial_api_key}}, 200
+
+@llmConf.route('/select/<id>', methods=['POST'])
+def select_llm(id):
+    return LLMConfig.select_llm(id)

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { getUsers, updateUserIndustries, deleteUser } from '../scripts/auth';
 import { getAllIndustries } from '../scripts/industry';
-import { getAllLLMs, addLLM, deleteLLM, updateLLM } from '../scripts/llm';
+import { getAllLLMs, addLLM, deleteLLM, updateLLM, selectLlm } from '../scripts/llm';
 import { FaEdit, FaPlus, FaMinus, FaTrash } from 'react-icons/fa';
 import { AuthContext } from '../components/auth/AuthContext';
 
@@ -13,7 +13,7 @@ export default function SettingsPage() {
     const [model, setModel] = useState('');
     const [industriesList, setIndustriesList] = useState([]);
     const [llmList, setLlmList] = useState([]);
-    const [newLlm, setNewLlm] = useState({ uri: '', apiKey: '', model: '' });
+    const [newLlm, setNewLlm] = useState({ uri: '', apiKey: '', model: '', selected: false });
     const [selectedLlm, setSelectedLlm] = useState(null);
     const [expandedPanels, setExpandedPanels] = useState({});
     const { user } = useContext(AuthContext);
@@ -173,6 +173,19 @@ export default function SettingsPage() {
         });
     };
 
+    const handleSelectLlm = (id) => {
+        selectLlm(id).then(data => {
+            console.log('data : ', data)
+            if (!data.error) {
+                setLlmList(llmList.map(llm => ({
+                    ...llm,
+                    selected: llm.id === id,
+                })));
+            }
+        });
+    };
+
+
     return (
         <div className="p-2 w-full mx-auto">
             <h1 className="text-2xl font-bold mb-6">Admin Settings</h1>
@@ -230,7 +243,7 @@ export default function SettingsPage() {
                             onClick={handleSaveSettings}
                             className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-700"
                         >
-                            Save Settings
+                            Save Configuration
                         </button>
                     </div>
                 </div>
@@ -294,6 +307,7 @@ export default function SettingsPage() {
                             <th className="p-4 font-semibold text-gray-700 dark:text-gray-300">URI</th>
                             <th className="p-4 font-semibold text-gray-700 dark:text-gray-300">Secret Key</th>
                             <th className="p-4"></th>
+                            <th className="p-4"></th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 dark:divide-neutral-700">
@@ -302,6 +316,14 @@ export default function SettingsPage() {
                                 <td className="p-4 text-gray-800 dark:text-gray-200">{llm.model}</td>
                                 <td className="p-4 text-gray-800 dark:text-gray-200">{llm.uri}</td>
                                 <td className="p-4 text-gray-800 dark:text-gray-200">{llm.api_key}</td>
+                                <td className="p-4 text-right">
+                                    <button
+                                        onClick={() => handleSelectLlm(llm.id)}
+                                        className={`py-2 px-4 rounded-md ${llm.selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+                                    >
+                                        {llm.selected ? 'Selected' : 'Select'}
+                                    </button>
+                                </td>
                                 <td className="p-4 text-right">
                                     <button
                                         onClick={() => handleDeleteLlm(llm.id)}

@@ -1,11 +1,13 @@
 import datetime
+import logging
 import os
 from uuid import uuid4
 from cryptography.fernet import Fernet
 from dotenv import load_dotenv
+
 from .. import db
 
-dotenv_path = "app/routes/config_llm/.env"
+dotenv_path = "app/routes/llm_config/.env"
 load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv("SECRET_KEY")
@@ -23,16 +25,17 @@ def get_uuid():
     return uuid4().hex
 
 
-class LLM(db.Model):
+class LLMConfig(db.Model):
     __tablename__ = 'llm'
     id = db.Column(db.String(32), primary_key=True,
                    unique=True, default=get_uuid)
     model = db.Column(db.String(255), nullable=False, unique=True)
-    uri = db.Column(db.String(255), nullable=False, unique=True)
+    uri = db.Column(db.String(255), nullable=False, unique=False)
     api_key_encrypted = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
     updated_at = db.Column(
         db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
+    selected = db.Column(db.Boolean, default=False, nullable=False)
 
     def to_dict(self):
         return {
@@ -44,10 +47,11 @@ class LLM(db.Model):
             'api_key': self.get_partial_api_key()
         }
 
-    def __init__(self, uri, api_key, model):
+    def __init__(self, uri, api_key, model, selected):
         self.uri = uri
         self.api_key_encrypted = self._encrypt_api_key(api_key)
         self.model = model
+        self.selected = selected
 
     def _encrypt_api_key(self, api_key):
         return cipher_suite.encrypt(api_key.encode('utf-8')).decode('utf-8')
@@ -73,12 +77,12 @@ class LLM(db.Model):
         db.session.commit()
 
     @staticmethod
-    def add_llm(uri, api_key, model):
-        existing_llm = LLM.query.filter_by(uri=uri).first()
+    def add_llm(uri, api_key, model, selected):
+        existing_llm = LLMConfig.query.filter_by(model=model).first()
         if existing_llm:
-            return {'error': 1, 'message': 'LLM with the same URI already exists', 'data': None}, 400
+            return {'error': 1, 'message': 'LLM with the same name already exists', 'data': None}, 400
 
-        new_llm = LLM(uri=uri, api_key=api_key, model=model)
+        new_llm = LLMConfig(uri=uri, api_key=api_key, model=model, selected=selected)
         db.session.add(new_llm)
         db.session.commit()
 
@@ -86,7 +90,7 @@ class LLM(db.Model):
 
     @staticmethod
     def delete_llm(id):
-        llm_model = LLM.query.get(id)
+        llm_model = LLMConfig.query.get(id)
         if not llm_model:
             return {'error': 1, 'message': 'LLM model not found', 'data': None}, 404
 
@@ -94,3 +98,22 @@ class LLM(db.Model):
         db.session.commit()
 
         return {'error': 0, 'message': 'LLM model deleted', 'data': None}, 200
+    
+    @staticmethod
+    def select_llm(id):
+        all_llms = LLMConfig.query.all()
+        for llm in all_llms:
+            llm.selected = (llm.id == id)
+        db.session.commit()
+        return {'error': 0, 'message': 'LLM configuration selected', 'data': id}, 200
+    
+    @staticmethod
+    def get_selected_llm():
+        selected_llm = LLMConfig.query.filter_by(selected=True).first()
+        config = {
+            'uri': selected_llm.uri,
+            'model': selected_llm.model,
+            'api_key': selected_llm._decrypt_api_key()
+        }
+        return config
+

@@ -6,13 +6,14 @@ from config import ApplicationConfig
 from flask_sqlalchemy import SQLAlchemy
 
 from routes import db
+from routes.llm_config.models import LLMConfig
 from routes.industry import industry
 from routes.industry.models import populate_industries_from_mongo
 from routes.llm import llm
 from routes.auth import auth, session, bcrypt
 from routes.chat import chat
 from routes.llm import llm
-from routes.config_llm import llmConf
+from routes.llm_config import llmConf
 from config import ApplicationConfig
 
 config = ApplicationConfig()
@@ -49,16 +50,6 @@ def create_default_admin():
     db.session.commit()
     logging.info("Default Admin user created.")
 
-# Initialize the app
-with app.app_context():
-    bcrypt.init_app(app)
-    session.init_app(app)
-    db.init_app(app)
-    db.create_all()
-    
-    create_default_admin()
-    populate_industries_from_mongo()
-
 routes = [
     '/',
     '/login',
@@ -78,10 +69,15 @@ def files(path):
 
 with app.app_context():
     bcrypt.init_app(app)
-    session.init_app(app)  # Keep this if you need session management
+    session.init_app(app)
     db.init_app(app)
-    with app.app_context():
-        db.create_all()
+    db.create_all()
+    
+    create_default_admin()
+    populate_industries_from_mongo()
+    LLMConfig.add_llm("https://api.groq.com/openai/v1/", "CHANGEME", "llama-3.3-70b-versatile", True)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

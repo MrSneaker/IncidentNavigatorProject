@@ -10,23 +10,6 @@ export const AuthProvider = ({ children , isAuthenticated, setIsAuthenticated, u
     const [user, setUser] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
 
-    async function fetchUser() {
-        const response = await getCurrent();
-        if (response.error) {
-            setUser(null);
-            setIsAuthenticated(false);
-            setUsername('');
-            setIsAdmin(false);
-        } else {
-            const user = response.data;
-            setUser(user);
-            setIsAuthenticated(true);
-            setUsername(user.username);
-            setIsAdmin(user.isAdmin)
-        }
-        setRequested(true);
-    }
-    
     useEffect(() => {
         getCurrent().then((response) => {
             if (response.error) {
@@ -38,6 +21,7 @@ export const AuthProvider = ({ children , isAuthenticated, setIsAuthenticated, u
                 setUser(user);
                 setIsAuthenticated(true);
                 setUsername(user.username);
+                setIsAdmin(user.isAdmin);
             }
             setRequested(true);
         });

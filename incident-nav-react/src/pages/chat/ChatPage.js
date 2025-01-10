@@ -58,7 +58,7 @@ export default function ChatPage({ chatId }) {
             setListMessages([...previousMessages, { source: 'model', status: 0, parts: { answer: "Responding...", references: [] } }]);
             abortControllerRef.current = new AbortController()
 
-            sendMessage(chatId, postMessage, abortControllerRef.current.signal)
+            sendMessage(chatId, postMessage, industries, abortControllerRef.current.signal)
                 .then(async (response) => {
                     const jsonResponse = await response.json();
                     setListMessages([...previousMessages, jsonResponse?.data]);

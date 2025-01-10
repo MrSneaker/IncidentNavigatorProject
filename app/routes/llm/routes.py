@@ -1,6 +1,9 @@
+import logging
 from flask import request, redirect
 import re
 import json
+
+from ..llm_config.models import LLMConfig
 
 from . import llm
 from .model import LLM
@@ -32,7 +35,11 @@ async def invoke_chain():
     """
     try:
         payload = request.json
-        llm = LLM()
+        logging.error(f'payload : {payload}')
+        llm_config = LLMConfig.get_selected_llm()
+        
+        logging.error(f'config: {llm_config}')
+        llm = LLM(llm_config)
         return await llm.invoke_chain(payload), 200
     except Exception as e:
         return {"error": 500, "message": str(e)}, 500

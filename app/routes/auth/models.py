@@ -76,7 +76,6 @@ class User(db.Model):
         self.industries = []
 
         for industry in new_industries:
-            logging.error(f'industry obj: {industry}')
             industry_name = industry.get('name', None)
             industry = Industry.query.filter_by(name=industry_name).first()
             self.industries.append(industry)

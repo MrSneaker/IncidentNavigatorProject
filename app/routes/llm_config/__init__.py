@@ -8,7 +8,7 @@ session = Session()
 cors = CORS()
 bcrypt = Bcrypt()
 
-from .models import LLM, db
+from .models import LLMConfig, db
 
 # Import des routes d'authentification
 from . import routes
