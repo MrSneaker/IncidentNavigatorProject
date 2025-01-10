@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
+import { AuthContext } from '../auth/AuthContext.js';
 
 const NavBar = ({ navLinks, isAuthenticated, username }) => {
+    const { isAdmin } = useContext(AuthContext);
     const location = useLocation();
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -34,10 +36,22 @@ const NavBar = ({ navLinks, isAuthenticated, username }) => {
                         </li>
                     ) : null
                 ))}
+                {isAdmin && (
+                    <li>
+                        <Link
+                            to="/settings"
+                            className={`${location.pathname === '/settings' ? 'underline dark:text-dark-accent text-light-accent' : 'dark:text-dark-text text-light-text'} text-xl`}
+                        >
+                            Settings
+                        </Link>
+                    </li>
+                )}
             </ul>
             {isAuthenticated && (
-                <div className="relative flex items-center dropdown" onClick={() => setShowDropdown(!showDropdown)}>
-                    <button className="bg-light-surface dark:bg-dark-surface hover:dark:bg-dark-accent hover:bg-light-accent dark:text-dark-text text-light-text text-2xl ml-4 flex items-center gap-4 p-0 pl-4 rounded-full h-12 justify-center" onClick={() => setShowDropdown(!showDropdown)}>
+                <div className="relative flex items-center dropdown">
+                    <button
+                        className="bg-light-surface dark:bg-dark-surface hover:dark:bg-dark-accent hover:bg-light-accent dark:text-dark-text text-light-text text-2xl ml-4 flex items-center gap-4 p-0 pl-4 rounded-full h-12 justify-center"
+                        onClick={() => setShowDropdown(!showDropdown)}>
                         <span className="hidden sm:inline text-md">
                             {username}
                         </span>
@@ -58,5 +72,6 @@ const NavBar = ({ navLinks, isAuthenticated, username }) => {
         </nav>
     );
 };
+
 
 export default NavBar;

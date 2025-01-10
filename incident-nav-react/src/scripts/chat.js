@@ -56,7 +56,7 @@ async function getListMessages(chat_id) {
     return data
 }
 
-async function sendMessage(chat_id, message, abortSignal){
+async function sendMessage(chat_id, message, industries, abortSignal){
     const reponse = await fetch(`/chat/send`, {
         method: 'POST',
         headers: {
@@ -64,7 +64,7 @@ async function sendMessage(chat_id, message, abortSignal){
             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
         },
         signal: abortSignal,
-        body: JSON.stringify({ chat_id: chat_id, parts: message })
+        body: JSON.stringify({ chat_id: chat_id, parts: message, industries: industries })
     })
     return reponse
 }

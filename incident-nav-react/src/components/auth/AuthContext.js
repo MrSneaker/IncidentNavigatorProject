@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { getCurrent, logout } from '../../scripts/auth';
+import { getCurrent } from '../../scripts/auth';
 import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
@@ -8,6 +8,7 @@ export const AuthProvider = ({ children , isAuthenticated, setIsAuthenticated, u
     const navigate = useNavigate();
     const [requested, setRequested] = useState(false);
     const [user, setUser] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     async function fetchUser() {
         const response = await getCurrent();
@@ -15,11 +16,13 @@ export const AuthProvider = ({ children , isAuthenticated, setIsAuthenticated, u
             setUser(null);
             setIsAuthenticated(false);
             setUsername('');
+            setIsAdmin(false);
         } else {
             const user = response.data;
             setUser(user);
             setIsAuthenticated(true);
             setUsername(user.username);
+            setIsAdmin(user.isAdmin)
         }
         setRequested(true);
     }
@@ -29,7 +32,7 @@ export const AuthProvider = ({ children , isAuthenticated, setIsAuthenticated, u
     }, [navigate]);
 
     return (
-        <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated, username, setUsername }}>
+        <AuthContext.Provider value={{ user, setUser, isAuthenticated, setIsAuthenticated, username, setUsername, isAdmin}}>
             {requested ? children : null}
         </AuthContext.Provider>
     );

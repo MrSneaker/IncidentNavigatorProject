@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ChatHeader from './components/ChatHeader';
 import ChatView from './components/ChatView';
 import ChatInput from './components/ChatInput';
 import ChatTickets from './components/ChatTickets';
 import { getListMessages, sendMessage, renameChat, chatInfo } from '@/scripts/chat';
+import { AuthContext } from '../../components/auth/AuthContext';
 
 
 
@@ -19,6 +20,13 @@ export default function ChatPage({ }) {
     const [isBusy, setBusy] = useState(false);
     const [responseError, setError] = useState(null);
     let abortController = new AbortController();
+
+    const { user } = useContext(AuthContext);
+    const currentUser = user;
+    const industries = [];
+    currentUser.industries.forEach(industry => {
+        industries.push(industry.name)
+    });
 
     function modifyChatName(name) {
         const response = renameChat(chatId, name);
@@ -42,7 +50,7 @@ export default function ChatPage({ }) {
             // Send the message
             setBusy(true);
             abortController = new AbortController()
-            sendMessage(chatId, postMessage, abortController.signal)
+            sendMessage(chatId, postMessage, industries, abortController.signal)
                 .then(async (response) => {
                     const jsonResponse = await response.json();
                     setListMessages((prevMessages) => [

@@ -173,12 +173,15 @@ def send_msg():
     user_id = get_uid()
     chat_id = request.json.get('chat_id', None)
     message = request.json.get('parts', None)
+    industries = request.json.get('industries', None)
     if user_id is None:
         return {'error': 3, 'message': 'Unauthorized', 'data': None}, 401
     if chat_id is None:
         return {'error': 4, 'message': 'Chat ID is required', 'data': None}, 400
     if message is None:
         return {'error': 5, 'message': 'Message is required', 'data': None}, 400
+    if industries is None:
+        return {'error': 5, 'message': 'Industries are required', 'data': None}, 400
     
     chat: Chat = Chat.query.filter_by(id=chat_id, user_id=user_id).first()
     if chat is None:
@@ -195,7 +198,7 @@ def send_msg():
         "user_id": user_id,
         "chat_id": chat_id,
         "question": message,
-        "industries": 'all' # TODO : Add industries in User account information
+        "industries": industries
     }
 
     try:

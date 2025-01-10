@@ -5,22 +5,26 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ProfilePage() {
     const navigate = useNavigate();
-    const [usernameError, setUsernameError] = React.useState(''); // Initialize usernameError state variable
-    const [emailError, setEmailError] = React.useState(''); // Initialize emailError state variable
-    const [currentUsername, setCurrentUsername] = React.useState(''); // Initialize currentUsername state variable
-    const [currentEmail, setCurrentEmail] = React.useState(''); // Initialize currentEmail state variable
-    const [userName, setUserName] = React.useState(''); // Initialize userName state variable
-    const [userEmail, setUserEmail] = React.useState(''); // Initialize userEmail state variable
+    const [usernameError, setUsernameError] = React.useState('');
+    const [emailError, setEmailError] = React.useState('');
+    const [currentUsername, setCurrentUsername] = React.useState('');
+    const [currentEmail, setCurrentEmail] = React.useState('');
+    const [currentIndustries, setCurrentIndustries] = React.useState([]);
+    const [userName, setUserName] = React.useState('');
+    const [userEmail, setUserEmail] = React.useState('');
 
     React.useEffect(() => {
+        // Charger les données de l'utilisateur courant
         getCurrent().then(response => {
             if (response.error) {
                 console.error(response.error);
             } else {
+                console.log('industries : ', response.data.industries)
                 setUserName(response.data.username);
                 setUserEmail(response.data.email);
                 setCurrentUsername(response.data.username);
                 setCurrentEmail(response.data.email);
+                setCurrentIndustries(response.data.industries || []);
             }
         });
     }, []);
@@ -46,13 +50,9 @@ export default function ProfilePage() {
 
     function saveUserProfile() {
         checkUsername();
-        if (userName.trim() === '') {
-            return;
-        }
+        if (userName.trim() === '') return;
         checkEmail();
-        if (userEmail.trim() === '') {
-            return;
-        }
+        if (userEmail.trim() === '') return;
 
         if (userName.trim() !== currentUsername.trim()) {
             rename(userName).then(response => {
@@ -63,10 +63,8 @@ export default function ProfilePage() {
                 setCurrentUsername(userName);
                 window.location.reload();
             });
-
         }
     }
-
 
     return (
         <div className="flex flex-col items-center justify-center h-full w-full">
@@ -87,8 +85,20 @@ export default function ProfilePage() {
                         className="p-2 border border-black/20 dark:border-white/20 rounded-md focus:outline-none focus:ring-2 focus:ring-light-accent dark:bg-dark-surface dark:text-dark-text" />
                     <p className="text-red-500 text-sm">{usernameError}</p>
                 </div>
+                <div>
+                    <h3 className="mt-4 text-lg font-semibold dark:text-dark-text/50 text-light-text">Industries:</h3>
+                    <ul>
+                        {currentIndustries.map(industry => (
+                            <li key={industry}>{industry}</li>
+                        ))}
+                        {currentIndustries.forEach(industry => {
+                            console.log('industry: ',industry)
+                        })
+                        }
+                    </ul>
+                </div>
                 <div className="flex justify-end mt-4">
-                    <button className={`bg-green-500 text-white  disabled:opacity-50 font-bold py-2 px-4 rounded-xl flex items-center ${userName === currentUsername && userEmail === currentEmail ? '' : 'hover:bg-green-700 hover:scale-110 transition-transform'}`}
+                    <button className={`bg-green-500 text-white font-bold py-2 px-4 rounded-xl flex items-center ${userName === currentUsername && userEmail === currentEmail ? '' : 'hover:bg-green-700 hover:scale-110 transition-transform'}`}
                         onClick={saveUserProfile}
                         disabled={userName.trim() === currentUsername.trim() && userEmail.trim() === currentEmail.trim()}>
                         <FaSave className="inline-block mr-2" />

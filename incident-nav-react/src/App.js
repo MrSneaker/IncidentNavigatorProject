@@ -13,6 +13,7 @@ import ChatOverviewPage from './pages/chat/ChatOverviewPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
+import SettingsPage from './pages/SettingsPage';
 import HomePage from './pages/HomePage';
 import Layout from './components/layout';
 
@@ -43,8 +44,8 @@ function App() {
   }, []);
   return (
     <Router>
-      <Layout isAuthenticated={isAuthenticated} username={username}>
-        <AuthProvider isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} username={username} setUsername={setUsername}>
+      <AuthProvider isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} username={username} setUsername={setUsername}>
+        <Layout isAuthenticated={isAuthenticated} username={username}>
           <Routes>
             <Route path="/" element={<HomePage isAuthenticated={isAuthenticated} />} />
             <Route path="/login" element={<NotLogRoute><LoginPage /></NotLogRoute>} />
@@ -54,9 +55,10 @@ function App() {
             <Route path="/chat/:id" element={<PrivateRoute><ChatPage /></PrivateRoute>} />
             <Route path="/chat" element={<PrivateRoute><ChatOverviewPage /></PrivateRoute>} />
             <Route path="/logout" element={<LogoutPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Routes>
-        </AuthProvider>
-      </Layout>
+        </Layout>
+      </AuthProvider>
     </Router>
   );
 }
