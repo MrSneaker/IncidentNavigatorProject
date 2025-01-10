@@ -42,46 +42,6 @@ MYSQL_CONFIG = {
 def hash_password(password):
     return generate_password_hash(password)
 
-def setup_mysql_users():
-    try:
-        connection = mysql.connector.connect(**MYSQL_CONFIG)
-        cursor = connection.cursor()
-        
-        cursor.execute("CREATE DATABASE IF NOT EXISTS incident_nav_auth")
-        cursor.execute("USE incident_nav_auth")
-        cursor.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            user VARCHAR(255) NOT NULL UNIQUE,
-            pwd VARCHAR(255) NOT NULL,
-            role VARCHAR(50) NOT NULL,
-            industries JSON
-        )
-        """)  
-        
-        users_data = [
-            ("massamba", "password", "admin", None),
-            ("mateo", "password", "manager", '["processing of metal", "Wood treatment and furniture"]'),
-            ("axel", "password", "manager", '["Fuel storage"]')
-        ]
-        
-        cursor.executemany("""
-        INSERT INTO users (user, pwd, role, industries)
-        VALUES (%s, %s, %s, %s)
-        ON DUPLICATE KEY UPDATE
-        user = VALUES(user)
-        """, users_data)
-        
-        connection.commit()
-        print("Users table created and data inserted successfully.")
-        
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
-    finally:
-        cursor.close()
-        connection.close()
-        print("Connection closed")
-
 def preprocess_row(row):
     renamed_row = {
         'accident_id': row.get('Accident ID'),
@@ -156,7 +116,6 @@ if __name__ == "__main__":
     # keep_data = raw_data.copy()[keep]
     # cleaned_data = keep_data.dropna().reset_index(drop=True)
     # cleaned_data = update_with_urls(cleaned_data)
-    print("Starting")
     cleaned_data = pd.read_csv("data/cleaned.csv")
 
     # Populate the Weaviate Vector Database

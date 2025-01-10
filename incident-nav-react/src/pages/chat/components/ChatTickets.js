@@ -13,7 +13,6 @@ export default function ChatTickets({ listMessages, focusOn }) {
 
     useEffect(() => {
         function handleResize() {
-            const footer = document.querySelector('footer');
             const chat = document.getElementById('chat-container');
             // t = chat top position + chat height + 10px
             const t = chat.offsetTop;
@@ -44,7 +43,7 @@ export default function ChatTickets({ listMessages, focusOn }) {
 
     return (
         <div
-            className="relative xl:fixed overflow-y-auto rounded-3xl flex flex-col items-center justify-start gap-2 p-2 transition-all duration-300"
+            className="relative xl:fixed overflow-y-hidden rounded-3xl flex flex-col items-center justify-start gap-2 p-2 transition-all duration-300"
             style={{
                 top: xl ? top + 'px' : '0',
                 height: xl ? height + 'px' : 'auto',

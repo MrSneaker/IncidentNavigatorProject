@@ -8,11 +8,24 @@ async function login(email, password) {
             credentials: 'include',
             body: JSON.stringify({ email: email, password: password })
         });
+
+        if (response.status === 500) {
+            return { error: -1, message: 'Internal server error' };
+        }
+
         const data = await response.json();
-        sessionStorage.setItem('user_id', data.data.id);
-        sessionStorage.setItem('username', data.data.username);
-        sessionStorage.setItem('email', data.data.email);
-        sessionStorage.setItem('token', data.data.token);
+        if (data.error) {
+            sessionStorage.removeItem('user_id');
+            sessionStorage.removeItem('username');
+            sessionStorage.removeItem('email');
+            sessionStorage.removeItem('token');
+
+        } else {
+            sessionStorage.setItem('user_id', data.data.id);
+            sessionStorage.setItem('username', data.data.username);
+            sessionStorage.setItem('email', data.data.email);
+            sessionStorage.setItem('token', data.data.token);
+        }
         return data;
     } catch (error) {
         return { error: -1, data: null };
@@ -29,20 +42,25 @@ async function register(email, username, password) {
             credentials: 'include',
             body: JSON.stringify({ email: email, username: username, password: password })
         });
-        const data = await response.json();
-        if (data.error) {
-            return { error: data.error };
-        } else {
-            return { error: null };
+
+        if (response.status === 500) {
+            return { error: -1, message: 'Internal server error' };
         }
+        // check if the response is a json
+        const data = await response.json();
+        return data;
     } catch (error) {
-        return { error: error };
+        return { error: -1, message: error }
     }
 }
 
-
 async function logout() {
     try {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('user_id');
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('email');
+        
         const response = await fetch('/auth/logout', {
             method: 'POST',
             headers: {
@@ -50,18 +68,15 @@ async function logout() {
             },
             credentials: 'include',
         });
-        response.json().then(data => {
-            if (data.error) {
-                return { error: data.error };
-            }
-            sessionStorage.removeItem('token');
-            sessionStorage.removeItem('user_id');
-            sessionStorage.removeItem('username');
-            sessionStorage.removeItem('email');
-            return { error: null };
-        });
+
+        if (response.status === 500) {
+            return { error: 500, message: "Internal server error" }
+        }
+        const data = await response.json();
+        return data;
+
     } catch (error) {
-        return { error: error };
+        return { error: -1, message: error };
     }
 }
 
@@ -74,16 +89,15 @@ async function rename(newUsername) {
             },
             credentials: 'include',
             body: JSON.stringify({ username: newUsername })
-        });
-        const data = await response.json();
-        if (data.error) {
-            return { error: data.error };
-        } else {
-            sessionStorage.setItem('username', newUsername);
-            return { error: null };
+        })
+
+        if (response.status === 500) {
+            return { error: 500, message: "Internal server error" }
         }
+        const data = await response.json()
+        return data
     } catch (error) {
-        return { error: error };
+        return { error: -1, message: error };
     }
 }
 
@@ -96,6 +110,9 @@ async function getCurrent() {
             },
             credentials: 'include',
         });
+        if (response.status === 500) {
+            return { error: 500, message: "Internal server error" }
+        }
         const data = await response.json();
         return data;
 
@@ -106,23 +123,29 @@ async function getCurrent() {
 
 async function refreshToken() {
     try {
-        const response = await fetch('/auth/refresh', {
+        const response = await fetch('/auth/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             credentials: 'include',
         });
-        response.json().then(data => {
-            if (data.error) {
-                return { error: data.error };
-            } else {
-                sessionStorage.setItem('token', data.data.token);
-                return { error: null };
-            }
-        });
+        
+        if (response.status === 500) {
+            return { error: 500, message: "Internal server error" }
+        }
+
+        const data = await response.json();
+        if (data.error) {
+            sessionStorage.removeItem('token');
+            return data;
+        }
+
+        sessionStorage.setItem('token', data.data.token);
+        return data;
+
     } catch (error) {
-        return { error: error };
+        return { error: -1, message: error };
     }
 }
 

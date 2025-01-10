@@ -2,7 +2,7 @@ import logging
 from flask import request, session
 from . import auth, bcrypt
 from .models import User
-from ..chat.utils.jwt_utils import generate_jwt
+from ..chat.utils.token import generate_jwt
 
 
 logging.basicConfig(
@@ -17,13 +17,12 @@ logging.basicConfig(
 def me():
     user_id = session.get('user_id', None)
     if user_id is None:
-        return {'error': 1, 'message': 'Unauthorized', 'data': None}, 201
+        return {'error': 1, 'message': 'Unauthorized', 'data': None}, 401
     user = User.get_user(id=user_id)
     if user is None:
-        return {'error': 2, 'message': 'User not found', 'data': None}, 202
+        return {'error': 2, 'message': 'User not found', 'data': None}, 404 
     
     industries_list = [industry.to_dict() for industry in user.industries]
-    
     return {'error': 0, 'message': 'User found', 'data': {
         'id': user.id,
         'email': user.email,
@@ -78,9 +77,9 @@ def login():
             'token': token
         }}, 200
     return {
-        1: {'error': 3, 'message': 'User not found', 'data': None},
-        2: {'error': 4, 'message': 'Incorrect password', 'data': None}
-    }.get(err, {'error': 5, 'message': 'Unknown error', 'data': None}), 404
+        1: ({'error': 3, 'message': 'User not found', 'data': None}, 404),
+        2: ({'error': 4, 'message': 'Incorrect password', 'data': None}, 403)
+    }.get(err, ({'error': 5, 'message': 'Unknown error', 'data': None}, 400))
     
 @auth.route('/logout', methods=['POST'])
 def logout():
@@ -109,10 +108,12 @@ def refresh_token():
     user_id = session.get('user_id', None)
     if user_id is None:
         return {'error': 1, 'message': 'Unauthorized', 'data': None}, 201
+    
     user: User = User.get_user(id=user_id)
     if user is None:
         return {'error': 2, 'message': 'User not found', 'data': None}, 202
-    token = generate_jwt(user.username)
+    
+    token = generate_jwt(user.id)
     return {'error': 0, 'message': 'Token refreshed', 'data': {
         'token': token
     }}, 200
