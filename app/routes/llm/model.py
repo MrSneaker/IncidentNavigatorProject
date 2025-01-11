@@ -1,3 +1,4 @@
+import logging
 import os
 import re
 import json
@@ -36,7 +37,9 @@ class LLM:
         :param config: Dictionnaire contenant les paramètres pour configurer ChatOpenAI.
         """
         self.config = config
+        logging.error(f'Model instanciated ?? config : ' , config)
         self.model = self.create_model()
+        logging.error(f'Model instanciated')
         self.memory = MemoryManager()
 
     def create_model(self):
@@ -44,8 +47,8 @@ class LLM:
         Crée une instance de ChatOpenAI en utilisant la configuration.
         """
         return ChatOpenAI(
-            openai_api_base=self.config.get("uri", ""),
-            model=self.config.get("model", "llama-3.3-70b-versatile"),
+            openai_api_base=self.config.get("uri", "").strip(),
+            model=self.config.get("model", "llama-3.3-70b-versatile").strip(),
             temperature=1,
             api_key=self.config.get("api_key", os.getenv("API_KEY")),
         )

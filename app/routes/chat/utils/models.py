@@ -62,7 +62,7 @@ class Message(db.Model):
     source = db.Column(db.Boolean, default=False)
     message = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
-    tickets = db.relationship('Ticket', backref='message', lazy=True)
+    tickets = db.relationship('Ticket', backref='message', lazy=True, cascade="all, delete-orphan")
     status = db.Column(db.Integer, default=0, nullable=False)
     
     def list_tickets(self) -> List[Ticket]:

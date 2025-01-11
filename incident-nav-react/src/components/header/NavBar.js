@@ -36,7 +36,7 @@ const NavBar = ({ navLinks, isAuthenticated, username }) => {
                         </li>
                     ) : null
                 ))}
-                {isAdmin && (
+                {isAdmin && isAuthenticated && (
                     <li>
                         <Link
                             to="/settings"

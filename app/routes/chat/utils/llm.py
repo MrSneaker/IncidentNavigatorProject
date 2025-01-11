@@ -1,3 +1,4 @@
+import logging
 from werkzeug.exceptions import ClientDisconnected
 import requests
 from flask import request
@@ -64,7 +65,7 @@ class LLMResponse:
         return {'error': 0, 'message': 'Response is valid'}
 
 
-def invoke_llm(user_id: str, chat_id: str, req_message: str, hist_message: list):
+def invoke_llm(user_id: str, chat_id: str, req_message: str, hist_message: list, industries: list):
     try:
         # Request to LLM
         response = requests.post('http://localhost:5000/llm/invoke', json={
@@ -72,8 +73,10 @@ def invoke_llm(user_id: str, chat_id: str, req_message: str, hist_message: list)
             'chat_id': chat_id,
             'history': hist_message, 
             'question': req_message,
-            'industries': 'all'
+            'industries': industries
         })
+        
+        logging.error(f'industries : {industries}')
 
         # Raise an exception if the request failed
         response.raise_for_status()

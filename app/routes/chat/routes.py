@@ -183,6 +183,11 @@ def send():
         if message is None:
             return {'error': 5, 'message': 'Message is required', 'data': None}, 400
         
+                # Get message
+        industries = request.json.get('industries', None)
+        if industries is None:
+            return {'error': 5, 'message': 'Industries are required', 'data': None}, 400
+        
         # Retrieve chat history
         history = chat.history()
         
@@ -202,7 +207,7 @@ def send():
         
         # Invoke LLM
         try:
-            response: LLMResponse = invoke_llm(user_id, chat_id, message, history)
+            response: LLMResponse = invoke_llm(user_id, chat_id, message, history, industries)
             if response.is_valid():
                 response_message.status = Message.STATUS_SUCCESS
             else:

@@ -44,7 +44,8 @@ class LLMConfig(db.Model):
             'model': self.model,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None,
-            'api_key': self.get_partial_api_key()
+            'api_key': self.get_partial_api_key(),
+            'selected': self.selected
         }
 
     def __init__(self, uri, api_key, model, selected):

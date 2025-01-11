@@ -34,6 +34,7 @@ export default function SettingsPage() {
 
         getAllLLMs().then((llmsResponse) => {
             if (!llmsResponse.error) {
+                console.log('llms response : ', llmsResponse.data.llms)
                 setLlmList(llmsResponse.data.llms);
             }
         });
