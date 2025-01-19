@@ -1,46 +1,43 @@
 import logging
 from flask import request, redirect
-import re
-import json
 
 from ..llm_config.models import LLMConfig
-
 from . import llm
 from .model import LLM
 
-
-
+# Define the route for the root endpoint to redirect to the documentation page.
 @llm.route("/")
 def redirect_root_to_docs():
+    """
+    Redirect the root URL to the documentation page.
+    """
     return redirect("/docs")
 
-def get_json_from_markdown(markdown_text):
-    try:
-        json_match = re.search(r'```json(.*?)```', markdown_text, re.DOTALL)
-        if json_match:
-            json_string = json_match.group(1).strip()
-            json_data = json.loads(json_string)
-            return json_data
-        else:
-            print("No JSON block found in the Markdown text.")
-            return json.loads(markdown_text)
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON: {e}")
-        return markdown_text
-
+# Define the route for the '/invoke' endpoint to invoke the chain with input data.
 @llm.route("/invoke", methods=["POST"])
 async def invoke_chain():
     """
     Endpoint to invoke the runnable chain with the given input.
+    Handles incoming POST requests to trigger the chain of operations.
     """
     try:
+        # Get the JSON payload from the incoming POST request.
         payload = request.json
+        # Log the payload to help with debugging.
         logging.error(f'payload : {payload}')
+        
+        # Retrieve the configuration for the selected LLM (Large Language Model).
         llm_config = LLMConfig.get_selected_llm()
         
+        # Log the configuration for debugging purposes.
         logging.error(f'config: {llm_config}')
-        llm = LLM(llm_config)
-        return await llm.invoke_chain(payload), 200
-    except Exception as e:
-        return {"error": 500, "message": str(e)}, 500
         
+        # Instantiate the LLM object using the selected configuration.
+        llm_instance = LLM(llm_config)
+        
+        # Invoke the chain with the provided payload and return the result asynchronously.
+        return await llm_instance.invoke_chain(payload), 200
+    
+    except Exception as e:
+        # If an error occurs, return an error message and a 500 status code.
+        return {"error": 500, "message": str(e)}, 500
