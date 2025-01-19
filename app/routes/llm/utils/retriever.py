@@ -1,3 +1,4 @@
+import os
 from pymongo import MongoClient
 from datetime import datetime
 from langchain_weaviate.vectorstores import WeaviateVectorStore
@@ -25,8 +26,12 @@ grpc_secure = False
 weaviate_client = weaviate.connect_to_custom(http_host, http_port, http_secure, grpc_host, grpc_port, grpc_secure)
 
 # HuggingFace embeddings setup for generating vector representations of text
-embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-large-v2", cache_folder="./embedding_model")
-
+package_folder = os.path.dirname(os.path.abspath(__file__)) 
+route_folder = os.path.dirname(package_folder)
+routes_folder = os.path.dirname(route_folder)
+app_folder = os.path.dirname(routes_folder)
+embeddings_cache_folder = os.path.join(app_folder, "install", "embedding_model")
+embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-large-v2", cache_folder=embeddings_cache_folder)
 # Function to extract incident IDs from the retrieved documents
 def get_documents_ids(retrieved_docs):
     if retrieved_docs:

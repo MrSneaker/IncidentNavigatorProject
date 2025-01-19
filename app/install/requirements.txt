@@ -1,0 +1,15 @@
+python-dotenv
+flask
+flask-sqlalchemy
+flask-bcrypt
+flask-cors
+flask-session
+redis
+PyJWT
+pandas
+langchain_huggingface
+langchain_core
+langchain_weaviate
+weaviate-client
+pymongo
+selenium
