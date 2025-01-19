@@ -7,26 +7,36 @@ from typing import List
 from ... import db
 
 def get_uuid():
+    """Generate a unique hexadecimal UUID."""
     return uuid4().hex
 
-
 class Ticket(db.Model):
+    """
+    Model representing support tickets associated with messages.
+    
+    Contains information about accidents/events including type, industry,
+    and reference details.
+    """
     __tablename__ = 'tickets'
+    
+    # Primary identification
     id = db.Column(db.String(32), primary_key=True, unique=True, default=get_uuid)
     message_id = db.Column(db.String(32), db.ForeignKey('messages.id'), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
-    # Content
+    
+    # Ticket content and metadata
     accident_id = db.Column(db.Integer, nullable=False)
     event_type = db.Column(db.String(32), nullable=False)
     industry_type = db.Column(db.String(32), nullable=False)
     title = db.Column(db.Text, nullable=False)
     url = db.Column(db.Text, nullable=False)
-    color = db.Column(db.String(7), nullable=False)  # hex color
+    color = db.Column(db.String(7), nullable=False)  # hex color code
     
     def __repr__(self):
         return f'<Ticket {self.ticket_id}>'
     
     def to_dict(self):
+        """Convert ticket to dictionary format for API responses."""
         return {
             'id': self.id,
             'message_id': self.message_id,
@@ -40,38 +50,48 @@ class Ticket(db.Model):
         }
 
     def save(self):
+        """Save ticket to database."""
         db.session.add(self)
         db.session.commit()
 
-
 class Message(db.Model):
-    # Source values
-    SOURCE_MODEL = False
-    SOURCE_USER = True
+    """
+    Model representing chat messages.
     
-    # Status values
-    STATUS_ERROR = -1
-    STATUS_PENDING = 0
-    STATUS_SUCCESS = 1
+    Messages can be from users or the model (system) and can have associated tickets.
+    """
+    # Constants for message source
+    SOURCE_MODEL = False  # Message from the system/model
+    SOURCE_USER = True   # Message from a user
     
-    # Table
+    # Constants for message processing status
+    STATUS_ERROR = -1    # Processing failed
+    STATUS_PENDING = 0   # Not yet processed
+    STATUS_SUCCESS = 1   # Successfully processed
+    
     __tablename__ = 'messages'
+    
+    # Primary fields
     id = db.Column(db.String(32), primary_key=True, unique=True, default=get_uuid)
     user_id = db.Column(db.String(32), db.ForeignKey('users.id'), nullable=False)
     chat_id = db.Column(db.String(32), db.ForeignKey('chats.id'), nullable=False)
-    source = db.Column(db.Boolean, default=False)
+    source = db.Column(db.Boolean, default=False)  # True for user, False for model
     message = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
+    
+    # Relationships and status
     tickets = db.relationship('Ticket', backref='message', lazy=True, cascade="all, delete-orphan")
     status = db.Column(db.Integer, default=0, nullable=False)
     
     def list_tickets(self) -> List[Ticket]:
+        """Get all tickets associated with this message."""
         return Ticket.query.filter_by(message_id=self.id).all()
         
     def __repr__(self):
         return f'<Message {self.message}>'
     
     def to_dict(self):
+        """Convert message to dictionary format for API responses."""
         return {
             'id': self.id,
             'chat_id': self.chat_id,
@@ -83,14 +103,21 @@ class Message(db.Model):
             'created_at': self.created_at
         }
     
-    
     def save(self):
+        """Save message to database."""
         db.session.add(self)
         db.session.commit()
 
-
 class Chat(db.Model):
+    """
+    Model representing a chat conversation.
+    
+    Contains messages between a user and the system, with support for
+    naming, updating, and managing message history.
+    """
     __tablename__ = 'chats'
+    
+    # Primary fields
     id = db.Column(db.String(32), primary_key=True, unique=True, default=get_uuid)
     user_id = db.Column(db.String(32), db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.Text, nullable=False, default='New Chat')
@@ -102,6 +129,7 @@ class Chat(db.Model):
     
     @staticmethod
     def create(user_id: str, name: str) -> 'Chat | None':
+        """Create a new chat with given user_id and name."""
         if not user_id:
             return None
         if not name:
@@ -112,6 +140,7 @@ class Chat(db.Model):
         return chat
 
     def delete(self) -> bool:
+        """Delete chat and all associated messages."""
         messages = Message.query.filter_by(chat_id=self.id).all()
         for message in messages:
             db.session.delete(message)
@@ -121,13 +150,16 @@ class Chat(db.Model):
 
     @staticmethod
     def list(user_id: str) -> List['Chat']:
+        """Get all chats for a given user."""
         return Chat.query.filter_by(user_id=user_id).all() if user_id else []
 
     @staticmethod
     def get(user_id: str, chat_id: str) -> 'Chat | None':
+        """Get specific chat by user_id and chat_id."""
         return Chat.query.filter_by(user_id=user_id, id=chat_id).first() if user_id and chat_id else None
 
     def rename(self, name) -> bool:
+        """Rename the chat."""
         if not name:
             return False
         self.name = name
@@ -136,9 +168,14 @@ class Chat(db.Model):
         return True
     
     def messages(self) -> List[Message]:
+        """Get all messages in the chat."""
         return Message.query.filter_by(user_id=self.user_id, chat_id=self.id).all()
     
     def add_message(self, msg: Message | dict) -> bool:
+        """
+        Add a new message to the chat.
+        Accepts either Message object or dictionary of message data.
+        """
         if isinstance(msg, dict):
             msg = Message(**msg)
             
@@ -151,6 +188,10 @@ class Chat(db.Model):
         return True
     
     def remove_message(self, msg: Message | str) -> bool:
+        """
+        Remove a message from the chat.
+        Accepts either Message object or message ID.
+        """
         if isinstance(msg, str):
             msg = Message.query.get(msg)
         if msg.chat_id != self.id:
@@ -161,12 +202,17 @@ class Chat(db.Model):
         return True
     
     def history(self):
+        """
+        Get chat history formatted for model context.
+        Returns list of message dictionaries with role and content.
+        """
         return [
             {'role': 'user' if message.source else 'model', 'parts': message.message}
             for message in self.messages()
         ]
         
     def last_updated(self):
+        """Get timestamp of most recent message or chat update."""
         msgs = self.messages()
         last_updated = self.updated_at
         for msg in msgs:
@@ -175,6 +221,7 @@ class Chat(db.Model):
         return last_updated
 
     def to_dict(self):
+        """Convert chat to dictionary format for API responses."""
         return {
             'id': self.id,
             'user_id': self.user_id,
