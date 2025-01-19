@@ -59,7 +59,7 @@ Docker allows you to build and run services along with its dependencies in a con
 
    This command stops and removes all the containers created by Docker Compose.
 
-#### Note: If you encounter permission issues with Docker on Linux, try running the commands with `sudo` or ensure your user is added to the Docker group
+#### Note: If you encounter permission issues with Docker on Linux, try running the commands with `sudo` or ensure your user is added to the Docker group.
 
 ---
 
@@ -113,4 +113,4 @@ Then the npm server should start and open the app in your default browser on thi
 
 ### User evaluation
 
-To perform an empirical evaluation based on user satisfaction, we ask used a survey which can be accessed by clicking this [link](https://docs.google.com/forms/d/e/1FAIpQLSeJjsLwA0piXQqG0LpePXWf8MYUIZXKDx7mvkezLxrdCmWIYQ/viewform?usp=header)
+To perform an empirical evaluation based on user satisfaction, we ask users a survey which can be accessed by clicking this [link](https://docs.google.com/forms/d/e/1FAIpQLSeJjsLwA0piXQqG0LpePXWf8MYUIZXKDx7mvkezLxrdCmWIYQ/viewform?usp=header)
