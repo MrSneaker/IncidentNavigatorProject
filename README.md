@@ -59,7 +59,7 @@ Docker allows you to build and run services along with its dependencies in a con
 
    This command stops and removes all the containers created by Docker Compose.
 
-#### Note: If you encounter permission issues with Docker on Linux, try running the commands with `sudo` or ensure your user is added to the Docker group.
+#### Note: If you encounter permission issues with Docker on Linux, try running the commands with `sudo` or ensure your user is added to the Docker group
 
 ---
 
