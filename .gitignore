@@ -169,3 +169,5 @@ weaviate_data/
 mysql_data/
 redis_data/
 node_modules/
+
+.vscode/

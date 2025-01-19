@@ -1,8 +1,107 @@
 # IncidentNavigatorProject
 
-##  BEIR Benchmark
+## Installation
 
-| **Modèle**                       | **NDCG@3** | **MAP@3** | **Recall@3** | **Precision@3** | **NDCG@10** | **MAP@10** | **Recall@10** | **Precision@10** | **NDCG@30** | **MAP@30** | **Recall@30** | **Precision@30** |
+### Prerequisites
+
+Ensure you have the following installed on your system:
+
+- [Python 3.12.4+](https://www.python.org/downloads/)
+- [Docker](https://www.docker.com/)
+
+### Install Python Dependencies
+
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/MrSneaker/IncidentNavigatorProject.git
+   cd IncidentNavigatorProject
+   ```
+
+2. Create and activate a virtual environment (optional but recommended):
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate   # On Windows use: venv\Scripts\activate
+   ```
+
+3. Install the required Python packages:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+   This command reads the `requirements.txt` file and installs all the listed dependencies into your virtual environment.
+
+4. Verify the installation:
+
+   ```bash
+   python -m pip list
+   ```
+
+---
+
+### Running with Docker
+
+Docker allows you to build and run the application along with its dependencies in a containerized environment.
+
+1. Build and start the services using the `docker-compose.yml` file:
+
+   ```bash
+   docker compose up -d
+   ```
+
+2. To stop the services, press `CTRL+C` in the terminal, and then run:
+
+   ```bash
+   docker-compose down
+   ```
+
+   This command stops and removes all the containers created by Docker Compose.
+
+---
+
+### Notes
+
+- If you encounter permission issues with Docker on Linux, try running the commands with `sudo` or ensure your user is added to the Docker group.
+
+##  Getting started
+
+###  Retrieve documents
+
+You need to retrieve document in the mongo database first for the application to fully work.
+
+EXPLAIN
+
+###   Start servers locally
+
+You will have to start two componant locally.
+
+#### The flask server
+
+To start the flask server, run the following in a terminal:
+
+   ```bash
+   cd app && python3 app.py
+   ```
+
+The server should start without any problem.
+
+####  The npm server
+
+To start the npm server, run the following in a terminal:
+
+   ```bash
+   cd incident-nav-react && npm install && npm run start
+   ```
+
+Then the npm server should start and open the app in your default browser on this default adress: <http://localhost:3000/>.
+
+## Evaluation
+
+### BEIR Benchmark for embeddings models
+
+| **Model**                       | **NDCG@3** | **MAP@3** | **Recall@3** | **Precision@3** | **NDCG@10** | **MAP@10** | **Recall@10** | **Precision@10** | **NDCG@30** | **MAP@30** | **Recall@30** | **Precision@30** |
 |-----------------------------------|------------|-----------|--------------|-----------------|-------------|------------|---------------|------------------|-------------|------------|---------------|-------------------|
 | BAAI/bge-small-en-v1.5            | 0.38766    | 0.0847    | 0.09833      | 0.37255         | 0.3361      | 0.11749    | 0.15986       | 0.25325          | 0.30161     | 0.13719    | 0.22052       | 0.15294           |
 | BAAI/bge-large-en                 | 0.39825    | 0.09866   | 0.10807      | 0.37564         | 0.34273     | 0.13283    | 0.16902       | 0.25077          | 0.31692     | 0.15491    | 0.23701       | 0.15542           |
