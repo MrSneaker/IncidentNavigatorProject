@@ -31,8 +31,9 @@ def new():
 
     # Create a new chat
     name = request.json.get('name', 'New Chat')
-    if Chat.create(user_id, name) is not None:
-        return {'error': 0, 'message': 'Chat created', 'data': None}, 200
+    chat = Chat.create(user_id, name)
+    if chat is not None:
+        return {'error': 0, 'message': 'Chat created', 'data': chat.to_dict()}, 200
     return {'error': 4, 'message': 'Failed to create chat', 'data': None}, 500
 
 @chat.route('/delete', methods=['DELETE'])

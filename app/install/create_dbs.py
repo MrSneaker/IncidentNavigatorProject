@@ -87,6 +87,7 @@ def convert_to_weaviate_vector_store(
         embeddings_path: str,
         docs: list,
         index_name: str): 
+    
     print("Converting Weaviate Documents to Vector Store...", end="\r")
     embeddings = HuggingFaceEmbeddings(
         model_name=embeddings_model,
@@ -94,15 +95,12 @@ def convert_to_weaviate_vector_store(
         model_kwargs={"device": "cpu"}
     )
     try:
-        vector_store = WeaviateVectorStore(
-            client=client,
+        vector_store = WeaviateVectorStore.from_documents(
+            docs,
             embedding=embeddings,
-            index_name=index_name,
-            text_key="page_content",
+            client=client,
+            index_name=index_name
         )
-        for i, doc in enumerate(docs):
-            vector_store.aadd_documents([doc])
-            print(f"Added document {i + 1}/{len(docs)}", end="\r")
     except Exception as e:
         print("Failed to convert Weaviate Documents to Vector Store")
         raise e
@@ -144,9 +142,10 @@ def insert_mongodb(client, database_name, collection_name, docs):
     try:
         db = client[DATABASE_NAME]
         if COLLECTION_NAME in db.list_collection_names():
-            txt = f"Collection '{COLLECTION_NAME}' already exists. Exiting."
-            print(txt + "." * (80 - len(txt)) + '\x1b[6;30;42m' + "Done" + '\x1b[0m')
-            return
+            # Remove the collection if it already exists
+            db.drop_collection(COLLECTION_NAME)
+            print(f"Collection '{COLLECTION_NAME}' already exists. Dropping the collection.")
+            
         collection = db[COLLECTION_NAME]
         result = collection.insert_many(docs)
         txt = f"Multiple documents inserted (count: {len(result.inserted_ids)})"
@@ -177,14 +176,14 @@ if __name__ == "__main__":
         embeddings_model=EMBEDDINGS_MODEL,
         embeddings_path=os.path.join(os.path.dirname(__file__), EMBEDDINGS_PATH),
         docs=docs,
-        index_name="incident_index"
+        index_name="incident",
     )
     
     # Connect to MongoDB
     client = connect_mongodb(MONGO_URI)
     
     # Create and populate Mongo Database
-    mongo_docs = [preprocess_row(row[1]) for row in cleaned_data.iterrows()]
+    mongo_docs = [preprocess_row(row) for row in cleaned_data.to_dict(orient="records")]
     insert_mongodb(client, DATABASE_NAME, COLLECTION_NAME, mongo_docs)
     
     client.close()

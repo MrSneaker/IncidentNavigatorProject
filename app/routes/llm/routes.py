@@ -24,13 +24,13 @@ async def invoke_chain():
         # Get the JSON payload from the incoming POST request.
         payload = request.json
         # Log the payload to help with debugging.
-        logging.error(f'payload : {payload}')
+        logging.info(f'Payload: {payload}')
         
         # Retrieve the configuration for the selected LLM (Large Language Model).
         llm_config = LLMConfig.get_selected_llm()
         
         # Log the configuration for debugging purposes.
-        logging.error(f'config: {llm_config}')
+        logging.info(f'LLM Configuration: {llm_config}')
         
         # Instantiate the LLM object using the selected configuration.
         llm_instance = LLM(llm_config)

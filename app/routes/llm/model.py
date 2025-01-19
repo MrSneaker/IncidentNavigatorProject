@@ -44,11 +44,8 @@ class LLM:
         :param config: Dictionary containing parameters for configuring ChatOpenAI.
         """
         self.config = config
-        # Log the initialization of the model and configuration.
-        logging.error(f'Model instantiated ?? config : ', config)
         # Create an instance of the model using the provided configuration.
         self.model = self.create_model()
-        logging.error(f'Model instantiated')
         # Initialize a memory manager for this model.
         self.memory = MemoryManager()
 
@@ -82,42 +79,37 @@ class LLM:
         :param payload: Dictionary containing request data (user ID, chat ID, question, etc.).
         :return: The result of invoking the chain.
         """
-        try:
-            # Get user memory based on user ID and chat ID from the payload.
-            user_id = payload.get("user_id")
-            chat_id = payload.get("chat_id")
-            user_mem = self.get_memory(user_id, chat_id)
-            
-            # Define the context of the request by fetching chat history from user memory.
-            context = RunnablePassthrough.assign(
-                chat_history=RunnableLambda(
-                    user_mem.load_memory_variables) | itemgetter("history")
-            ) | CONTEXT_PROMPT | self.model | StrOutputParser()
-            
-            # Define the entire chain of operations to process the request.
-            runnable = (
-                RunnablePassthrough.assign(
-                    question=context,
-                    memory=RunnableLambda(
-                        user_mem.load_memory_variables) | itemgetter("history"),
-                    industries=RunnableLambda(lambda x: x.get("industries"))
-                )
-                | retrieve
-                | SYSTEM_PROMPT 
-                | self.model
-                | StrOutputParser()
-                | get_json_from_markdown
+        # Get user memory based on user ID and chat ID from the payload.
+        user_id = payload.get("user_id")
+        chat_id = payload.get("chat_id")
+        user_mem = self.get_memory(user_id, chat_id)
+        if user_mem is None:
+            raise ValueError("User memory not found.")
+        
+        # Define the context of the request by fetching chat history from user memory.
+        context = RunnablePassthrough.assign(
+            chat_history=RunnableLambda(
+                user_mem.load_memory_variables) | itemgetter("history")
+        ) | CONTEXT_PROMPT | self.model | StrOutputParser()
+        
+        # Define the entire chain of operations to process the request.
+        runnable = (
+            RunnablePassthrough.assign(
+                question=context,
+                memory=RunnableLambda(user_mem.load_memory_variables) | itemgetter("history"),
+                industries=RunnableLambda(lambda x: x.get("industries"))
             )
-            # Await the result of the chain invocation.
-            result = await runnable.ainvoke(payload)
-            print(result)
+            | retrieve
+            | SYSTEM_PROMPT 
+            | self.model
+            | StrOutputParser()
+            | get_json_from_markdown
+        )
+        # Await the result of the chain invocation.
+        result = await runnable.ainvoke(payload)
 
-            # Update user memory with the new interaction.
-            user_mem.chat_memory.add_user_message(payload.get("question"))
-            user_mem.chat_memory.add_ai_message(str(result))
+        # Update user memory with the new interaction.
+        user_mem.chat_memory.add_user_message(payload.get("question"))
+        user_mem.chat_memory.add_ai_message(str(result))
 
-            return result
-        except Exception as e:
-            # Handle any errors that occur during the invocation of the chain.
-            print(f"Error invoking chain: {e}")
-            return {"error": str(e)}
+        return result

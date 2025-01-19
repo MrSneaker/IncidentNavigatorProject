@@ -32,6 +32,7 @@ routes_folder = os.path.dirname(route_folder)
 app_folder = os.path.dirname(routes_folder)
 embeddings_cache_folder = os.path.join(app_folder, "install", "embedding_model")
 embeddings = HuggingFaceEmbeddings(model_name="intfloat/e5-large-v2", cache_folder=embeddings_cache_folder)
+
 # Function to extract incident IDs from the retrieved documents
 def get_documents_ids(retrieved_docs):
     if retrieved_docs:
@@ -86,13 +87,12 @@ def create_retriever(industries):
     compressor = CustomReranker()
     filters = None 
     # If industries is not 'all', apply filters to the search query based on industries
-    if not industries == 'all':
+    if industries != 'all':
         filters = Filter.any_of([Filter.by_property("industry").equal(industry) for industry in industries])
     # Create a Weaviate vector store for indexing and retrieving incident data
     db = WeaviateVectorStore(client=weaviate_client, index_name="incident", text_key="text", embedding=embeddings)
     # Set up the contextual compression retriever, combining the base retriever with a compression model
-    compression_retriever = ContextualCompressionRetriever(
-        base_compressor=compressor,
+    return ContextualCompressionRetriever(
+        base_compressor=CustomReranker(),
         base_retriever=db.as_retriever(search_type="mmr", search_kwargs={"fetch_k": 20, 'filters': filters})
     )
-    return compression_retriever

@@ -121,7 +121,7 @@ class Chat(db.Model):
     id = db.Column(db.String(32), primary_key=True, unique=True, default=get_uuid)
     user_id = db.Column(db.String(32), db.ForeignKey('users.id'), nullable=False)
     name = db.Column(db.Text, nullable=False, default='New Chat')
-    created_at = db.Column(db.DateTime, default=datetime.datetime.now)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now, onupdate=datetime.datetime.now)
     
     def __repr__(self):
@@ -226,6 +226,6 @@ class Chat(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'name': self.name,
-            'created_at': int(self.created_at.timestamp() * 1000),
-            'modified_at': int(self.last_updated().timestamp() * 1000),
+            'created_at': int(self.created_at.timestamp() * 1000) if self.created_at else None,
+            'modified_at': int(self.last_updated().timestamp() * 1000) if self.last_updated() else None,
         }

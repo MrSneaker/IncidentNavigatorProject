@@ -95,8 +95,10 @@ export default function ChatPage({ chatId }) {
 
     const requestChatInfo = (chatId) => {
         chatInfo(chatId).then((response) => {
-            if (response.id === chatId) {
-                setChatName(response.name);
+            if (response.error) {
+                setLoadingError(`Failed to load chat (${response.message})`);
+            } else if (response.data.id === chatId) {
+                setChatName(response.data.name);
             }
         }).catch((error) => {
             setLoadingError(`Failed to load chat (${error})`);
@@ -125,7 +127,9 @@ export default function ChatPage({ chatId }) {
         } else {
             setLoadingError("Chat ID not found");
         }
-        setLoading(false);
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
     }, []);
 
     return (

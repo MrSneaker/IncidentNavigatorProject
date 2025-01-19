@@ -18,7 +18,6 @@ import Layout from './components/layout';
 
 
 function ChatRoute() {
-  // http://localhost:3000/chat?id=e74e21132e1b4fce9f1dda981c5b40d1
   const query = new URLSearchParams(useLocation().search);
   const chatId = query.get('id');
   return chatId ? <ChatPage chatId={chatId} /> : <ChatOverviewPage />;
@@ -32,7 +31,7 @@ function App() {
     const navigate = useNavigate();
 
     useEffect(() => {
-      const response = logout();
+      logout();
 
       setTimeout(() => {
         navigate('/');

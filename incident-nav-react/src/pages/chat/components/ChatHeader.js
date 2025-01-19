@@ -38,7 +38,7 @@ export default function ChatHeader({ chatName, setChatName, renameError, loading
                                 }}
                             />
                             <FiEdit
-                                className="relative top-0 right-0 text-2xl font-bold text-white transform -translate-x-[40px] hover:cursor-pointer"
+                                className="relative top-0 right-0 text-2xl font-bold text-black/30 dark:text-white/30 transform -translate-x-[40px] hover:cursor-pointer pointer-events-none"
                             />
                         </div>
                         {

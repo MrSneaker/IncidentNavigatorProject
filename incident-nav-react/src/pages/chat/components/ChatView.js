@@ -11,7 +11,7 @@ function getColorRGB(color) {
 
     // Get the color in RGB
     let colorRGB = window.getComputedStyle(tempDiv).color;
-    
+
     // Remove the temp div
     document.body.removeChild(tempDiv);
 
@@ -22,15 +22,25 @@ function getColorRGB(color) {
 
 function changeColor(text) {
     let newText = text;
+    console.log(text);
     const tags = text.match(/<[^>]*>.+?<\/[^>]*>/g);
     if (tags) {
         tags.forEach(tag => {
             const content = tag.match(/<[^>]*>(.+?)<\/[^>]*>/).pop();
             const color = tag.match(/style=['"][^'"]*color:\s*([^;'"]+)/)?.[1];
             const rgb = getColorRGB(color);
-            if ((rgb.r, rgb.g, rgb.b) === (255, 255, 255)) {
+            // Black or white text
+            if ((rgb.r === 255 && rgb.g === 255 && rgb.b === 255) || (rgb.r === 0 && rgb.g === 0 && rgb.b === 0)) {
                 newText = newText.replace(tag, `<span class="text-light-text dark:text-dark-text">${content}</span>`);
             }
+            else {
+                // keep the color but set font weight to bold
+                newText = newText.replace(tag, `<span style="color: ${color}; font-weight: bold;">${content}</span>`);
+
+            }
+
+
+
         });
     }
     return newText;
@@ -132,7 +142,7 @@ export default function ChatView({ listMessages, setFocusOn, ...props }) {
             chat.removeEventListener('scroll', onScroll);
             chat.removeEventListener('mousemove', onMouseMove);
             chat.removeEventListener('leave', onMouseLeave);
-            
+
         }
     }, []);
 

@@ -24,8 +24,13 @@ const ChatOverview = () => {
                 setNewError(response.message);
                 return;
             }
+            // redirect to the new chat
+            if (response?.data?.id){
+                window.location.href = `/chat?id=${response.data.id}`;
+            }
             updateList();
         }).catch((error) => {
+            setNewError('An error occurred while creating new chat.');
             console.error(error);
         });
     }

@@ -2,3 +2,4 @@ embedding_model/
 mongo_data/
 weaviate_data/
 .install_venv/
+instance/

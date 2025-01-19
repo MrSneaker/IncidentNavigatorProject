@@ -33,9 +33,7 @@ async function newChat() {
     }
 
     try {
-        // Parse the response
-        return await response.json();
-
+        return await response.json();   
     } catch (error) {
         return { error: -1, message: 'Invalid response' }
     }
