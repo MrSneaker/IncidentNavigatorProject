@@ -67,10 +67,11 @@ Docker allows you to build and run services along with its dependencies in a con
 
 ###  Fill the databases (Weaviate and Mongo)
 
-Before starting you will need to have filled the Weaviate and Mongo Databases wuth the necessary data as such we have provided a script which performs said operation.
-    ```
-    python create_dbs.py
-    ```
+Before starting you will need to have filled the Weaviate and Mongo Databases with the necessary data as such we have provided a script which performs said operation.
+
+   ```python
+   python create_dbs.py
+   ```
 
 ###   Start servers locally
 
