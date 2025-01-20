@@ -8,9 +8,6 @@
    - [Automated Installation](#automated-installation)
    - [Manual Installation](#manual-installation)
 2. [Launch the server](#2-launch-the-server)
-3. [Evaluation](#3-evaluation)
-   - [BEIR Benchmark for embeddings models](#beir-benchmark-for-embeddings-models)
-   - [User evaluation](#user-evaluation)
 
 ## 1. Installation
 
