@@ -1,113 +1,59 @@
 import os
 import pandas as pd
-# import mysql.connector
+import uuid
+from html import unescape
+import warnings
+import argparse
+from pymongo import MongoClient
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain_core.documents import Document
 import weaviate
+from weaviate.collections import Collection
 from langchain_weaviate.vectorstores import WeaviateVectorStore
-from pymongo import MongoClient
-from html import unescape
-import weaviate.client_base
-from werkzeug.security import generate_password_hash
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
-import warnings
+
+# Supprimer les warnings inutiles
 warnings.filterwarnings("ignore")
 
+# Configuration
 WORKING_DIR = os.path.dirname(__file__)
 os.chdir(WORKING_DIR)
 
-
 DATABASE_NAME = "incident_db"
 COLLECTION_NAME = "incident_collection"
-
-
-# Data details
 DATAFRAME_PATH = "data/cleaned.csv"
-
-# Embeddings model details
 EMBEDDINGS_MODEL = "intfloat/e5-large-v2"
 EMBEDDINGS_PATH = "embedding_model"
-
-# Weaviate connection details
 HTTP_HOST = "localhost"
 HTTP_PORT = 8081
 HTTP_SECURE = False
+MONGO_URI = "mongodb://root:root@localhost:27017/"
 GRPC_HOST = "localhost"
 GRPC_PORT = 50051
 GRPC_SECURE = False
 
-# Mongo connection details
-MONGO_URI = "mongodb://root:root@localhost:27017/"
+# ================== UTILITAIRES DE LOG ================== #
+def log_info(message, end="\n"):
+    print(f"\x1b[1;34m[INFO]\x1b[0m {message}", end=end)
 
+def log_success(message, end="\n"):
+    print(f"\x1b[1;32m[SUCCESS]\x1b[0m {message}", end=end)
 
+def log_warning(message, end="\n"):
+    print(f"\x1b[1;33m[WARNING]\x1b[0m {message}", end=end)
+
+def log_error(message, end="\n"):
+    print(f"\x1b[1;31m[ERROR]\x1b[0m {message}", end=end)
+
+# ================== DATA ================== #
 def load_data():
-    print("Reading dataset from", DATAFRAME_PATH, end="\r")
+    log_info(f"Reading dataset from {DATAFRAME_PATH}...\r", end="")
     try:
         cleaned_data = pd.read_csv(os.path.join(os.path.dirname(__file__), DATAFRAME_PATH))
+        log_success(f"Dataset read successfully (shape: {cleaned_data.shape})")
+        return cleaned_data
     except Exception as e:
-        print("Failed to read dataset")
+        log_error("Failed to read dataset")
         raise e
-    
-    txt = f"Dataset read successfully (shape: {cleaned_data.shape})"
-    print(txt + "." * (80 - len(txt)) + '\x1b[6;30;42m' + "Done" + '\x1b[0m')
-    return cleaned_data
-
-def create_weaviate_docs(df: pd.DataFrame):
-    print("Creating Weaviate Documents...", end="\r")
-    try:
-        weaviate_docs = []
-        for row in df.iterrows():
-            data = row[1]
-            weaviate_docs.append(
-                Document(
-                    page_content=data['Accident Title'] + "\n" + data['Accident Description'],
-                    metadata={
-                        "incident_id": data["Accident ID"],
-                        "industry": data["Industry Type"],
-                        "event": data["Event Type"],
-                        'source': data['url']
-                    }
-                )
-            )
-    except Exception as e:
-        print("Failed to create Weaviate Documents")
-        raise e
-    
-    txt = f"Weaviate Documents created successfully ({len(weaviate_docs)} documents)"
-    print(txt + "." * (80 - len(txt)) + '\x1b[6;30;42m' + "Done" + '\x1b[0m')
-    return weaviate_docs
-
-def convert_to_weaviate_vector_store(
-        client: weaviate.WeaviateClient,
-        embeddings_model: str,
-        embeddings_path: str,
-        docs: list,
-        index_name: str): 
-    
-    print("Converting Weaviate Documents to Vector Store...", end="\r")
-    embeddings = HuggingFaceEmbeddings(
-        model_name=embeddings_model,
-        cache_folder=embeddings_path,
-        model_kwargs={"device": "cpu"}
-    )
-    try:
-        vector_store = WeaviateVectorStore.from_documents(
-            docs,
-            embedding=embeddings,
-            client=client,
-            index_name=index_name
-        )
-    except Exception as e:
-        print("Failed to convert Weaviate Documents to Vector Store")
-        raise e
-    
-    txt = f"Weaviate Documents converted to Vector Store successfully ({len(docs)} documents)"
-    print(txt + "." * (80 - len(txt)) + '\x1b[6;30;42m' + "Done" + '\x1b[0m')
-    return vector_store
 
 def preprocess_row(row):
     return {
@@ -125,66 +71,157 @@ def preprocess_row(row):
         'url': row.get('url'),
     }
 
+def load_embeddings_model(model_name, cache_folder, **model_kwargs):
+    log_info("Loading embeddings model...\r", end="")
+    return HuggingFaceEmbeddings(
+        model_name=model_name, cache_folder=cache_folder, **model_kwargs
+    )
+
+# ================== MONGODB ================== #
 def connect_mongodb(uri):
-    print("Connecting to MongoDB...", end="\r")
+    log_info("Connecting to MongoDB...\r", end="")
     try:
         client = MongoClient(uri)
+        log_success("Connected to MongoDB successfully")
+        return client
     except Exception as e:
-        print("\x1b[1;31;40m" + "Failed to connect to MongoDB" + '\x1b[0m')
+        log_error("Failed to connect to MongoDB")
         raise e
-    
-    txt = "Connected to MongoDB successfully"
-    print(txt + "." * (80 - len(txt)) + '\x1b[6;30;42m' + "Done" + '\x1b[0m')
-    return client
+
+def clear_mongodb(client, database_name, collection_name):
+    log_info("Clearing MongoDB collection...\r", end="")
+    try:
+        client[database_name].drop_collection(collection_name)
+        log_success("MongoDB collection cleared successfully")
+    except Exception as e:
+        log_error("Failed to clear MongoDB collection")
+        raise e
 
 def insert_mongodb(client, database_name, collection_name, docs):
-    print("Inserting documents into MongoDB...", end="\r")
+    log_info("Inserting documents into MongoDB...\r", end="")
     try:
-        db = client[DATABASE_NAME]
-        if COLLECTION_NAME in db.list_collection_names():
-            # Remove the collection if it already exists
-            db.drop_collection(COLLECTION_NAME)
-            print(f"Collection '{COLLECTION_NAME}' already exists. Dropping the collection.")
-            
-        collection = db[COLLECTION_NAME]
-        result = collection.insert_many(docs)
-        txt = f"Multiple documents inserted (count: {len(result.inserted_ids)})"
-        print(txt + "." * (80 - len(txt)) + '\x1b[6;30;42m' + "Done" + '\x1b[0m')
+        db = client[database_name]
+        collection = db[collection_name]
+        inserted_count = 0
+        for idx, doc in enumerate(docs):
+            log_info(f"Inserting document {idx + 1}/{len(docs)}...\r", end="")
+            if not collection.find_one({"accident_id": doc["accident_id"]}):
+                collection.insert_one(doc)
+                inserted_count += 1
+        log_success(f"Inserted {inserted_count} documents into MongoDB")
     except Exception as e:
-        print("\x1b[1;31;40m" + "Failed to connect to database" + '\x1b[0m')
+        log_error("Failed to insert documents into MongoDB")
         raise e
-    finally:
-        client.close()
-        
-        
-if __name__ == "__main__":
-    # Load and preprocess data
-    cleaned_data = load_data()
-    docs = create_weaviate_docs(cleaned_data)
-    
-    weaviate_client = weaviate.connect_to_custom(
-        http_host=HTTP_HOST,
-        http_port=HTTP_PORT,
-        http_secure=HTTP_SECURE,
-        grpc_host=GRPC_HOST,
-        grpc_port=GRPC_PORT,
-        grpc_secure=GRPC_SECURE
-    )
 
-    vector_store = convert_to_weaviate_vector_store(
-        client=weaviate_client,
-        embeddings_model=EMBEDDINGS_MODEL,
-        embeddings_path=os.path.join(os.path.dirname(__file__), EMBEDDINGS_PATH),
-        docs=docs,
-        index_name="incident",
-    )
+# ================== WEAVIATE ================== #
+def connect_weaviate(http_host, http_port, http_secure, grpc_host, grpc_port, grpc_secure):
+    log_info("Connecting to Weaviate...\r", end="")
+    try:
+        client = weaviate.connect_to_custom(
+            http_host=http_host,
+            http_port=http_port,
+            http_secure=http_secure,
+            grpc_host=grpc_host,
+            grpc_port=grpc_port,
+            grpc_secure=grpc_secure
+
+        )
+        log_success("Connected to Weaviate successfully")
+        return client
+    except Exception as e:
+        log_error("Failed to connect to Weaviate")
+        raise e
+
+def clear_weaviate(client: weaviate.Client, class_name: str):
+    log_info("Clearing Weaviate collection...\r", end="")
+    try:
+        client.collections.delete(class_name)
+        log_success("Weaviate collection cleared successfully")
+    except Exception as e:
+        log_error("Failed to clear Weaviate collection")
+        raise e
+
+def insert_weaviate(client: weaviate.Client, class_name: str, embeddings, docs: dict):
+    try:
+        for idx, (key, doc) in enumerate(docs.items()):
+            log_info(f"Inserting document {idx + 1}/{len(docs)}...\r", end="")
+            WeaviateVectorStore.from_documents([doc], embeddings, ids=[key], client=client, index_name=class_name)
+        log_success("All documents inserted into Weaviate successfully")
+    except Exception as e:
+        log_error("Failed to insert documents into Weaviate")
+        raise e
+
+def exist_weaviate(client: weaviate.Client, class_name: str, doc_id: str):
+    collection = client.collections.get(class_name)
+    return collection.data.exists(doc_id)
+
+
+# ================== MAIN PROCESS ================== #
+def process(clear=False):
+    log_info("Starting data processing...\r", end="")
+    data = load_data()
+    mongo_data = [preprocess_row(row) for row in data.to_dict(orient="records")]
+    weaviate_data = {
+        uuid.uuid5(uuid.NAMESPACE_DNS, str(doc["accident_id"])): Document(
+            page_content=doc["accident_title"] + "\n" + doc["accident_description"],
+            metadata={
+                "incident_id": doc["accident_id"],
+                "industry": doc["industry_type"],
+                "event": doc["event_type"],
+                "source": doc["url"]
+            }
+        )
+        for doc in mongo_data
+    }
+
+    client_mongo = connect_mongodb(MONGO_URI)
+    client_weaviate = connect_weaviate(HTTP_HOST, HTTP_PORT, HTTP_SECURE, GRPC_HOST, GRPC_PORT, GRPC_SECURE)
+
+    if clear:
+        clear_mongodb(client_mongo, DATABASE_NAME, COLLECTION_NAME)
+        clear_weaviate(client_weaviate, "incident")
+
+    log_info("Checking for new documents...\r", end="")
+    if new_mongo_data := [
+        doc
+        for doc in mongo_data
+        if not client_mongo[DATABASE_NAME][COLLECTION_NAME].find_one(
+            {"accident_id": doc["accident_id"]}
+        )
+    ]:
+        log_info(f"Inserting {len(new_mongo_data)} new documents into MongoDB...\r", end="")
+        insert_mongodb(client_mongo, DATABASE_NAME, COLLECTION_NAME, new_mongo_data)
+    else:
+        log_success("All documents already exist in MongoDB")
+
+
+    log_info("Checking for new documents...\r", end="")
+    import concurrent.futures
+
+    def check_new_documents_weaviate(client_weaviate, weaviate_data):
+        new_weaviate_data = {}
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            future_to_doc = {
+                executor.submit(exist_weaviate, client_weaviate, "incident", str(key)): (key, doc)
+                for key, doc in weaviate_data.items()
+            }
+            for future in concurrent.futures.as_completed(future_to_doc):
+                key, doc = future_to_doc[future]
+                if not future.result():
+                    new_weaviate_data[key] = doc
+        return new_weaviate_data
+
+    new_weaviate_data = check_new_documents_weaviate(client_weaviate, weaviate_data)
+    if new_weaviate_data:
+        insert_weaviate(client_weaviate, "incident", load_embeddings_model(EMBEDDINGS_MODEL, EMBEDDINGS_PATH), new_weaviate_data)
+    else:
+        log_success("All documents already exist in Weaviate")
+    log_success("Data processing completed successfully")
+
+# ================== EXECUTION ================== #
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Process and insert data into MongoDB and Weaviate")
+    parser.add_argument("-c", "--clear", action="store_true", help="Clear existing data before inserting new data")
+    args = parser.parse_args()
     
-    # Connect to MongoDB
-    client = connect_mongodb(MONGO_URI)
-    
-    # Create and populate Mongo Database
-    mongo_docs = [preprocess_row(row) for row in cleaned_data.to_dict(orient="records")]
-    insert_mongodb(client, DATABASE_NAME, COLLECTION_NAME, mongo_docs)
-    
-    client.close()
-    exit()
+    process(clear=args.clear)

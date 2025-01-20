@@ -6,9 +6,9 @@ echo -e "\e[1;34m[INFO]\e[0m Working directory: $WORKDIR"
 
 # INSTALL DEPENDENCIES
 echo -e "\e[1;34m[INFO]\e[0m Creating virtual environment..."
-python3 -m venv .install_venv
+python3 -m venv .installenv
 echo -e "\e[1;34m[INFO]\e[0m Activating virtual environment..."
-source .install_venv/bin/activate
+source .installenv/bin/activate
 echo -e "\e[1;34m[INFO]\e[0m Installing dependencies..."
 pip install -r requirements.txt --quiet
 
