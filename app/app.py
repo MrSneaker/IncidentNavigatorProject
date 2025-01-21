@@ -68,6 +68,7 @@ routes = [
     '/register',
     '/chat',
     '/profile',
+    '/settings'
 ]
 
 # Register routes to serve the React frontend
