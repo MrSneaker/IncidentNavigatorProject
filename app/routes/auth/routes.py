@@ -203,7 +203,6 @@ def update_user_industries(user_id):
 
     # Validate and update industries
     industries = request.json.get('industries', None)
-    logging.error('industries : ', industries)
     if industries is None or not isinstance(industries, list):
         return {'error': 4, 'message': 'Invalid industries format', 'data': None}, 400
     

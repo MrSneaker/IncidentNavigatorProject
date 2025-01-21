@@ -9,7 +9,12 @@ class LLMResponse:
     answer: str = ''
     references: list[dict] = []
     
-    def __init__(self, response: requests.Response):
+    def __init__(self, response: requests.Response, is_bad_request=False, bad_req_error_msg=None):
+        if is_bad_request:
+            self.error = bad_req_error_msg['error']
+            self.answer = bad_req_error_msg['message']
+            return
+        
         if response.status_code != 200:
             self.error = 1
             self.answer = f'Error {response.status_code}'
@@ -67,6 +72,9 @@ class LLMResponse:
 
 def invoke_llm(user_id: str, chat_id: str, req_message: str, hist_message: list, industries: list):
     try:
+        if not industries or industries == []:
+            error = {"error": 12, "message": "You don't have any industries affiliated, please contact your administrator to get you at least one."}
+            return LLMResponse(None, True, error)
         # Request to LLM
         response = requests.post('http://localhost:5000/llm/invoke', json={
             'user_id': user_id,
@@ -85,7 +93,11 @@ def invoke_llm(user_id: str, chat_id: str, req_message: str, hist_message: list,
     except ClientDisconnected as e:
         print("Client aborted the request.")
         raise
-
+    
+    except requests.exceptions.HTTPError as e:
+        logging.error(f'Error while invoking LLM : {e}')
+        if response.status_code == 401:
+            return LLMResponse(None, True, {"error": 13, "message": "Your credentials for the selected configuration are incorect. Please ask an administrator to correct them."})
     except requests.exceptions.RequestException as e:
         print(f"Error while invoking LLM: {e}")
         # Return a fake respons

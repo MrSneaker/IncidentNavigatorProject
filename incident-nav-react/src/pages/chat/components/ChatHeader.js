@@ -14,7 +14,7 @@ export default function ChatHeader({ chatName, setChatName, renameError, loading
     return (
         <div className="flex items-center justify-between w-full p-2 gap-4">
             <Link to="/chat" className="text-2xl font-bold"> <IoMdArrowBack /> </Link>
-            <div className="relative text-2xl font-bold w-full flex flex-col items-center justify-center">
+            <div className="relative text-2xl font-bold w-full flex flex-col items-center justify-center max-w-[600px] mx-auto">
                 {!loading && (
                     <>
                         <div className='w-full h-full flex items-center justify-center max-w-[400px]'>

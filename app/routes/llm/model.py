@@ -5,16 +5,18 @@ import json
 from dotenv import load_dotenv
 from langchain_openai.chat_models import ChatOpenAI
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+from langchain_core.callbacks import AsyncCallbackManager, AsyncCallbackHandler
 from langchain_core.output_parsers import StrOutputParser
 from operator import itemgetter
 
+from openai import AuthenticationError
+import requests
+
+
+from .utils.llm_exception_handler import LLMInvocationError
 from .utils.memory import MemoryManager
 from .utils.prompts import CONTEXT_PROMPT, SYSTEM_PROMPT
 from .utils.retriever import retrieve
-
-
-load_dotenv()
-API_KEY = os.getenv("API_KEY")
 
 # Function to extract JSON data from markdown formatted text.
 def get_json_from_markdown(markdown_text):
@@ -34,8 +36,13 @@ def get_json_from_markdown(markdown_text):
         # If an error occurs while decoding JSON, log the error and return the original markdown.
         print(f"Error decoding JSON: {e}")
         return markdown_text
-        
-# Class for interacting with a large language model (LLM) like ChatOpenAI.
+
+
+class AsyncModelCallbackHandler(AsyncCallbackHandler):
+    async def on_llm_error(self, error: Exception):
+        raise error
+
+
 class LLM:
     def __init__(self, config: dict):
         """
@@ -45,6 +52,8 @@ class LLM:
         """
         self.config = config
         # Create an instance of the model using the provided configuration.
+        self.callback_manager = AsyncCallbackManager(
+            handlers=[AsyncModelCallbackHandler()])
         self.model = self.create_model()
         # Initialize a memory manager for this model.
         self.memory = MemoryManager()
@@ -58,8 +67,10 @@ class LLM:
         return ChatOpenAI(
             openai_api_base=self.config.get("uri", "").strip(),
             model=self.config.get("model", "llama-3.3-70b-versatile").strip(),
-            temperature=1,  # Set temperature (controls randomness in response).
-            api_key=self.config.get("api_key", os.getenv("API_KEY")),
+            # Set temperature (controls randomness in response).
+            temperature=1,
+            api_key=self.config.get("api_key", ''),
+            callback_manager=self.callback_manager
         )
 
     def get_memory(self, user_id, chat_id):
@@ -75,7 +86,7 @@ class LLM:
     async def invoke_chain(self, payload: dict):
         """
         Invokes a chain of processes to handle a request, such as querying a language model.
-        
+
         :param payload: Dictionary containing request data (user ID, chat ID, question, etc.).
         :return: The result of invoking the chain.
         """
@@ -85,31 +96,38 @@ class LLM:
         user_mem = self.get_memory(user_id, chat_id)
         if user_mem is None:
             raise ValueError("User memory not found.")
-        
+
         # Define the context of the request by fetching chat history from user memory.
         context = RunnablePassthrough.assign(
             chat_history=RunnableLambda(
                 user_mem.load_memory_variables) | itemgetter("history")
         ) | CONTEXT_PROMPT | self.model | StrOutputParser()
-        
+
         # Define the entire chain of operations to process the request.
         runnable = (
             RunnablePassthrough.assign(
                 question=context,
-                memory=RunnableLambda(user_mem.load_memory_variables) | itemgetter("history"),
+                memory=RunnableLambda(
+                    user_mem.load_memory_variables) | itemgetter("history"),
                 industries=RunnableLambda(lambda x: x.get("industries"))
             )
             | retrieve
-            | SYSTEM_PROMPT 
+            | SYSTEM_PROMPT
             | self.model
             | StrOutputParser()
             | get_json_from_markdown
         )
-        # Await the result of the chain invocation.
-        result = await runnable.ainvoke(payload)
 
-        # Update user memory with the new interaction.
-        user_mem.chat_memory.add_user_message(payload.get("question"))
-        user_mem.chat_memory.add_ai_message(str(result))
-
-        return result
+        try:
+            # Await the result of the chain invocation.
+            result = await runnable.ainvoke(payload)
+            # Update user memory with the new interaction.
+            user_mem.chat_memory.add_user_message(payload.get("question"))
+            user_mem.chat_memory.add_ai_message(str(result))
+            return result
+        except AuthenticationError as auth_err:
+            logging.error(f'Authentication error: {auth_err}')
+            raise LLMInvocationError(401, "Authentication failed. Please verify your API key or credentials.", auth_err)
+        except Exception as e:
+            logging.error(f'Exception in invoke chain : {e}')
+            return e

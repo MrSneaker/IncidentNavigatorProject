@@ -1,6 +1,8 @@
 import logging
 from flask import request, redirect
 
+from .utils.llm_exception_handler import LLMInvocationError
+
 from ..llm_config.models import LLMConfig
 from . import llm
 from .model import LLM
@@ -21,23 +23,26 @@ async def invoke_chain():
     Handles incoming POST requests to trigger the chain of operations.
     """
     try:
-        # Get the JSON payload from the incoming POST request.
         payload = request.json
-        # Log the payload to help with debugging.
         logging.info(f'Payload: {payload}')
         
-        # Retrieve the configuration for the selected LLM (Large Language Model).
         llm_config = LLMConfig.get_selected_llm()
         
-        # Log the configuration for debugging purposes.
         logging.info(f'LLM Configuration: {llm_config}')
         
-        # Instantiate the LLM object using the selected configuration.
         llm_instance = LLM(llm_config)
         
-        # Invoke the chain with the provided payload and return the result asynchronously.
-        return await llm_instance.invoke_chain(payload), 200
+        response = await llm_instance.invoke_chain(payload)
+        
+        return response, 200
     
+    except LLMInvocationError as e:
+        logging.error(f'LLM Invocation Error: {e}')
+        return {
+            "error": e.error_code,
+            "message": e.message
+        }, e.error_code
     except Exception as e:
-        # If an error occurs, return an error message and a 500 status code.
         return {"error": 500, "message": str(e)}, 500
+
+
