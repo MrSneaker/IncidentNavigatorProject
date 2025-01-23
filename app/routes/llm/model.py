@@ -17,8 +17,16 @@ from .utils.memory import MemoryManager
 from .utils.prompts import CONTEXT_PROMPT, SYSTEM_PROMPT
 from .utils.retriever import retrieve
 
-# Function to extract JSON data from markdown formatted text.
 def get_json_from_markdown(markdown_text):
+    """
+    Extract JSON string found in markdown text.
+    
+    Args:
+        markdown_text (str): Markdown formated text
+
+    Returns:
+        dict: Python dict representation of the JSON found
+    """
     try:
         # Search for content enclosed in ```json``` in markdown text.
         json_match = re.search(r'```json(.*?)```', markdown_text, re.DOTALL)
@@ -38,6 +46,11 @@ def get_json_from_markdown(markdown_text):
 
 
 class AsyncModelCallbackHandler(AsyncCallbackHandler):
+    """Custom Callback handler for langchain chain invocation.
+
+    Args:
+        AsyncCallbackHandler
+    """
     async def on_llm_error(self, error: Exception, **kwargs):
         raise error
 

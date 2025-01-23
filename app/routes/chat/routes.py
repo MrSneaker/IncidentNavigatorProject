@@ -12,7 +12,13 @@ from .utils.llm import LLMResponse, invoke_llm
 
 def get_uid():
     """
-    Get user ID from JWT token
+    Get the user ID from the JWT token in the request header.
+
+    This function extracts the Authorization token from the request header,
+    verifies the JWT, and returns the user ID from the decoded payload.
+    
+    Returns:
+        str or None: The user ID if the token is valid, None if invalid or an error occurs.
     """
     try:
         token = request.headers.get('Authorization').split(" ")[1]
@@ -24,6 +30,14 @@ def get_uid():
 @chat.route('/new', methods=['POST'])   
 @token_required
 def new():
+    """
+    Create a new chat for the authenticated user.
+
+    This route allows the user to create a new chat by providing a name in the request body.
+    
+    Returns:
+        dict: JSON response containing the error code, message, and chat data.
+    """
     # Get user ID
     user_id = get_uid()
     if user_id is None:
@@ -39,6 +53,14 @@ def new():
 @chat.route('/delete', methods=['DELETE'])
 @token_required
 def delete():
+    """
+    Delete a specific chat for the authenticated user.
+
+    This route allows the user to delete a chat by providing the chat ID in the request body.
+    
+    Returns:
+        dict: JSON response containing the error code, message, and data.
+    """
     # Get user ID
     user_id = get_uid()
     if user_id is None:
@@ -59,6 +81,14 @@ def delete():
 @chat.route('/list', methods=['GET'])
 @token_required
 def list():
+    """
+    List all chats for the authenticated user.
+
+    This route returns all the chats that belong to the authenticated user.
+    
+    Returns:
+        dict: JSON response containing the error code, message, and list of chat data.
+    """
     # Get user ID
     user_id = get_uid()
     if user_id is None:
@@ -82,6 +112,15 @@ def list():
 @chat.route('/info', methods=['GET'])
 @token_required
 def info():
+    """
+    Retrieve detailed information about a specific chat for the authenticated user.
+
+    This route allows the user to fetch detailed information about a specific chat
+    by providing the chat ID in the request query parameters.
+    
+    Returns:
+        dict: JSON response containing the error code, message, and chat data.
+    """
     # Get user ID
     user_id = get_uid()
     if user_id is None:
@@ -102,6 +141,15 @@ def info():
 @chat.route('/rename', methods=['PUT'])
 @token_required
 def rename():
+    """
+    Rename an existing chat for the authenticated user.
+
+    This route allows the user to rename an existing chat by providing the chat ID
+    and a new name in the request body.
+    
+    Returns:
+        dict: JSON response containing the error code, message, and data.
+    """
     # Get user ID
     user_id = get_uid()
     if user_id is None:
@@ -127,6 +175,15 @@ def rename():
 @chat.route('/msgs', methods=['GET'])
 @token_required
 def list_msgs():
+    """
+    List all messages for a specific chat for the authenticated user.
+
+    This route retrieves all messages from a specific chat by providing the chat ID
+    in the request query parameters.
+    
+    Returns:
+        dict: JSON response containing the error code, message, and list of messages.
+    """
     # Get user ID
     user_id = get_uid()
     if user_id is None:
@@ -167,6 +224,15 @@ def list_msgs():
 @chat.route('/send', methods=['POST'])
 @token_required
 def send():
+    """
+    Send a new message in a chat and invoke the LLM for a response.
+
+    This route allows the user to send a new message in a specific chat. The message is then sent
+    to the LLM for processing, and the response is saved and returned.
+    
+    Returns:
+        dict: JSON response containing the error code, message, and the model's response data.
+    """
     try:
         # Get user ID
         user_id = get_uid()

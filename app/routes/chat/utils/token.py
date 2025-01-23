@@ -3,14 +3,27 @@ import os
 import datetime
 import jwt
 
-# Function to generate a random secret key for JWT encoding/decoding.
 def generate_secret_key():
+    """
+    Generates a random 24-byte secret key for JWT encoding/decoding.
+    
+    Returns:
+        str: A randomly generated secret key.
+    """
     return os.urandom(24)
 
 SECRET_KEY = generate_secret_key()
 
-# Function to generate a JWT for a given username.
 def generate_jwt(username):
+    """
+    Generates a JSON Web Token (JWT) for the given username with an expiration time of 1 day.
+    
+    Args:
+        username (str): The username (user ID) to include in the JWT payload.
+    
+    Returns:
+        str: The encoded JWT token.
+    """
     payload = {
         'uid': username, 
         'exp': datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1)
@@ -20,8 +33,20 @@ def generate_jwt(username):
     return token
 
 
-# Function to verify a JWT and decode its payload.
 def verify_jwt(token):
+    """
+    Verifies the given JWT and decodes its payload.
+    
+    Args:
+        token (str): The JWT to verify and decode.
+    
+    Returns:
+        dict: A dictionary containing the verification result. If valid, the decoded payload.
+        Possible keys:
+        - 'error' (int): 0 for success, non-zero for failure.
+        - 'message' (str): Message indicating success or failure.
+        - 'payload' (dict or None): The decoded JWT payload if valid, otherwise None.
+    """
     try:
         # Decode the token using the secret key and verify its validity.
         decoded = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
@@ -39,8 +64,19 @@ def verify_jwt(token):
     return {"error": 0, "message": "Token valide", 'payload': decoded}
     
 
-# Decorator function to protect routes using JWT authentication.
 def token_required(f):
+    """
+    A decorator to protect routes by requiring JWT authentication.
+    
+    This decorator ensures that the request contains a valid JWT token in the 'Authorization' header.
+    If the token is missing, expired, or invalid, an error response is returned.
+    
+    Args:
+        f (function): The route function to decorate and protect.
+    
+    Returns:
+        function: The decorated route function.
+    """
     from functools import wraps
     
     @wraps(f)

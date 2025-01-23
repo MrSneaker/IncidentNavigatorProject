@@ -5,11 +5,37 @@ from flask import request
 
 
 class LLMResponse:
+    """
+    LLMResponse is a helper class to manage the response from a Language Learning Model (LLM).
+    
+    Attributes:
+        error (int): Represents the error status. Default is -1.
+        answer (str): Contains the response answer from the LLM.
+        references (list[dict]): Contains the references related to the response.
+    
+    Methods:
+        __init__(response: requests.Response, is_bad_request: bool, bad_req_error_msg: dict):
+            Initializes the object, processes the response, and sets attributes accordingly.
+        
+        is_valid() -> bool:
+            Checks if the response is valid (error == 0).
+        
+        check_response(json_response: dict) -> dict:
+            Static method that validates the structure of the response JSON.
+    """
     error = -1
     answer: str = ''
     references: list[dict] = []
     
     def __init__(self, response: requests.Response, is_bad_request=False, bad_req_error_msg=None):
+        """
+        Initializes an instance of LLMResponse.
+
+        Args:
+            response (requests.Response): The HTTP response object from the LLM.
+            is_bad_request (bool): Flag indicating if the request was invalid.
+            bad_req_error_msg (dict): A dictionary containing error information for a bad request.
+        """
         if is_bad_request:
             self.error = bad_req_error_msg['error']
             self.answer = bad_req_error_msg['message']
@@ -32,10 +58,25 @@ class LLMResponse:
         self.references = json_response['references']
 
     def is_valid(self) -> bool:
+        """
+        Checks if the LLM response is valid.
+
+        Returns:
+            bool: True if the response is valid (error == 0), False otherwise.
+        """
         return self.error == 0
     
     @staticmethod
     def check_response(json_response) -> dict:
+        """
+        Validates the structure and content of the LLM JSON response.
+
+        Args:
+            json_response (dict): The JSON response to validate.
+
+        Returns:
+            dict: A dictionary indicating the validation result. Contains 'error' and 'message'.
+        """
         error_string = 'It seems the LLM of your configuration did not succeed in making a well done response, please retry or ask for a better LLM. Error is : '
         # response as 'answer' and 'references'
         if 'answer' not in json_response:
@@ -72,6 +113,19 @@ class LLMResponse:
 
 
 def invoke_llm(user_id: str, chat_id: str, req_message: str, hist_message: list, industries: list):
+    """
+    Invokes the Language Learning Model (LLM) with the specified parameters.
+
+    Args:
+        user_id (str): The ID of the user making the request.
+        chat_id (str): The ID of the chat.
+        req_message (str): The question or message being sent to the LLM.
+        hist_message (list): A list of historical messages in the conversation.
+        industries (list): A list of industries associated with the user.
+
+    Returns:
+        LLMResponse: An instance of the LLMResponse class containing the result.
+    """
     try:
         if not industries or industries == []:
             error = {"error": 12, "message": "You don't have any industries affiliated, please contact your administrator to get you at least one."}
