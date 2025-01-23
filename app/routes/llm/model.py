@@ -1,8 +1,6 @@
 import logging
-import os
 import re
 import json
-from dotenv import load_dotenv
 from langchain_openai.chat_models import ChatOpenAI
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from langchain_core.callbacks import AsyncCallbackManager, AsyncCallbackHandler
@@ -10,7 +8,8 @@ from langchain_core.output_parsers import StrOutputParser
 from operator import itemgetter
 
 from openai import AuthenticationError
-import requests
+from openai import APIConnectionError
+from openai import NotFoundError
 
 
 from .utils.llm_exception_handler import LLMInvocationError
@@ -39,7 +38,7 @@ def get_json_from_markdown(markdown_text):
 
 
 class AsyncModelCallbackHandler(AsyncCallbackHandler):
-    async def on_llm_error(self, error: Exception):
+    async def on_llm_error(self, error: Exception, **kwargs):
         raise error
 
 
@@ -70,7 +69,7 @@ class LLM:
             # Set temperature (controls randomness in response).
             temperature=1,
             api_key=self.config.get("api_key", ''),
-            callback_manager=self.callback_manager
+            callbacks=self.callback_manager
         )
 
     def get_memory(self, user_id, chat_id):
@@ -125,9 +124,15 @@ class LLM:
             user_mem.chat_memory.add_user_message(payload.get("question"))
             user_mem.chat_memory.add_ai_message(str(result))
             return result
-        except AuthenticationError as auth_err:
-            logging.error(f'Authentication error: {auth_err}')
-            raise LLMInvocationError(401, "Authentication failed. Please verify your API key or credentials.", auth_err)
+        except AuthenticationError as e:
+            logging.error(f'Authentication error: {e}')
+            raise LLMInvocationError(401, "Authentication failed. Please verify your API key or credentials.", e)
+        except APIConnectionError as e:
+            logging.error(f'Connection error: {e}')
+            raise LLMInvocationError(404, "Connection to the requested URI failed. Please verify the URI provided.", e)
+        except NotFoundError as e:
+            logging.error(f'Model not found error: {e}')
+            raise LLMInvocationError(400, "The model you try to request does not exist. Please provide a valid model name.", e)
         except Exception as e:
-            logging.error(f'Exception in invoke chain : {e}')
+            logging.error(f'Exception in invoke chain : {e} - exception is of type {type(e)}')
             return e

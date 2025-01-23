@@ -26,9 +26,7 @@ async def invoke_chain():
         payload = request.json
         logging.info(f'Payload: {payload}')
         
-        llm_config = LLMConfig.get_selected_llm()
-        
-        logging.info(f'LLM Configuration: {llm_config}')
+        llm_config = LLMConfig.get_selected_llm()        
         
         llm_instance = LLM(llm_config)
         

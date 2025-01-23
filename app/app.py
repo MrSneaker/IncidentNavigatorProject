@@ -1,4 +1,3 @@
-# Import required packages and modules
 import logging
 from flask import Flask, send_from_directory
 from flask_cors import CORS
@@ -17,17 +16,12 @@ from routes.llm import llm
 from routes.llm_config import llmConf
 from config import ApplicationConfig
 
-# Initialize application with configuration
 config = ApplicationConfig()
 app = Flask(__name__, static_folder='public')
 app.config.from_object(config)
 
-# Enable CORS for all origins with credential support
-# This allows cross-origin requests from any domain
 CORS(app, origins="*", supports_credentials=True)
 
-# Register blueprints for different routes
-# Each blueprint handles a specific feature set of the application
 app.register_blueprint(auth, url_prefix='/auth')      # Authentication routes
 app.register_blueprint(chat, url_prefix='/chat')      # Chat functionality
 app.register_blueprint(industry, url_prefix='/industry')  # Industry-related routes
@@ -43,13 +37,11 @@ def create_default_admin():
     admin_username = "admin"
     admin_password = "admin"
 
-    # Check if admin already exists to prevent duplicates
     existing_admin = User.query.filter_by(email=admin_email).first()
     if existing_admin:
-        logging.error("User admin already exist.")
+        logging.info("User admin already exist.")
         return
 
-    # Create new admin user with hashed password
     hashed_password = bcrypt.generate_password_hash(admin_password).decode('utf-8')
     admin_user = User(
         email=admin_email,
@@ -61,7 +53,6 @@ def create_default_admin():
     db.session.commit()
     logging.info("Default Admin user created.")
 
-# Define frontend routes that should be handled by React Router
 routes = [
     '/',
     '/login',
@@ -71,9 +62,6 @@ routes = [
     '/settings'
 ]
 
-# Register routes to serve the React frontend
-# This ensures that all frontend routes return the main index.html file
-# allowing React Router to handle client-side routing
 for route in routes:
     app.add_url_rule(route, f'index_{route}', lambda: send_from_directory('public', 'index.html'))
 
@@ -82,12 +70,9 @@ for route in routes:
 def files(path):
     return send_from_directory('public', path)
 
-# Application initialization within context
 with app.app_context():
-    # Initialize Flask extensions
     bcrypt.init_app(app)
     session.init_app(app)
-    # Database initialization
     db.init_app(app)             
     db.create_all()
     
@@ -103,6 +88,5 @@ with app.app_context():
         True
     )
 
-# Run the application in debug mode if executed directly
 if __name__ == '__main__':
-    app.run(debug=True)  # Debug mode should be disabled in production
+    app.run(debug=True)
