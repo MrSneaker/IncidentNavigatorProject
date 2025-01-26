@@ -6,9 +6,9 @@ echo -e "\e[1;34m[INFO]\e[0m Working directory: $WORKDIR"
 
 # INSTALL DEPENDENCIES
 echo -e "\e[1;34m[INFO]\e[0m Creating virtual environment..."
-python3 -m venv .installenv
+python3 -m venv .env
 echo -e "\e[1;34m[INFO]\e[0m Activating virtual environment..."
-source .installenv/bin/activate
+source .env/bin/activate
 echo -e "\e[1;34m[INFO]\e[0m Installing dependencies..."
 pip install -r requirements.txt --quiet
 
@@ -36,3 +36,4 @@ sleep 5
 echo -e "\e[1;34m[INFO]\e[0m Creating databases..."
 python3 create_dbs.py
 echo -e "\e[1;32m[SUCCESS]\e[0m Setup complete!"
+
