@@ -4,21 +4,21 @@
 
 # Table of Contents
 
-1. [📖 Introduction](#📖-introduction)
-2. [🛠️ Installation](#🛠️-installation)
+1. [📖 Introduction](#introduction)
+2. [🛠️ Installation](#installation)
    - [Clone Repository](#clone-repository)
    - [Quick Install/Uninstall](#quick-installuninstall)
    - [Manual Setup](#manual-setup)
-3. [🔧 Launch Server](#🔧-launch-server)
+3. [🔧 Launch Server](#launch-server)
    - [Quick Launch](#quick-launch)
    - [Manual Launch](#manual-launch)
-4. [🔒 Default Admin Credentials](#🔒-default-admin-credentials)
-5. [⚙️ Configure LLM](#⚙️-configure-llm)
-6. [📝 User Evaluation](#📝-user-evaluation)
+4. [🔒 Default Admin Credentials](#default-admin-credentials)
+5. [⚙️ Configure LLM](#configure-llm)
+6. [📝 User Evaluation](#user-evaluation)
 
 ---
 
-# 📖 Introduction
+# Introduction
 
 **IncidentNavigator** is a solution designed to streamline recurring incident resolution. Using a Large Language Model (LLM) and Retrieval-Augmented Generation (RAG), it offers:
 
@@ -26,7 +26,7 @@
 - Transparent, fact-based responses.
 - Adaptability to structured and unstructured data.
 
-# 🛠️  Installation
+# Installation
 
 Ensure the following are installed on your system:
 
@@ -102,7 +102,7 @@ cd IncidentNavigatorProject
 
 ---
 
-# 🔧 Lauch Server
+# Launch Server
 
 ## Quick Launch
 
@@ -141,7 +141,7 @@ This script will stop all running components.
       ```bash
       python3 app/app.pySimplifiez les phrases pour les rendre plus fluides en français. Par exemple :lhost:5000, you will be directed to the homepage.
 
-# 🔒 Default Admin Credentials
+# Default Admin Credentials
 
 The application comes with a default admin account for initial use:
 
@@ -153,7 +153,7 @@ The application comes with a default admin account for initial use:
 
 ---
 
-# ⚙️ Configure LLM
+# Configure LLM
 
 To configure the Large Language Model (LLM), the admin should follow these steps:
 
@@ -170,6 +170,6 @@ To configure the Large Language Model (LLM), the admin should follow these steps
 
 ---
 
-## 📝 User Evaluation
+## User Evaluation
 
 Participate in our user evaluation by filling out this [survey](https://docs.google.com/forms/d/e/1FAIpQLSeJjsLwA0piXQqG0LpePXWf8MYUIZXKDx7mvkezLxrdCmWIYQ/viewform?usp=header).
