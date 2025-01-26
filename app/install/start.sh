@@ -26,12 +26,12 @@ fi
 
 # ACTIVATE PYTHON ENVIRONMENT
 echo -e "\e[1;34m[INFO]\e[0m Activating Python virtual environment..."
-if [ ! -d ".installenv" ]; then
+if [ ! -d ".env" ]; then
     echo -e "\e[1;31m[ERROR]\e[0m Python virtual environment not found. Please run the installation script first."
     exit 1
 fi
 
-source .installenv/bin/activate
+source .env/bin/activate
 if [ $? -ne 0 ]; then
     echo -e "\e[1;31m[ERROR]\e[0m Failed to activate Python virtual environment."
     exit 1

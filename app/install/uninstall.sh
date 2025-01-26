@@ -5,9 +5,9 @@ WORKDIR=$(pwd)
 echo -e "\e[1;34m[INFO]\e[0m Working directory: $WORKDIR"
 
 # REMOVE VIRTUAL ENVIRONMENT
-if [ -d ".installenv" ]; then
+if [ -d ".env" ]; then
     echo -e "\e[1;34m[INFO]\e[0m Removing virtual environment..."
-    rm -rf .installenv
+    rm -rf .env
 else
     echo -e "\e[1;33m[WARNING]\e[0m Virtual environment not found."
 fi

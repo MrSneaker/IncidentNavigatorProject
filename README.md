@@ -1,156 +1,143 @@
-# IncidentNavigatorProject
+<h1 align="center">IncidentNavigatorProject</h1>
 
-## Table of Contents
+**An intelligent solution for efficient incident resolution using LLM and RAG.**
 
-1. [Installation](#1-installation)
-   - [Prerequisites](#prerequisites)
-   - [Clone repository](#clone-repository)
-   - [Automated Installation](#automated-installation)
-   - [Manual Installation](#manual-installation)
-2. [Launch the server](#2-launch-the-server)
-   - [Automated launch](#automated-launch)
-   - [Manual launch](#manual-launch)
-3. [Stop the server](#3-stop-the-server)
-   - [Automated stop](#automated-stop)
-   - [Manual stop](#manual-stop)
 
-## 1. Installation
+# Table of Contents
+1. [📖 Introduction](#📖-introduction)
+2. [🛠️ Installation](#🛠️-installation)
+   - [Clone Repository](#clone-repository)
+   - [Quick Install/Uninstall](#quick-installuninstall)
+   - [Manual Setup](#manual-setup)
+3. [🔧 Launch Server](#🔧-launch-server)
+   - [Quick Launch](#quick-launch)
+   - [Manual Launch](#manual-launch)
+4. [🔒 Default Admin Credentials](#🔒-default-admin-credentials)
+5. [📝 User Evaluation](#📝-user-evaluation)
 
-### Prerequisites
+---
 
-Ensure you have the following installed on your system:
+# 📖 Introduction
+
+**IncidentNavigator** is a solution designed to streamline recurring incident resolution. Using a Large Language Model (LLM) and Retrieval-Augmented Generation (RAG), it offers:
+
+- Dynamic interaction for clarifying queries.
+- Transparent, fact-based responses.
+- Adaptability to structured and unstructured data.
+
+
+# 🛠️  Installation
+Ensure the following are installed on your system:
 
 - [Python 3.12.4+](https://www.python.org/downloads/)
 - [Docker](https://www.docker.com/)
 
-### Clone repository
+## Clone Repository
 
 ```bash
-   git clone https://github.com/MrSneaker/IncidentNavigatorProject.git
-   cd IncidentNavigatorProject
+git clone https://github.com/MrSneaker/IncidentNavigatorProject.git
+cd IncidentNavigatorProject
 ```
 
-### Automated Installation
+## Quick install/uninstall
+### Install :
 
+   This script will handle the creation of the virtual environment, installation of required Python packages, and any other necessary setup steps.
    ```bash
    sudo ./app/install/install.sh
    ```
 
-   This script will handle the creation of the virtual environment, installation of required Python packages, and any other necessary setup steps.
+### Uninstall : 
 
-### Manual Installation
+   This script is used to uninstall the application.It performs the necessary steps to remove the application and its associated files from the system.
+   ```bash
+   sudo ./app/install/uninstall.sh
+   ```
 
-If you prefer to manually set up the project, follow these steps:
+---
 
-1. **Navigate to the installation directory**
+## Manual Setup
 
+1. **Navigate to the installation directory:**
    ```bash
    cd app/install
    ```
 
-2. **Install the required frameworks**
+2. **Docker services:**
 
    Docker allows you to build and run services along with its dependencies in a containerized environment making it so you do not need to install them locally. As our applications need **Weaviate**, **MongoDB** and **Redis** we thus provide a [docker-compose.yml](app/install/docker-compose.yml) file to make it easier to install and use them.
 
+   - **Start :**
+      ```bash
+      docker compose up -d
+      ```
+   - **Stop :**
+      ```bash
+      docker compose down
+      ```
+
+   ***Note:*** *If you encounter permission issues with Docker on Linux, try running the commands with sudo or ensure your user is added to the Docker group (`sudo usermod -aG docker $USER`)*
+
+3. **Set up a Python environment:**
    ```bash
-   docker compose up -d
-   ```
-
-   To stop and remove the containers, you can use the following command (from the `app/install` directory):
-
-   ```bash
-   docker compose down
-   ```
-
-   ***Note:***
-   *If you encounter permission issues with Docker on Linux, try running the commands with `sudo` or ensure your user is added to the Docker group (`sudo usermod -aG docker $USER`)*
-
-3. **Setup Python environment and install requirements**
-
-   In this step, you will create a Python virtual environment and install the script's dependencies from the [requirements.txt](app/install/requirements.txt) file
-
-   ```bash
-   python -m venv .installenv
-   source .installenv/bin/activate  # linux & macos
-   # .installenv\Scripts\activate  # windows
+   python -m venv .env
+   source .env/bin/activate  # Linux/macOS
    pip install -r requirements.txt
    ```
 
-4. **Fill the databases (Weaviate and Mongo)**
-
-   Before starting, you will need to fill the Weaviate and Mongo databases with the necessary data. We have provided a script to perform this operation. You can also use the `-c` or `--clear` option to clear the databases before filling them.
-
+4. Populate databases:
    ```bash
-   python3 create_dbs.py # [-c | --clear]
+   python3 create_dbs.py  # Use [-c | --clear] to reset databases.
    ```
+   
+---
 
-## 2. Launch the server
+# 🔧 Lauch Server
 
-###  Automated launch
+## Quick Launch
 
-   ```bash
-   sudo ./app/install/start.sh
-   ```
+```bash
+sudo ./app/install/start.sh
+```
+This script will start all components for you. Navigate to [http://localhost:5000](http://localhost:5000) to access the homepage.
 
-   This script will start every components for you.
+```bash
+sudo ./app/install/stop.sh
+```
+This script will stop all running components.
+  
 
-### Manual launch
+## Manual Launch
+  1. **Navigate to the project root directory:**
+      
+      Ensure you are in the root directory of the project before proceeding with the following steps.
+      ```bash
+      cd /path/to/IncidentNavigatorProject
+      ```
 
-1. **Navigate to the project root directory**
+  2. **Set up the Python environment:**
+      
+      Activate the installed environment:
+      ```bash
+      source app/install/.env/bin/activate  # Linux/macOS
+      ```
 
-   Ensure you are in the root directory of the project before proceeding with the following steps.
+   3. **Launch the Flask application:**         
+      ```bash
+      python3 app/app.pySimplifiez les phrases pour les rendre plus fluides en français. Par exemple :lhost:5000, you will be directed to the homepage.
 
-   ```bash
-   cd /path/to/IncidentNavigatorProject
-   ```
+# 🔒 Default Admin Credentials
 
-2. **Setup Python environment and install requirements**
+The application comes with a default admin account for initial use:
 
-   In this step, you will create a Python virtual environment and install the script's dependencies from the [requirements.txt](app/requirements.txt) file
+- **Email:** `admin@example.com`
+- **Password:** `admin`
 
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate  # linux & macos
-   # .venv\Scripts\activate  # windows
-   pip install -r app/requirements.txt
-   ```
+> **Important:** It is highly recommended to change the password after the first login to secure the application.
 
-3. **Start the Flask application**
+---
 
-   To start the flask server, run the following cmd:
 
-   ```bash
-   python3 app/app.py
-   ```
+## 📝 User Evaluation
 
-   You can then navigate to [http://localhost:5000](http://localhost:5000), you will be directed to the homepage.
-
-## 3. Stop the server
-
-###  Automated stop
-
-   ```bash
-   sudo ./app/install/stop.sh
-   ```
-
-   This script will stop every components for you.
-
-### Manual stop
-
-1. **Stop the Flask application**
-
-   If the Flask server is running in your terminal, press `Ctrl+C` to stop it.
-
-2. **Stop the Docker containers**
-
-   Navigate to the `app/install` directory and use the following command to stop and remove the containers:
-
-   ```bash
-   docker compose down
-   ```
-
-   ***Note:*** If you encounter permission issues on Linux, prepend the command with `sudo`.
-
-## User evaluation
-
-To perform an empirical evaluation based on user satisfaction, we ask users a survey which can be accessed by clicking this [link](https://docs.google.com/forms/d/e/1FAIpQLSeJjsLwA0piXQqG0LpePXWf8MYUIZXKDx7mvkezLxrdCmWIYQ/viewform?usp=header)
+**Your feedback matters!** Participate in our user evaluation by filling out this [survey](https://docs.google.com/forms/d/e/1FAIpQLSeJjsLwA0piXQqG0LpePXWf8MYUIZXKDx7mvkezLxrdCmWIYQ/viewform?usp=header).
