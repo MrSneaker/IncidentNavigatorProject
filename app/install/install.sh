@@ -36,4 +36,3 @@ sleep 5
 echo -e "\e[1;34m[INFO]\e[0m Creating databases..."
 python3 create_dbs.py
 echo -e "\e[1;32m[SUCCESS]\e[0m Setup complete!"
-
