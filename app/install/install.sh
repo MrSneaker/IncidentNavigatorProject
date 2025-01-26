@@ -10,7 +10,7 @@ python3 -m venv .env
 echo -e "\e[1;34m[INFO]\e[0m Activating virtual environment..."
 source .env/bin/activate
 echo -e "\e[1;34m[INFO]\e[0m Installing dependencies..."
-pip install -r requirements.txt --quiet
+pip install -r requirements.txt
 
 # DOCKER
 ## Check if docker is installed

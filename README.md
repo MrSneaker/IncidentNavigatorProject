@@ -49,6 +49,8 @@ cd IncidentNavigatorProject
    sudo ./app/install/install.sh
    ```
 
+   ***Note:*** *Dependancies installations could take a while, depending on your network speed.*
+
 ### Uninstall
 
    This script is used to uninstall the application.It performs the necessary steps to remove the application and its associated files from the system.

@@ -21,7 +21,7 @@ else
     echo -e "\e[1;33m[WARNING]\e[0m Docker-compose is not installed."
 fi
 
-list_install_folders=('.installenv' 'embedding_model' 'instance' 'mongo_data' 'weaviate_data')
+list_install_folders=('embedding_model' 'instance' 'mongo_data' 'weaviate_data')
 for folder in ${list_install_folders[@]}; do
     if [ -d "$folder" ]; then
         echo -e "\e[1;34m[INFO]\e[0m Removing $folder..."
