@@ -2,8 +2,8 @@
 
 **An intelligent solution for efficient incident resolution using LLM and RAG.**
 
-
 # Table of Contents
+
 1. [📖 Introduction](#📖-introduction)
 2. [🛠️ Installation](#🛠️-installation)
    - [Clone Repository](#clone-repository)
@@ -25,8 +25,8 @@
 - Transparent, fact-based responses.
 - Adaptability to structured and unstructured data.
 
-
 # 🛠️  Installation
+
 Ensure the following are installed on your system:
 
 - [Python 3.12.4+](https://www.python.org/downloads/)
@@ -40,16 +40,19 @@ cd IncidentNavigatorProject
 ```
 
 ## Quick install/uninstall
-### Install :
+
+### Install
 
    This script will handle the creation of the virtual environment, installation of required Python packages, and any other necessary setup steps.
+
    ```bash
    sudo ./app/install/install.sh
    ```
 
-### Uninstall : 
+### Uninstall
 
    This script is used to uninstall the application.It performs the necessary steps to remove the application and its associated files from the system.
+
    ```bash
    sudo ./app/install/uninstall.sh
    ```
@@ -59,6 +62,7 @@ cd IncidentNavigatorProject
 ## Manual Setup
 
 1. **Navigate to the installation directory:**
+
    ```bash
    cd app/install
    ```
@@ -68,10 +72,13 @@ cd IncidentNavigatorProject
    Docker allows you to build and run services along with its dependencies in a containerized environment making it so you do not need to install them locally. As our applications need **Weaviate**, **MongoDB** and **Redis** we thus provide a [docker-compose.yml](app/install/docker-compose.yml) file to make it easier to install and use them.
 
    - **Start :**
+
       ```bash
       docker compose up -d
       ```
+
    - **Stop :**
+
       ```bash
       docker compose down
       ```
@@ -79,6 +86,7 @@ cd IncidentNavigatorProject
    ***Note:*** *If you encounter permission issues with Docker on Linux, try running the commands with sudo or ensure your user is added to the Docker group (`sudo usermod -aG docker $USER`)*
 
 3. **Set up a Python environment:**
+
    ```bash
    python -m venv .env
    source .env/bin/activate  # Linux/macOS
@@ -86,10 +94,11 @@ cd IncidentNavigatorProject
    ```
 
 4. Populate databases:
+
    ```bash
    python3 create_dbs.py  # Use [-c | --clear] to reset databases.
    ```
-   
+
 ---
 
 # 🔧 Lauch Server
@@ -99,30 +108,35 @@ cd IncidentNavigatorProject
 ```bash
 sudo ./app/install/start.sh
 ```
+
 This script will start all components for you. Navigate to [http://localhost:5000](http://localhost:5000) to access the homepage.
 
 ```bash
 sudo ./app/install/stop.sh
 ```
+
 This script will stop all running components.
   
-
 ## Manual Launch
+
   1. **Navigate to the project root directory:**
-      
+
       Ensure you are in the root directory of the project before proceeding with the following steps.
+
       ```bash
       cd /path/to/IncidentNavigatorProject
       ```
 
   2. **Set up the Python environment:**
-      
+
       Activate the installed environment:
+
       ```bash
       source app/install/.env/bin/activate  # Linux/macOS
       ```
 
-   3. **Launch the Flask application:**         
+  3. **Launch the Flask application:**
+
       ```bash
       python3 app/app.pySimplifiez les phrases pour les rendre plus fluides en français. Par exemple :lhost:5000, you will be directed to the homepage.
 
@@ -137,7 +151,6 @@ The application comes with a default admin account for initial use:
 
 ---
 
-
 ## 📝 User Evaluation
 
-**Your feedback matters!** Participate in our user evaluation by filling out this [survey](https://docs.google.com/forms/d/e/1FAIpQLSeJjsLwA0piXQqG0LpePXWf8MYUIZXKDx7mvkezLxrdCmWIYQ/viewform?usp=header).
+Participate in our user evaluation by filling out this [survey](https://docs.google.com/forms/d/e/1FAIpQLSeJjsLwA0piXQqG0LpePXWf8MYUIZXKDx7mvkezLxrdCmWIYQ/viewform?usp=header).
