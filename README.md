@@ -26,6 +26,8 @@
 - Transparent, fact-based responses.
 - Adaptability to structured and unstructured data.
 
+> **Demo:** Watch the application in action on [YouTube](https://www.youtube.com/watch?v=WaN5e42Wt4U).
+
 # Installation
 
 Ensure the following are installed on your system:
