@@ -58,6 +58,7 @@ class User(db.Model):
         lazy='dynamic'
     )
     admin = db.Column(db.Boolean, default=False)
+    super_admin = db.Column(db.Boolean, default=False)
     
     # Timestamps
     created_at = db.Column(db.DateTime, default=datetime.datetime.now)
@@ -82,6 +83,7 @@ class User(db.Model):
             'username': self.username,
             'industries': self.industries,
             'admin': self.admin,
+            'super_admin': self.super_admin,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

@@ -47,7 +47,8 @@ def create_default_admin():
         email=admin_email,
         username=admin_username,
         password=hashed_password,
-        admin=True
+        admin=True,
+        super_admin=True
     )
     db.session.add(admin_user)
     db.session.commit()

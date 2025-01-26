@@ -37,6 +37,7 @@ def me():
         'username': user.username,
         'industries': industries_list,
         'isAdmin': user.admin,
+        'isSuperAdmin': user.super_admin,
         'created_at': user.created_at,
         'updated_at': user.updated_at
     }}, 200
@@ -175,6 +176,7 @@ def get_users():
         'username': u.username,
         'industries': [industry.to_dict() for industry in u.industries],
         'isAdmin': u.admin,
+        'isSuperAdmin': u.super_admin,
         'created_at': u.created_at,
         'updated_at': u.updated_at
     } for u in users]
@@ -254,3 +256,37 @@ def delete_user():
         return {'success': True, 'message': 'User deleted successfully'}, 200
     except Exception as e:
         return {'error': 6, 'message': f'Error while deleting user: {str(e)}'}, 500
+ 
+    
+@auth.route('/users/<user_id>/admin-status', methods=['PUT'])
+def change_admin_status(user_id):
+    """
+    Change the admin status of a user (admin only).
+    Expects JSON with 'isAdmin' field (boolean).
+    """
+    admin_id = session.get('user_id', None)
+    if admin_id is None:
+        return {'error': 1, 'message': 'Unauthorized', 'data': None}, 401
+
+    admin_user = User.get_user(id=admin_id)
+    if admin_user is None or not admin_user.admin:
+        return {'error': 2, 'message': 'Permission denied', 'data': None}, 403
+
+    user = User.get_user(id=user_id)
+    if user is None:
+        return {'error': 3, 'message': 'User not found', 'data': None}, 404
+
+    is_admin = request.json.get('isAdmin', None)
+    if is_admin is None or not isinstance(is_admin, bool):
+        return {'error': 4, 'message': 'Invalid admin status format', 'data': None}, 400
+
+    try:
+        user.set_admin(is_admin)
+        return {'error': 0, 'message': 'Admin status updated', 'data': {
+            'id': user.id,
+            'username': user.username,
+            'isAdmin': user.admin
+        }}, 200
+    except Exception as e:
+        logging.error(f"Error updating admin status for user {user_id}: {str(e)}")
+        return {'error': 5, 'message': 'Error updating admin status', 'data': None}, 500

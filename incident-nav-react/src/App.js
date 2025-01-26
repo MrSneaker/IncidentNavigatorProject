@@ -9,7 +9,7 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import NotLogRoute from './components/auth/NotLogRoute';
 import ChatPage from './pages/chat/ChatPage';
 import ChatOverviewPage from './pages/chat/ChatOverviewPage';
-import SettingsPage from './pages/SettingsPage';
+import SettingsPage from './pages/SettingsPage.js';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ProfilePage from './pages/auth/ProfilePage';

@@ -254,5 +254,31 @@ async function deleteUser(userIdToDelete) {
     }
 }
 
+async function updateUserAdminStatus(userId, isAdmin) {
+    try {
+        const response = await fetch(`/auth/users/${userId}/admin-status`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({ isAdmin }),
+        });
 
-export { login, register, logout, rename, getCurrent, refreshToken, getUsers, updateUserIndustries, checkAdmin, deleteUser }
+        if (response.status === 500) {
+            return { error: 500, message: "Internal server error" };
+        }
+
+        const data = await response.json();
+        if (data.error) {
+            return { error: data.error, message: data.message };
+        } else {
+            return { error: null, message: data.data, data: data.data };
+        }
+    } catch (error) {
+        return { error: -1, message: error.message };
+    }
+}
+
+
+export { login, register, logout, rename, getCurrent, refreshToken, getUsers, updateUserIndustries, checkAdmin, deleteUser, updateUserAdminStatus }
