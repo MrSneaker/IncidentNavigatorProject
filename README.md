@@ -13,7 +13,8 @@
    - [Quick Launch](#quick-launch)
    - [Manual Launch](#manual-launch)
 4. [🔒 Default Admin Credentials](#🔒-default-admin-credentials)
-5. [📝 User Evaluation](#📝-user-evaluation)
+5. [⚙️ Configure LLM](#⚙️-configure-llm)
+6. [📝 User Evaluation](#📝-user-evaluation)
 
 ---
 
