@@ -149,6 +149,24 @@ The application comes with a default admin account for initial use:
 
 > **Important:** It is highly recommended to change the password after the first login to secure the application.
 
+
+---
+
+# ⚙️ Configure LLM
+
+To configure the Large Language Model (LLM), the admin should follow these steps:
+
+1. Log in to the application using the admin account.
+2. Navigate to the **Settings** page.
+3. In the **Add New LLM Configuration** section, provide the following example details:
+   - **LLM Model:** `llama-3.3-70b-versatiile` (example model)
+   - **LLM Model URI:** `https://api.groq.com/openai/v1/` (example URI)
+   - **API Key:** *Provide your API key*
+
+4. Save the configuration to enable the new LLM model.
+
+> **Note:** Ensure the API key is kept secure and only shared with authorized personnel.
+
 ---
 
 ## 📝 User Evaluation
