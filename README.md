@@ -2,6 +2,8 @@
 
 **An intelligent solution for efficient incident resolution using LLM and RAG.**
 
+[**Read the paper!**](paper_cc3_grp4.pdf)
+
 # Table of Contents
 
 1. [📖 Introduction](#introduction)
